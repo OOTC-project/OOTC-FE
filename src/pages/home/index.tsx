@@ -1,12 +1,12 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
-
-const Homepage = () => {
+import TitleBox from '../../components/molecules/TitleBox';
+const OotdPage = () => {
     return (
         <View>
-            <Text>Homepage</Text>
+            <TitleBox />
         </View>
     );
 };
 
-export default Homepage;
+export default OotdPage;
