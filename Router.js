@@ -33,12 +33,15 @@ export default function Router() {
             <StatusBar style="light" />
             <NavigationContainer>
                 <Tab.Navigator
-                    swipeEnabled={false}
-                    tabBarOptions={{
-                        activeTintColor: '#FFFFFF',
-                        inactiveTintColor: 'gray',
-                        style: { backgroundColor: '#000000' },
-                        indicatorStyle: { backgroundColor: '#FFFFFF' },
+                    screenOptions={{
+                        tabBarActiveTintColor: '#FFFFFF',
+                        tabBarInactiveTintColor: 'gray',
+                        tabBarIndicatorStyle: {
+                            backgroundColor: '#FFFFFF',
+                        },
+                        tabBarStyle: {
+                            backgroundColor: '#000000',
+                        },
                     }}
                 >
                     <Tab.Screen name="Select" component={Select} />

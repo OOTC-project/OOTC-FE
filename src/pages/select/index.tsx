@@ -1,14 +1,31 @@
 import { View, Text, StyleSheet } from 'react-native';
-import React from 'react';
-import ItemSelectBox from '../../components/organism/SelectBox';
+import React, { useState } from 'react';
+import ItemSelectBox from '../../components/template/SelectBox';
 
 const Select = () => {
+    const [select, setSelect] = useState({
+        top: null,
+        outer: null,
+        bottom: null,
+    });
     return (
         <View style={styles.container}>
             <View style={styles.mt}>
-                <ItemSelectBox title="OUTER" />
-                <ItemSelectBox title="TOP" />
-                <ItemSelectBox title="BOTTOM" />
+                <ItemSelectBox
+                    title="OUTER"
+                    select={select}
+                    setSelect={setSelect}
+                />
+                <ItemSelectBox
+                    title="TOP"
+                    select={select}
+                    setSelect={setSelect}
+                />
+                <ItemSelectBox
+                    title="BOTTOM"
+                    select={select}
+                    setSelect={setSelect}
+                />
             </View>
         </View>
     );
