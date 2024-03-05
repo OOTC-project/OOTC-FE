@@ -11,15 +11,20 @@ const OotdItemBox = ({ children }: OotdItemBoxProps) => {
 
 export default OotdItemBox;
 const screenWidth = Dimensions.get('window').width;
-console.log(screenWidth);
+const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#000000',
-        width: screenWidth / 2.1,
-        height: 160,
-        borderRadius: 10,
-        margin: 2,
+        backgroundColor: '#242424',
+        opacity: 0.7,
+        width: screenWidth / 1.5,
+        height: screenHeight / 4,
+        borderRadius: 18,
+        padding: 5,
+        marginTop: 10,
         borderColor: '#2e2e2e',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });

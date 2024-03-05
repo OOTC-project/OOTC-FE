@@ -13,13 +13,13 @@ export default OotdItemContainer;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#101010',
+        backgroundColor: 'black',
         height: '100%',
         width: '100%',
         borderRadius: 10,
-        marginHorizontal: 10,
         display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
     },
 });

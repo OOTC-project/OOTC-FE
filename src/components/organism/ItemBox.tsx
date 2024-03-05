@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 
 interface ItemBoxProps {
     children?: React.ReactNode;
-    selected: boolean;
+    selected?: boolean;
 }
 
 const ItemBox = ({ children, selected }: ItemBoxProps) => {
@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
         height: '100%',
         borderRadius: 10,
         marginHorizontal: 10,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     selected: {
         borderColor: '#2e2e2e',
