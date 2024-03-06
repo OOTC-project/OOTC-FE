@@ -6,6 +6,7 @@ import {
     Pressable,
     StyleSheet,
     Text,
+    TextInput,
     TouchableOpacity,
     View,
 } from 'react-native';
@@ -14,6 +15,7 @@ import TitleBox from '../../components/molecules/TitleBox';
 import OotdItemContainer from '../../components/organism/OotdItemContainer';
 import OotdItemBox from '../../components/organism/OotdItemBox';
 import ItemBox from '../../components/organism/ItemBox';
+import ImagePickerExample from '../../components/organism/ImagePicker';
 
 interface ListType {
     key: string;
@@ -78,10 +80,20 @@ const OotdPage = () => {
                 >
                     <View style={styles.centeredView}>
                         <View style={styles.modal}>
+                            <View style={styles.modalBox}>
+                                <TextInput
+                                    placeholder="태그명을 입력해주세요."
+                                    placeholderTextColor="grey"
+                                    keyboardType="default"
+                                    style={styles.textInput}
+                                />
+                                <ImagePickerExample />
+                            </View>
                             <Pressable
+                                style={styles.closeBtn}
                                 onPress={() => setModalVisible(!modalVisible)}
                             >
-                                <Text>Hide Modal</Text>
+                                <Text style={styles.closeBtnText}>취소</Text>
                             </Pressable>
                         </View>
                     </View>
@@ -115,14 +127,33 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 22,
     },
     modal: {
-        backgroundColor: '#121212',
+        backgroundColor: '#181818',
         opacity: 0.95,
-        width: '90%',
-        height: '80%',
+        width: '100%',
+        height: '100%',
         borderRadius: 18,
-        padding: 5,
+        padding: 10,
+    },
+    modalBox: { flex: 8 },
+    closeBtn: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 13,
+        backgroundColor: '#000000',
+    },
+    closeBtnText: {
+        color: '#fff',
+        fontSize: 20,
+    },
+    textInput: {
+        padding: 10,
+        borderRadius: 13,
+        backgroundColor: '#000000',
+        color: '#fff',
+
+        marginVertical: 5,
     },
 });
