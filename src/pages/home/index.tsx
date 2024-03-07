@@ -90,6 +90,12 @@ const OotdPage = () => {
                                 <ImagePickerExample />
                             </View>
                             <Pressable
+                                style={styles.saveBtn}
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
+                                <Text style={styles.saveBtnText}>저장</Text>
+                            </Pressable>
+                            <Pressable
                                 style={styles.closeBtn}
                                 onPress={() => setModalVisible(!modalVisible)}
                             >
@@ -137,12 +143,25 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     modalBox: { flex: 8 },
+    saveBtn: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 13,
+        backgroundColor: '#fff',
+        marginTop: 10,
+    },
+    saveBtnText: {
+        color: '#000000',
+        fontSize: 20,
+    },
     closeBtn: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 13,
         backgroundColor: '#000000',
+        marginTop: 10,
     },
     closeBtnText: {
         color: '#fff',
