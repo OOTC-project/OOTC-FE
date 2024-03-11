@@ -1,10 +1,31 @@
 import { View, Text, StyleSheet } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const Count = () => {
+    const items = useSelector((state: RootState) => state);
+
+    const [counter, setCounter] = useState(0);
+
+    useEffect(() => {
+        let count = 0;
+
+        if (items.counter.outer !== null) {
+            count++;
+        }
+        if (items.counter.top !== null) {
+            count++;
+        }
+        if (items.counter.bottom !== null) {
+            count++;
+        }
+        setCounter(count);
+    }, [items.counter]);
+
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>1</Text>
+            <Text style={styles.text}>{counter}</Text>
         </View>
     );
 };

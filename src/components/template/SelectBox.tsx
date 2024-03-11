@@ -8,29 +8,52 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import ItemBox from '../organism/ItemBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { setBottom, setOuter, setTop } from '../../redux/slice/itemSlice';
+import { RootState } from '../../redux/store';
 
 interface ItemSelectBoxProps {
     title: string;
-    select: { [key: string]: string | null };
-    setSelect: any;
 }
 
-const ItemSelectBox = ({ title, select, setSelect }: ItemSelectBoxProps) => {
+const ItemSelectBox = ({ title }: ItemSelectBoxProps) => {
     const data = [
         { key: '1', screen: 'Screen 1' },
         { key: '2', screen: 'Screen 2' },
         { key: '3', screen: 'Screen 3' },
     ];
 
+    const items = useSelector((state: RootState) => state);
+
     const handlePress = (key: string) => {
-        setSelect((prev: { [x: string]: string }) => {
-            return {
-                ...prev,
-                [title.toLowerCase()]:
-                    prev[title.toLowerCase()] === key ? null : key,
-            };
-        });
+        switch (title.toLowerCase()) {
+            case 'top':
+                if (items.counter.top === key) {
+                    dispatch(setTop(null));
+                } else {
+                    dispatch(setTop(key));
+                }
+                break;
+            case 'outer':
+                if (items.counter.outer === key) {
+                    dispatch(setOuter(null));
+                } else {
+                    dispatch(setOuter(key));
+                }
+                break;
+            case 'bottom':
+                if (items.counter.bottom === key) {
+                    dispatch(setBottom(null));
+                } else {
+                    dispatch(setBottom(key));
+                }
+                break;
+            default:
+                break;
+        }
     };
+
+    const dispatch = useDispatch();
 
     return (
         <View style={styles.container}>
@@ -45,9 +68,7 @@ const ItemSelectBox = ({ title, select, setSelect }: ItemSelectBoxProps) => {
                 data={data}
                 renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => handlePress(item.key)}>
-                        <ItemBox
-                            selected={select[title.toLowerCase()] === item.key}
-                        >
+                        <ItemBox key={item.key}>
                             <Text>{item.screen}</Text>
                         </ItemBox>
                     </TouchableOpacity>

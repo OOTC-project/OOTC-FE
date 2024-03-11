@@ -14,7 +14,6 @@ const SelectImage = () => {
     const handleModal = () => {
         setModalVisible(true);
     };
-    console.log(modalVisible);
 
     return (
         <>

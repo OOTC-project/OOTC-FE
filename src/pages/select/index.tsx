@@ -2,32 +2,17 @@ import { View, Text, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import ItemSelectBox from '../../components/template/SelectBox';
 import SelectImage from '../../components/organism/SelectImage';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const Select = () => {
-    const [select, setSelect] = useState({
-        top: null,
-        outer: null,
-        bottom: null,
-    });
     return (
         <View style={styles.container}>
             <SelectImage />
             <View style={styles.mt}>
-                <ItemSelectBox
-                    title="OUTER"
-                    select={select}
-                    setSelect={setSelect}
-                />
-                <ItemSelectBox
-                    title="TOP"
-                    select={select}
-                    setSelect={setSelect}
-                />
-                <ItemSelectBox
-                    title="BOTTOM"
-                    select={select}
-                    setSelect={setSelect}
-                />
+                <ItemSelectBox title="OUTER" />
+                <ItemSelectBox title="TOP" />
+                <ItemSelectBox title="BOTTOM" />
             </View>
         </View>
     );

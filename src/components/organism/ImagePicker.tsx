@@ -13,8 +13,6 @@ const ImagePickerExample = () => {
             quality: 1,
         });
 
-        console.log(result);
-
         if (result.assets && !result.canceled) {
             setImage(result.assets[0].uri);
         }

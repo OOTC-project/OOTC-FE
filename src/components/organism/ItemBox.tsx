@@ -1,19 +1,24 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 interface ItemBoxProps {
     children?: React.ReactNode;
     selected?: boolean;
+    key: string;
 }
 
 const ItemBox = ({ children, selected }: ItemBoxProps) => {
+    const dispatch = useDispatch();
+    const items = useSelector((state: RootState) => state);
+
     return (
         <View style={[styles.container, selected && styles.selected]}>
             {children}
         </View>
     );
 };
-
 export default ItemBox;
 
 const styles = StyleSheet.create({
@@ -28,7 +33,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     selected: {
-        borderColor: '#2e2e2e',
+        borderColor: 'red',
         borderWidth: 1,
     },
 });
