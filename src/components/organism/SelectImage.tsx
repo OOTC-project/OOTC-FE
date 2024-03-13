@@ -6,8 +6,10 @@ import {
     Modal,
     Pressable,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Count from '../molecules/Count';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const SelectImage = () => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -15,24 +17,52 @@ const SelectImage = () => {
         setModalVisible(true);
     };
 
+    const { counter: itemCounter } = useSelector((state: RootState) => state);
+
+    const [counter, setCounter] = useState(0);
+
+    useEffect(() => {
+        let count = 0;
+
+        if (itemCounter.outer !== null) {
+            count++;
+        }
+        if (itemCounter.top !== null) {
+            count++;
+        }
+        if (itemCounter.bottom !== null) {
+            count++;
+        }
+        setCounter(count);
+    }, [itemCounter]);
+
     return (
         <>
-            <TouchableOpacity style={styles.container} onPress={handleModal}>
-                <Count />
-            </TouchableOpacity>
+            {counter > 0 ? (
+                <>
+                    <TouchableOpacity
+                        style={styles.container}
+                        onPress={handleModal}
+                    >
+                        <Count />
+                    </TouchableOpacity>
 
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    setModalVisible(!modalVisible);
-                }}
-            >
-                <Pressable onPress={() => setModalVisible(!modalVisible)}>
-                    <Text>취소</Text>
-                </Pressable>
-            </Modal>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={() => {
+                            setModalVisible(!modalVisible);
+                        }}
+                    >
+                        <Pressable
+                            onPress={() => setModalVisible(!modalVisible)}
+                        >
+                            <Text>취소</Text>
+                        </Pressable>
+                    </Modal>
+                </>
+            ) : null}
         </>
     );
 };

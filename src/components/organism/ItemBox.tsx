@@ -1,7 +1,5 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
 
 interface ItemBoxProps {
     children?: React.ReactNode;
@@ -10,9 +8,6 @@ interface ItemBoxProps {
 }
 
 const ItemBox = ({ children, selected }: ItemBoxProps) => {
-    const dispatch = useDispatch();
-    const items = useSelector((state: RootState) => state);
-
     return (
         <View style={[styles.container, selected && styles.selected]}>
             {children}

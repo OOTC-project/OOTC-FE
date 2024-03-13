@@ -23,26 +23,26 @@ const ItemSelectBox = ({ title }: ItemSelectBoxProps) => {
         { key: '3', screen: 'Screen 3' },
     ];
 
-    const items = useSelector((state: RootState) => state);
+    const { counter: itemCounter } = useSelector((state: RootState) => state);
 
     const handlePress = (key: string) => {
         switch (title.toLowerCase()) {
             case 'top':
-                if (items.counter.top === key) {
+                if (itemCounter.top === key) {
                     dispatch(setTop(null));
                 } else {
                     dispatch(setTop(key));
                 }
                 break;
             case 'outer':
-                if (items.counter.outer === key) {
+                if (itemCounter.outer === key) {
                     dispatch(setOuter(null));
                 } else {
                     dispatch(setOuter(key));
                 }
                 break;
             case 'bottom':
-                if (items.counter.bottom === key) {
+                if (itemCounter.bottom === key) {
                     dispatch(setBottom(null));
                 } else {
                     dispatch(setBottom(key));

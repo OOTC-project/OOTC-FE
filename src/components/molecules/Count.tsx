@@ -4,24 +4,24 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
 const Count = () => {
-    const items = useSelector((state: RootState) => state);
+    const { counter: itemCounter } = useSelector((state: RootState) => state);
 
     const [counter, setCounter] = useState(0);
 
     useEffect(() => {
         let count = 0;
 
-        if (items.counter.outer !== null) {
+        if (itemCounter.outer !== null) {
             count++;
         }
-        if (items.counter.top !== null) {
+        if (itemCounter.top !== null) {
             count++;
         }
-        if (items.counter.bottom !== null) {
+        if (itemCounter.bottom !== null) {
             count++;
         }
         setCounter(count);
-    }, [items.counter]);
+    }, [itemCounter]);
 
     return (
         <View style={styles.container}>
