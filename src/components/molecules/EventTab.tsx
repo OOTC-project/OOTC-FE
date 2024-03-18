@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 
 interface EventTabProps {
@@ -7,9 +7,9 @@ interface EventTabProps {
 
 const EventTab = ({ children }: EventTabProps) => {
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container}>
             <Text style={styles.text}>{children}</Text>
-        </View>
+        </TouchableOpacity>
     );
 };
 

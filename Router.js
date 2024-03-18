@@ -33,6 +33,7 @@ export default function Router() {
             <StatusBar style="light" />
             <NavigationContainer>
                 <Tab.Navigator
+                    swipeEnabled={false}
                     screenOptions={{
                         tabBarActiveTintColor: '#FFFFFF',
                         tabBarInactiveTintColor: 'gray',
