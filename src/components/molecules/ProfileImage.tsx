@@ -1,15 +1,26 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
 
 interface ProfileImageProps {
     width?: number;
     height?: number;
+    image?: any;
 }
 
-const ProfileImage = ({ width, height }: ProfileImageProps) => {
+const ProfileImage = ({ width, height, image }: ProfileImageProps) => {
+    console.log(image);
+
     return (
         <View style={[styles.container, { width, height }]}>
-            <Text style={styles.Text}>OOTD</Text>
+            {image ? (
+                <Image
+                    source={{ uri: image }}
+                    style={styles.image}
+                    resizeMode="cover"
+                />
+            ) : (
+                <Text style={styles.Text}>+</Text>
+            )}
         </View>
     );
 };
@@ -26,5 +37,10 @@ const styles = StyleSheet.create({
     },
     Text: {
         color: '#fff',
+    },
+    image: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 100,
     },
 });

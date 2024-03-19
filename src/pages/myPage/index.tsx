@@ -1,9 +1,10 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import ProfileBox from '../../components/organism/ProfileBox';
 import EventBox from '../../components/organism/EventBox';
 import SaveImages from '../../components/organism/SaveImages';
+import OotdPage from '../home';
 
 const MyPage = () => {
     return (

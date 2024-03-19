@@ -17,11 +17,7 @@ interface ItemSelectBoxProps {
 }
 
 const ItemSelectBox = ({ title }: ItemSelectBoxProps) => {
-    const data = [
-        { key: '1', screen: 'Screen 1' },
-        { key: '2', screen: 'Screen 2' },
-        { key: '3', screen: 'Screen 3' },
-    ];
+    const data: string | ArrayLike<any> | null | undefined = [];
 
     const { counter: itemCounter } = useSelector((state: RootState) => state);
 
@@ -58,22 +54,28 @@ const ItemSelectBox = ({ title }: ItemSelectBoxProps) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
-            <FlatList
-                horizontal
-                showsHorizontalScrollIndicator={true}
-                onMomentumScrollEnd={() => {
-                    console.log('Scrolling is End');
-                }}
-                contentContainerStyle={styles.scrollViewContent}
-                data={data}
-                renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => handlePress(item.key)}>
-                        <ItemBox key={item.key}>
-                            <Text>{item.screen}</Text>
-                        </ItemBox>
-                    </TouchableOpacity>
-                )}
-            />
+            {data && data.length > 0 ? (
+                <FlatList
+                    horizontal
+                    showsHorizontalScrollIndicator={true}
+                    onMomentumScrollEnd={() => {
+                        console.log('Scrolling is End, select');
+                    }}
+                    contentContainerStyle={styles.scrollViewContent}
+                    data={data}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity onPress={() => handlePress(item.key)}>
+                            <ItemBox key={item.key}>
+                                <Text>{item.screen}</Text>
+                            </ItemBox>
+                        </TouchableOpacity>
+                    )}
+                />
+            ) : (
+                <View style={styles.noDataContainer}>
+                    <Text style={styles.noData}>OOTD에서 추가해주세요 :)</Text>
+                </View>
+            )}
         </View>
     );
 };
@@ -90,5 +92,13 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: '600',
         marginBottom: 10,
+    },
+    noData: { color: '#fff' },
+    noDataContainer: {
+        width: screenWidth,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '50%',
     },
 });
