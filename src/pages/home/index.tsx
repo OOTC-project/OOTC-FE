@@ -42,6 +42,23 @@ const OotdPage = () => {
         }
     }, [list]);
     const [modalVisible, setModalVisible] = useState(false);
+
+    const [photoData, setPhotoData] = useState({ url: '', name: '' });
+    const [name, setName] = useState('');
+    const handleSave = () => {
+        if (photoData.name && photoData.url) {
+            setModalVisible(!modalVisible);
+        } else {
+            Alert.alert(
+                '',
+                '빠진 곳이 있어요!!',
+                [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+                { cancelable: false }
+            );
+        }
+    };
+    console.log(photoData);
+
     return (
         <>
             <View style={styles.container}>
@@ -86,12 +103,21 @@ const OotdPage = () => {
                                     placeholderTextColor="grey"
                                     keyboardType="default"
                                     style={styles.textInput}
+                                    value={photoData.name}
+                                    onChangeText={(text) => {
+                                        setPhotoData((prevData) => ({
+                                            ...prevData,
+                                            name: text,
+                                        }));
+                                    }}
                                 />
-                                <ImagePickerExample />
+                                <ImagePickerExample
+                                    setPhotoData={setPhotoData}
+                                />
                             </View>
                             <Pressable
                                 style={styles.saveBtn}
-                                onPress={() => setModalVisible(!modalVisible)}
+                                onPress={handleSave}
                             >
                                 <Text style={styles.saveBtnText}>저장</Text>
                             </Pressable>

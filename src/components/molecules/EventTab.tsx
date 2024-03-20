@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import React from 'react';
 
 interface EventTabProps {
@@ -6,8 +6,23 @@ interface EventTabProps {
 }
 
 const EventTab = ({ children }: EventTabProps) => {
+    const handlePress = () => {
+        Alert.alert(
+            '',
+            'version 1.1에서 만나요 :)',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                { text: 'OK', onPress: () => console.log('OK Pressed') },
+            ],
+            { cancelable: false }
+        );
+    };
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={handlePress}>
             <Text style={styles.text}>{children}</Text>
         </TouchableOpacity>
     );

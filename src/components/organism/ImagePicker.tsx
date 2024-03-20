@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
-const ImagePickerExample = () => {
+interface ImagePickerExampleProps {}
+const ImagePickerExample = ({ setPhotoData }: any) => {
     const [image, setImage] = useState('');
 
     const pickImage = async () => {
@@ -15,6 +16,10 @@ const ImagePickerExample = () => {
 
         if (result.assets && !result.canceled) {
             setImage(result.assets[0].uri);
+            setPhotoData((prevData: any) => ({
+                ...prevData,
+                url: result.assets ? result.assets[0].uri : '',
+            }));
         }
     };
 

@@ -17,7 +17,11 @@ interface ItemSelectBoxProps {
 }
 
 const ItemSelectBox = ({ title }: ItemSelectBoxProps) => {
-    const data: string | ArrayLike<any> | null | undefined = [];
+    const data: string | ArrayLike<any> | null | undefined = [
+        { key: 1, screen: 'screen1' },
+        { key: 2, screen: 'screen2' },
+        { key: 3, screen: 'screen3' },
+    ];
 
     const { counter: itemCounter } = useSelector((state: RootState) => state);
 

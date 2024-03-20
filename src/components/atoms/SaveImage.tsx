@@ -15,7 +15,7 @@ import OotdItemContainer from '../organism/OotdItemContainer';
 import OotdItemBox from '../organism/OotdItemBox';
 
 const SaveImage = ({ index }: any) => {
-    const data = [
+    const data: string | any[] | (() => any[]) = [
         { key: '1', screen: 'Screen 1' },
         { key: '2', screen: 'Screen 2' },
         { key: '3', screen: 'Screen 3' },
@@ -37,6 +37,12 @@ const SaveImage = ({ index }: any) => {
     const [modalVisible, setModalVisible] = useState(false);
     const screenWidth = Dimensions.get('window').width;
     const screenHeight = Dimensions.get('window').height;
+    const [photoData, setPhotoData] = useState({ url: '', name: '' });
+    const [name, setName] = useState('');
+    const handleSave = () => {
+        setModalVisible(!modalVisible);
+        setPhotoData((prevData) => ({ ...prevData, name: name }));
+    };
 
     return (
         <View style={styles.container}>
@@ -83,13 +89,17 @@ const SaveImage = ({ index }: any) => {
                                 placeholderTextColor="grey"
                                 keyboardType="default"
                                 style={styles.textInput}
+                                value={name}
+                                onChangeText={(text) => {
+                                    setName(text);
+                                }}
                             />
-                            <ImagePickerExample />
+                            <ImagePickerExample
+                                photoData={photoData}
+                                setPhotoData={setPhotoData}
+                            />
                         </View>
-                        <Pressable
-                            style={styles.saveBtn}
-                            onPress={() => setModalVisible(!modalVisible)}
-                        >
+                        <Pressable style={styles.saveBtn} onPress={handleSave}>
                             <Text style={styles.saveBtnText}>저장</Text>
                         </Pressable>
                         <Pressable
