@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         transform: [{ translateY: -7 }],
     },
     text: {
-        color: '#fff',
+        color: '#2b2929',
         fontWeight: '800',
     },
 });

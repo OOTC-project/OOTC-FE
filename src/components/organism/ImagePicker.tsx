@@ -45,7 +45,6 @@ export default ImagePickerExample;
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: '#000',
         padding: 10,
         width: '100%',
         justifyContent: 'center',

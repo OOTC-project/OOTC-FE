@@ -1,17 +1,21 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import React, { useState } from 'react';
 import ItemSelectBox from '../../components/template/SelectBox';
 import SelectImage from '../../components/organism/SelectImage';
-
 const Select = () => {
     return (
         <View style={styles.container}>
-            <SelectImage />
-            <View style={styles.mt}>
-                <ItemSelectBox title="OUTER" />
-                <ItemSelectBox title="TOP" />
-                <ItemSelectBox title="BOTTOM" />
-            </View>
+            <ImageBackground
+                source={require('../../../assets/backGround/default.png')}
+                style={styles.background}
+            >
+                <SelectImage />
+                <View style={styles.mt}>
+                    <ItemSelectBox title="OUTER" />
+                    <ItemSelectBox title="TOP" />
+                    <ItemSelectBox title="BOTTOM" />
+                </View>
+            </ImageBackground>
         </View>
     );
 };
@@ -23,7 +27,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#000000',
+    },
+    background: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center',
     },
     mt: { marginTop: 10 },
 });

@@ -5,7 +5,7 @@ import OotdPage from './src/pages/home';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MyPage from './src/pages/myPage';
-import { View } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 import Select from './src/pages/select';
 
 const Stack = createNativeStackNavigator();
@@ -18,7 +18,6 @@ function OotdStackRouter() {
                 component={OotdPage}
                 options={{
                     headerShown: false,
-                    contentStyle: { backgroundColor: '#000000' },
                 }}
             />
         </Stack.Navigator>
@@ -29,8 +28,8 @@ export default function Router() {
     const Tab = createMaterialTopTabNavigator();
     return (
         <>
-            <View style={{ paddingTop: 20 }} />
             <StatusBar style="light" />
+            <SafeAreaView />
             <NavigationContainer>
                 <Tab.Navigator
                     swipeEnabled={false}
@@ -41,7 +40,8 @@ export default function Router() {
                             backgroundColor: '#FFFFFF',
                         },
                         tabBarStyle: {
-                            backgroundColor: '#000000',
+                            backgroundColor: 'transparent', // 배경색을 투명하게 설정
+                            borderTopWidth: 0, // 탭 바 위에 경계선 제거
                         },
                     }}
                 >

@@ -30,14 +30,15 @@ const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#242424',
         opacity: 0.7,
         borderRadius: 18,
         padding: 5,
         marginTop: 10,
         borderColor: '#2e2e2e',
+        backgroundColor: '#000',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        borderWidth: 1,
     },
 });

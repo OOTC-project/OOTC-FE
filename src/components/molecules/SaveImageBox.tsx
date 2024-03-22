@@ -12,6 +12,8 @@ const SaveImageBox: React.FC = () => {
     return (
         <View style={styles.container}>
             <FlatList
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
                 data={data}
                 renderItem={({ item }) => (
                     <SaveImage key={item.key} screen={item.screen} />

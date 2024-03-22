@@ -46,33 +46,31 @@ const SaveImage = ({ index }: any) => {
 
     return (
         <View style={styles.container}>
-            <Text>11</Text>
-            <OotdItemContainer>
-                <FlatList
-                    showsHorizontalScrollIndicator={true}
-                    onMomentumScrollEnd={() => {
-                        console.log('Scrolling is End');
-                    }}
-                    contentContainerStyle={styles.scrollViewContent}
-                    data={list}
-                    renderItem={({ item, index }) => (
-                        <TouchableOpacity
-                            onPress={() => {
-                                index === list.length - 1
-                                    ? setModalVisible(true)
-                                    : null;
-                            }}
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                onMomentumScrollEnd={() => {
+                    console.log('Scrolling is End');
+                }}
+                contentContainerStyle={styles.scrollViewContent}
+                data={list}
+                renderItem={({ item, index }) => (
+                    <TouchableOpacity
+                        onPress={() => {
+                            index === list.length - 1
+                                ? setModalVisible(true)
+                                : null;
+                        }}
+                    >
+                        <OotdItemBox
+                            width={screenWidth - 40}
+                            height={screenHeight / 2}
                         >
-                            <OotdItemBox
-                                width={screenWidth - 40}
-                                height={screenHeight / 2}
-                            >
-                                <Text style={styles.title}>{item.screen}</Text>
-                            </OotdItemBox>
-                        </TouchableOpacity>
-                    )}
-                />
-            </OotdItemContainer>
+                            <Text style={styles.title}>{item.screen}</Text>
+                        </OotdItemBox>
+                    </TouchableOpacity>
+                )}
+            />
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -122,9 +120,8 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#000000',
+        marginBottom: 2,
         marginTop: 10,
-        marginVertical: 40,
     },
     scrollViewContent: { alignItems: 'center' },
     title: {
@@ -153,11 +150,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 13,
-        backgroundColor: '#fff',
+        backgroundColor: '#2b2929',
         marginTop: 10,
     },
     saveBtnText: {
-        color: '#000000',
+        color: '#2b2929',
         fontSize: 20,
     },
     closeBtn: {
@@ -165,18 +162,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 13,
-        backgroundColor: '#000000',
+        backgroundColor: '#2b2929',
         marginTop: 10,
     },
     closeBtnText: {
-        color: '#fff',
+        color: '#2b2929',
         fontSize: 20,
     },
     textInput: {
         padding: 10,
         borderRadius: 13,
-        backgroundColor: '#000000',
-        color: '#fff',
+        backgroundColor: '#2b2929',
+        color: '#2b2929',
 
         marginVertical: 5,
     },

@@ -8,8 +8,6 @@ interface ProfileImageProps {
 }
 
 const ProfileImage = ({ width, height, image }: ProfileImageProps) => {
-    console.log(image);
-
     return (
         <View style={[styles.container, { width, height }]}>
             {image ? (
@@ -31,7 +29,8 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#959595df',
+        backgroundColor: '#000',
+        opacity: 0.7,
         borderRadius: 100,
         margin: 5,
     },

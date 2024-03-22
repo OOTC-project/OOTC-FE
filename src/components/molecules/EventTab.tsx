@@ -10,14 +10,7 @@ const EventTab = ({ children }: EventTabProps) => {
         Alert.alert(
             '',
             'version 1.1에서 만나요 :)',
-            [
-                {
-                    text: 'Cancel',
-                    onPress: () => console.log('Cancel Pressed'),
-                    style: 'cancel',
-                },
-                { text: 'OK', onPress: () => console.log('OK Pressed') },
-            ],
+            [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
             { cancelable: false }
         );
     };
@@ -37,5 +30,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    text: { color: '#fff' },
+    text: { color: '#000', fontWeight: '700' },
 });

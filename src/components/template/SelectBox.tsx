@@ -61,7 +61,8 @@ const ItemSelectBox = ({ title }: ItemSelectBoxProps) => {
             {data && data.length > 0 ? (
                 <FlatList
                     horizontal
-                    showsHorizontalScrollIndicator={true}
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
                     onMomentumScrollEnd={() => {
                         console.log('Scrolling is End, select');
                     }}
@@ -93,11 +94,11 @@ const styles = StyleSheet.create({
     scrollViewContent: { alignItems: 'center' },
     title: {
         fontSize: 30,
-        color: 'white',
-        fontWeight: '600',
+        color: '#2b2929',
+        fontWeight: '800',
         marginBottom: 10,
     },
-    noData: { color: '#fff' },
+    noData: { color: '#2b2929' },
     noDataContainer: {
         width: screenWidth,
         display: 'flex',

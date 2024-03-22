@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { ImageBackground, View } from 'react-native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import ProfileBox from '../../components/organism/ProfileBox';
@@ -9,9 +9,14 @@ import OotdPage from '../home';
 const MyPage = () => {
     return (
         <View style={styles.container}>
-            <ProfileBox height={120} />
-            <EventBox height={120} />
-            <SaveImages />
+            <ImageBackground
+                source={require('../../../assets/backGround/default.png')}
+                style={styles.background}
+            >
+                <ProfileBox height={120} />
+                <EventBox height={120} />
+                <SaveImages />
+            </ImageBackground>
         </View>
     );
 };
@@ -21,6 +26,11 @@ export default MyPage;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000000',
+        backgroundColor: '#2b2929',
+    },
+    background: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center',
     },
 });

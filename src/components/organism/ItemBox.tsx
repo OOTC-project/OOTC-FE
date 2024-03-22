@@ -18,7 +18,6 @@ export default ItemBox;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#101010',
         width: 200,
         height: '100%',
         borderRadius: 10,
@@ -26,6 +25,10 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        borderColor: '#2e2e2e',
+        borderWidth: 1,
+        opacity: 0.7,
+        backgroundColor: '#000',
     },
     selected: {
         borderColor: 'red',
