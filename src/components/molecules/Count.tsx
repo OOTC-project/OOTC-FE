@@ -20,6 +20,9 @@ const Count = () => {
         if (itemCounter.bottom !== null) {
             count++;
         }
+        if (itemCounter.etc !== null) {
+            count++;
+        }
         setCounter(count);
     }, [itemCounter]);
 

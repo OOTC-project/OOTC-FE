@@ -37,7 +37,7 @@ const SaveImage = ({ index }: any) => {
     const [modalVisible, setModalVisible] = useState(false);
     const screenWidth = Dimensions.get('window').width;
     const screenHeight = Dimensions.get('window').height;
-    const [photoData, setPhotoData] = useState({ url: '', name: '' });
+    const [photoData, setPhotoData] = useState({ url: '', position: '' });
     const [name, setName] = useState('');
     const handleSave = () => {
         setModalVisible(!modalVisible);

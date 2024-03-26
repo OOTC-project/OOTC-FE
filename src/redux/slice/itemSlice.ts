@@ -4,6 +4,7 @@ const initialState = {
     top: null,
     outer: null,
     bottom: null,
+    etc: null,
 };
 const itemSlice = createSlice({
     name: 'counter',
@@ -18,9 +19,12 @@ const itemSlice = createSlice({
         setBottom(state, action) {
             state.bottom = action.payload;
         },
+        setEtc(state, action) {
+            state.etc = action.payload;
+        },
     },
 });
 
-export const { setTop, setOuter, setBottom } = itemSlice.actions;
+export const { setTop, setOuter, setBottom, setEtc } = itemSlice.actions;
 
 export default itemSlice.reducer;

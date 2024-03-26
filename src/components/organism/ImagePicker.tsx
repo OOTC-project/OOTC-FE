@@ -1,10 +1,39 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {
+    View,
+    StyleSheet,
+    TouchableOpacity,
+    Text,
+    Image,
+    Platform,
+    Keyboard,
+} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 interface ImagePickerExampleProps {}
 const ImagePickerExample = ({ setPhotoData }: any) => {
     const [image, setImage] = useState('');
+    const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+    useEffect(() => {
+        const keyboardDidShowListener = Keyboard.addListener(
+            'keyboardDidShow',
+            () => {
+                setKeyboardVisible(true);
+            }
+        );
+        const keyboardDidHideListener = Keyboard.addListener(
+            'keyboardDidHide',
+            () => {
+                setKeyboardVisible(false);
+            }
+        );
+
+        return () => {
+            keyboardDidShowListener.remove();
+            keyboardDidHideListener.remove();
+        };
+    }, []);
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -25,18 +54,26 @@ const ImagePickerExample = ({ setPhotoData }: any) => {
 
     return (
         <View>
-            <TouchableOpacity style={styles.button} onPress={pickImage}>
-                <Text style={styles.buttonText}>사진 올리기</Text>
+            {!keyboardVisible && (
+                <TouchableOpacity style={styles.button} onPress={pickImage}>
+                    <Text style={styles.buttonText}>사진 올리기</Text>
+                </TouchableOpacity>
+            )}
+            <TouchableOpacity onPress={pickImage}>
+                <View style={styles.imageContainer}>
+                    {image !== '' ? (
+                        <Image
+                            source={{ uri: image }}
+                            style={styles.image}
+                            resizeMode="contain"
+                        />
+                    ) : (
+                        <View style={styles.addImage}>
+                            <Text style={styles.addText}>+</Text>
+                        </View>
+                    )}
+                </View>
             </TouchableOpacity>
-            <View style={styles.imageContainer}>
-                {image !== '' && (
-                    <Image
-                        source={{ uri: image }}
-                        style={styles.image}
-                        resizeMode="contain"
-                    />
-                )}
-            </View>
         </View>
     );
 };
@@ -57,9 +94,16 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
     },
+    addImage: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+    },
+    addText: { fontSize: 20, color: '#fff' },
     imageContainer: {
         width: '100%',
-        aspectRatio: 4 / 3, // Aspect ratio for 4:3 aspect
+        aspectRatio: 4 / 3,
         borderWidth: 1,
         borderColor: '#070707',
         borderRadius: 13,

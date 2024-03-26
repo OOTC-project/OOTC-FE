@@ -2,6 +2,7 @@ import {
     Alert,
     FlatList,
     ImageBackground,
+    Keyboard,
     Modal,
     Pressable,
     StyleSheet,
@@ -32,6 +33,27 @@ const OotdPage = () => {
         { key: '6', screen: 'Screen 3' },
     ];
     const [list, setList] = useState(data);
+    const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+    useEffect(() => {
+        const keyboardDidShowListener = Keyboard.addListener(
+            'keyboardDidShow',
+            () => {
+                setKeyboardVisible(true);
+            }
+        );
+        const keyboardDidHideListener = Keyboard.addListener(
+            'keyboardDidHide',
+            () => {
+                setKeyboardVisible(false);
+            }
+        );
+
+        return () => {
+            keyboardDidShowListener.remove();
+            keyboardDidHideListener.remove();
+        };
+    }, []);
 
     useEffect(() => {
         if (list.length === data.length) {
@@ -43,10 +65,15 @@ const OotdPage = () => {
     }, [list]);
     const [modalVisible, setModalVisible] = useState(false);
 
-    const [photoData, setPhotoData] = useState({ url: '', name: '' });
+    const [photoData, setPhotoData] = useState({
+        url: '',
+        position: '',
+        tag: '',
+        des: '',
+    });
     const [name, setName] = useState('');
     const handleSave = () => {
-        if (photoData.name && photoData.url) {
+        if (photoData.position && photoData.url) {
             setModalVisible(!modalVisible);
         } else {
             Alert.alert(
@@ -98,35 +125,58 @@ const OotdPage = () => {
                     <View style={styles.centeredView}>
                         <View style={styles.modal}>
                             <View style={styles.modalBox}>
-                                <TextInput
-                                    placeholder="태그명을 입력해주세요."
-                                    placeholderTextColor="grey"
-                                    keyboardType="default"
-                                    style={styles.textInput}
-                                    value={photoData.name}
-                                    onChangeText={(text) => {
-                                        setPhotoData((prevData) => ({
-                                            ...prevData,
-                                            name: text,
-                                        }));
-                                    }}
-                                />
                                 <ImagePickerExample
                                     setPhotoData={setPhotoData}
                                 />
+                                <TextInput
+                                    placeholder="위치를 입력해주세요."
+                                    placeholderTextColor="grey"
+                                    keyboardType="default"
+                                    style={styles.textInput}
+                                    value={photoData.position}
+                                    onChangeText={(text) => {
+                                        setPhotoData((prevData) => ({
+                                            ...prevData,
+                                            position: text,
+                                        }));
+                                    }}
+                                />
+                                <TextInput
+                                    placeholder="간단한 설명을 써주세요."
+                                    placeholderTextColor="grey"
+                                    keyboardType="default"
+                                    style={styles.textInput}
+                                    value={photoData.des}
+                                    onChangeText={(text) => {
+                                        setPhotoData((prevData) => ({
+                                            ...prevData,
+                                            des: text,
+                                        }));
+                                    }}
+                                />
                             </View>
-                            <Pressable
-                                style={styles.saveBtn}
-                                onPress={handleSave}
-                            >
-                                <Text style={styles.saveBtnText}>저장</Text>
-                            </Pressable>
-                            <Pressable
-                                style={styles.closeBtn}
-                                onPress={() => setModalVisible(!modalVisible)}
-                            >
-                                <Text style={styles.closeBtnText}>취소</Text>
-                            </Pressable>
+                            {!keyboardVisible && (
+                                <>
+                                    <Pressable
+                                        style={styles.saveBtn}
+                                        onPress={handleSave}
+                                    >
+                                        <Text style={styles.saveBtnText}>
+                                            저장
+                                        </Text>
+                                    </Pressable>
+                                    <Pressable
+                                        style={styles.closeBtn}
+                                        onPress={() =>
+                                            setModalVisible(!modalVisible)
+                                        }
+                                    >
+                                        <Text style={styles.closeBtnText}>
+                                            취소
+                                        </Text>
+                                    </Pressable>
+                                </>
+                            )}
                         </View>
                     </View>
                 </Modal>
@@ -182,7 +232,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     saveBtnText: {
-        color: '#2b2929',
+        color: '#fff',
         fontSize: 20,
     },
     closeBtn: {
@@ -194,14 +244,14 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     closeBtnText: {
-        color: '#2b2929',
+        color: '#fff',
         fontSize: 20,
     },
     textInput: {
         padding: 10,
         borderRadius: 13,
         backgroundColor: '#2b2929',
-        color: '#2b2929',
+        color: '#fff',
 
         marginVertical: 5,
     },

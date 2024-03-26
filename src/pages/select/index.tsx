@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    ImageBackground,
+    ScrollView,
+} from 'react-native';
 import React, { useState } from 'react';
 import ItemSelectBox from '../../components/template/SelectBox';
 import SelectImage from '../../components/organism/SelectImage';
@@ -11,9 +17,13 @@ const Select = () => {
             >
                 <SelectImage />
                 <View style={styles.mt}>
-                    <ItemSelectBox title="OUTER" />
-                    <ItemSelectBox title="TOP" />
-                    <ItemSelectBox title="BOTTOM" />
+                    <ScrollView style={styles.scrollView}>
+                        <ItemSelectBox title="Bookmark" />
+                        <ItemSelectBox title="OUTER" />
+                        <ItemSelectBox title="TOP" />
+                        <ItemSelectBox title="BOTTOM" />
+                        <ItemSelectBox title="ETC" />
+                    </ScrollView>
                 </View>
             </ImageBackground>
         </View>
@@ -34,4 +44,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     mt: { marginTop: 10 },
+    scrollView: {},
 });

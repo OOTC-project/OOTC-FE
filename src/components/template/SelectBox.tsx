@@ -9,7 +9,12 @@ import {
 } from 'react-native';
 import ItemBox from '../organism/ItemBox';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBottom, setOuter, setTop } from '../../redux/slice/itemSlice';
+import {
+    setBottom,
+    setEtc,
+    setOuter,
+    setTop,
+} from '../../redux/slice/itemSlice';
 import { RootState } from '../../redux/store';
 
 interface ItemSelectBoxProps {
@@ -48,6 +53,13 @@ const ItemSelectBox = ({ title }: ItemSelectBoxProps) => {
                     dispatch(setBottom(key));
                 }
                 break;
+            case 'etc':
+                if (itemCounter.etc === key) {
+                    dispatch(setEtc(null));
+                } else {
+                    dispatch(setEtc(key));
+                }
+                break;
             default:
                 break;
         }
@@ -57,7 +69,14 @@ const ItemSelectBox = ({ title }: ItemSelectBoxProps) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{title}</Text>
+            <Text
+                style={[
+                    styles.title,
+                    title === 'Bookmark' ? { color: '#ba8d04' } : null,
+                ]}
+            >
+                {title}
+            </Text>
             {data && data.length > 0 ? (
                 <FlatList
                     horizontal
@@ -90,9 +109,10 @@ export default ItemSelectBox;
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
-    container: { flex: 1, width: '100%' },
+    container: { flex: 1, width: '100%', height: 250 },
     scrollViewContent: { alignItems: 'center' },
     title: {
+        marginTop: 10,
         fontSize: 30,
         color: '#2b2929',
         fontWeight: '800',
