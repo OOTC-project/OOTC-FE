@@ -2,7 +2,7 @@ import { combineReducers } from '@reduxjs/toolkit';
 import itemReducer from '../slice/itemSlice';
 
 const rootReducer = combineReducers({
-    counter: itemReducer,
+  counter: itemReducer,
 });
 
 export default rootReducer;

@@ -3,17 +3,17 @@ import React from 'react';
 import SaveImage from '../atoms/SaveImage';
 
 const SaveImages = () => {
-    return (
-        <View style={styles.container}>
-            <SaveImage />
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      <SaveImage />
+    </View>
+  );
 };
 
 export default SaveImages;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
+  container: {
+    flex: 1,
+  },
 });

@@ -7,30 +7,30 @@ import SaveImages from '../../components/organism/SaveImages';
 import OotdPage from '../home';
 
 const MyPage = () => {
-    return (
-        <View style={styles.container}>
-            <ImageBackground
-                source={require('../../../assets/backGround/default.png')}
-                style={styles.background}
-            >
-                <ProfileBox height={120} />
-                <EventBox height={120} />
-                <SaveImages />
-            </ImageBackground>
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      <ImageBackground
+        source={require('../../../assets/backGround/default.png')}
+        style={styles.background}
+      >
+        <ProfileBox height={120} />
+        <EventBox height={120} />
+        <SaveImages />
+      </ImageBackground>
+    </View>
+  );
 };
 
 export default MyPage;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#2b2929',
-    },
-    background: {
-        flex: 1,
-        resizeMode: 'cover',
-        justifyContent: 'center',
-    },
+  container: {
+    flex: 1,
+    backgroundColor: '#2b2929',
+  },
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+  },
 });
