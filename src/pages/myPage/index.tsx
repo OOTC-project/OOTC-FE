@@ -13,6 +13,7 @@ const MyPage = () => {
         source={require('../../../assets/backGround/default.png')}
         style={styles.background}
       >
+        <View style={styles.marginTop} />
         <ProfileBox height={120} />
         <EventBox height={120} />
         <SaveImages />
@@ -24,10 +25,8 @@ const MyPage = () => {
 export default MyPage;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#2b2929',
-  },
+  container: { flex: 1, backgroundColor: '#2b2929' },
+  marginTop: { marginBottom: 20 },
   background: {
     flex: 1,
     resizeMode: 'cover',
