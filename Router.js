@@ -1,13 +1,11 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
 import OotdPage from './src/pages/home';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MyPage from './src/pages/myPage';
-import { SafeAreaView, Text, View } from 'react-native';
 import Select from './src/pages/select';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +24,7 @@ function OotdStackRouter() {
 }
 
 export default function Router() {
-  const Tab = createMaterialBottomTabNavigator();
+  const Tab = createBottomTabNavigator(); // 변경된 부분
 
   return (
     <NavigationContainer>
@@ -34,44 +32,45 @@ export default function Router() {
         initialRouteName="Home"
         tabBarOptions={{
           activeTintColor: '#fff',
-          tabStyle: {
-            backgroundColor: '#009387',
-          },
+          inactiveTintColor: 'gray',
+          tabBarShowLabel: false,
+        }}
+        screenOptions={{
+          tabBarStyle: { backgroundColor: '#000' },
         }}
       >
         <Tab.Screen
           name="Home"
           component={Select}
           options={{
+            headerShown: false,
             tabBarLabel: 'Home',
-            tabBarColor: '#009387',
             tabBarIcon: ({ color, size }) => (
-              <Icon name="notifications" color={color} size={24} />
+              <Icon name="home" color={color} size={24} /> // 예시 아이콘 사용
             ),
           }}
         />
 
         <Tab.Screen
           name="Details"
-          component={Select}
+          component={OotdStackRouter}
           options={{
+            headerShown: false,
             tabBarLabel: 'Details',
-            tabBarColor: '#1f65ff',
             tabBarIcon: ({ color, size }) => (
-              <Icon name="notifications" color={color} size={24} />
+              <Icon name="notifications" color={color} size={24} /> // 예시 아이콘 사용
             ),
-            tabBarBadge: 3,
           }}
         />
 
         <Tab.Screen
           name="Profile"
-          component={Select}
+          component={MyPage}
           options={{
+            headerShown: false,
             tabBarLabel: 'Profile',
-            tabBarColor: '#694fad',
             tabBarIcon: ({ color, size }) => (
-              <Icon name="notifications" color={color} size={24} />
+              <Icon name="person" color={color} size={24} /> // 예시 아이콘 사용
             ),
           }}
         />
@@ -80,50 +79,14 @@ export default function Router() {
           name="Explore"
           component={Select}
           options={{
+            headerShown: false,
             tabBarLabel: 'Explore',
-            tabBarColor: '#d02860',
             tabBarIcon: ({ color, size }) => (
-              <Icon name="notifications" color={color} size={24} />
+              <Icon name="explore" color={color} size={24} /> // 예시 아이콘 사용
             ),
           }}
         />
       </Tab.Navigator>
-      {/* <Tab.Navigator
-        initialRouteName="Home"
-        barStyle={{ backgroundColor: '#000' }}
-        activeColor="#fff"
-      >
-        <Tab.Screen
-          name="Home"
-          component={Select}
-          options={{
-            tabBarLabel: '홈',
-            tabBarIcon: ({ color }) => (
-              <Icon name="home" color={color} size={24} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Search"
-          component={OotdStackRouter}
-          options={{
-            tabBarLabel: '검색',
-            tabBarIcon: ({ color }) => (
-              <Icon name="notifications" color={color} size={24} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Notification"
-          component={MyPage}
-          options={{
-            tabBarLabel: '알림',
-            tabBarIcon: ({ color }) => (
-              <Icon name="search" color={color} size={24} />
-            ),
-          }}
-        />
-      </Tab.Navigator> */}
     </NavigationContainer>
   );
 }
