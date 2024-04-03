@@ -15,6 +15,7 @@ const Select = () => {
         source={require('../../../assets/backGround/default.png')}
         style={styles.background}
       >
+        <View style={styles.marginTop} />
         <SelectImage />
         <View style={styles.mt}>
           <ScrollView style={styles.scrollView}>
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  marginTop: { marginBottom: 40 },
   background: {
     flex: 1,
     resizeMode: 'cover',

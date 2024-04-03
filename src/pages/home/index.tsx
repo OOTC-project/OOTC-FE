@@ -92,6 +92,7 @@ const OotdPage = () => {
         source={require('../../../assets/backGround/default.png')}
         style={styles.background}
       >
+        <View style={styles.marginTop} />
         <FlatList
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
@@ -188,6 +189,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginVertical: 40,
   },
+  marginTop: { marginBottom: 40 },
+
   background: {
     flex: 1,
     resizeMode: 'cover',

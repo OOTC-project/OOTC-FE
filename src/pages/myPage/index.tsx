@@ -26,7 +26,7 @@ export default MyPage;
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#2b2929' },
-  marginTop: { marginBottom: 20 },
+  marginTop: { marginBottom: 40 },
   background: {
     flex: 1,
     resizeMode: 'cover',

@@ -74,18 +74,6 @@ export default function Router() {
             ),
           }}
         />
-
-        <Tab.Screen
-          name="Explore"
-          component={Select}
-          options={{
-            headerShown: false,
-            tabBarLabel: 'Explore',
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="explore" color={color} size={24} /> // 예시 아이콘 사용
-            ),
-          }}
-        />
       </Tab.Navigator>
     </NavigationContainer>
   );
