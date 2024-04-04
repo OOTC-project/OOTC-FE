@@ -6,6 +6,8 @@ import MyPage from './src/pages/myPage';
 import Select from './src/pages/select';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View, Text, Button } from 'react-native';
+import LoginPage from './src/pages/login';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,58 +25,87 @@ function OotdStackRouter() {
   );
 }
 
-export default function Router() {
-  const Tab = createBottomTabNavigator(); // 변경된 부분
+function MyPageStackRouter() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="MyPage"
+        component={MyPage}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 
+const Tab = createBottomTabNavigator();
+
+function RootNavigator() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      tabBarOptions={{
+        activeTintColor: '#fff',
+        inactiveTintColor: 'gray',
+        tabBarShowLabel: false,
+      }}
+      screenOptions={{
+        tabBarStyle: { backgroundColor: '#000' },
+      }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={Select}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="home" color={color} size={24} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Ootd"
+        component={OotdStackRouter}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Ootd',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="notifications" color={color} size={24} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="MyPage"
+        component={MyPageStackRouter}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'MyPage',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="person" color={color} size={24} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+export default function Router() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Home"
-        tabBarOptions={{
-          activeTintColor: '#fff',
-          inactiveTintColor: 'gray',
-          tabBarShowLabel: false,
-        }}
-        screenOptions={{
-          tabBarStyle: { backgroundColor: '#000' },
-        }}
-      >
-        <Tab.Screen
-          name="Home"
-          component={Select}
-          options={{
-            headerShown: false,
-            tabBarLabel: 'Home',
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="home" color={color} size={24} /> // 예시 아이콘 사용
-            ),
-          }}
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Root"
+          component={RootNavigator}
+          options={{ headerShown: false }}
         />
-
-        <Tab.Screen
-          name="Details"
-          component={OotdStackRouter}
-          options={{
-            headerShown: false,
-            tabBarLabel: 'Details',
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="notifications" color={color} size={24} /> // 예시 아이콘 사용
-            ),
-          }}
+        <Stack.Screen
+          name="MyModal"
+          component={LoginPage}
+          options={{ presentation: 'modal', headerShown: false }}
         />
-
-        <Tab.Screen
-          name="Profile"
-          component={MyPage}
-          options={{
-            headerShown: false,
-            tabBarLabel: 'Profile',
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="person" color={color} size={24} /> // 예시 아이콘 사용
-            ),
-          }}
-        />
-      </Tab.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
