@@ -2,6 +2,7 @@ import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import LoginForm from '../../components/template/LoginForm';
 
 const LoginPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -22,9 +23,7 @@ const LoginPage = () => {
         </View>
         <Text style={styles.logoFont}>OOTD</Text>
         <Text style={styles.logoDetail}>Your closet in my hand!</Text>
-        <View style={styles.loginForm}>
-          <Text>123</Text>
-        </View>
+        <LoginForm />
       </View>
     </>
   );
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
     fontSize: 80,
     fontWeight: '900',
     fontStyle: 'italic',
-    marginTop: 40,
+    marginTop: 30,
   },
   logoDetail: { fontSize: 20 },
 

@@ -11,7 +11,7 @@ const MyPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
 
   const openModal = () => {
-    navigation.navigate('MyModal');
+    navigation.navigate('LoginPage');
   };
 
   return (

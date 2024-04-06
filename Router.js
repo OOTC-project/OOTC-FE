@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, Button } from 'react-native';
 import LoginPage from './src/pages/login';
+import SignUpPage from './src/pages/signUp';
 
 const Stack = createNativeStackNavigator();
 
@@ -101,8 +102,13 @@ export default function Router() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="MyModal"
+          name="LoginPage"
           component={LoginPage}
+          options={{ presentation: 'modal', headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUpPage"
+          component={SignUpPage}
           options={{ presentation: 'modal', headerShown: false }}
         />
       </Stack.Navigator>
