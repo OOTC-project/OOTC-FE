@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
   },
 
   formContainer: {
-    flex: 1,
     width: screenWidth,
   },
 });

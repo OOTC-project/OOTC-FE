@@ -48,9 +48,7 @@ const SocialBox = () => {
 export default SocialBox;
 
 const styles = StyleSheet.create({
-  loginForm: {
-    flex: 1.8,
-  },
+  loginForm: {},
   buttonContainer: {
     display: 'flex',
     flexDirection: 'row',

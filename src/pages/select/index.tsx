@@ -6,55 +6,89 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
+  Pressable,
+  Modal,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import React, { useState } from 'react';
 import ItemSelectBox from '../../components/template/SelectBox';
 import SelectImage from '../../components/organism/SelectImage';
 const Select = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const handleModal = () => {
+    setModalVisible(true);
+  };
+
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={require('../../../assets/backGround/default.png')}
-        style={styles.background}
-      >
-        <View style={styles.marginTop} />
-        <SelectImage />
-        <View style={styles.mt}>
-          <View style={styles.scrollView}>
-            {DATA.map(item => (
-              <View style={styles.boxBox} key={item.id}>
-                <TouchableOpacity style={styles.box}>
-                  <View style={styles.bb}>
-                    <View style={styles.bbb}>
-                      <Text>1</Text>
+    <TouchableWithoutFeedback onPress={() => alert('Pressed!')}>
+      <View style={styles.container}>
+        <ImageBackground
+          source={require('../../../assets/backGround/default.png')}
+          style={styles.background}
+        >
+          <View style={styles.marginTop} />
+          <SelectImage />
+          <View style={styles.mt}>
+            <View style={styles.scrollView}>
+              {DATA.map(item => (
+                <View style={styles.boxBox} key={item.id}>
+                  <TouchableOpacity style={styles.box}>
+                    <View style={styles.bb}>
+                      <View style={styles.bbb}>
+                        <Text>1</Text>
+                      </View>
+                      <View style={styles.bbb}>
+                        <Text>2</Text>
+                      </View>
+                      <View style={styles.bbb}>
+                        <Text>3</Text>
+                      </View>
                     </View>
-                    <View style={styles.bbb}>
-                      <Text>2</Text>
-                    </View>
-                    <View style={styles.bbb}>
-                      <Text>3</Text>
-                    </View>
+                  </TouchableOpacity>
+                  <View style={styles.fontBox}>
+                    <Text style={styles.boxTitle}>{item.title}</Text>
                   </View>
-                </TouchableOpacity>
-                <View style={styles.fontBox}>
-                  <Text style={styles.boxTitle}>{item.title}</Text>
+
+                  <Modal
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                      setModalVisible(!modalVisible);
+                    }}
+                  >
+                    <Pressable
+                      style={{
+                        flex: 1,
+                      }}
+                      onPress={() => setModalVisible(false)}
+                    ></Pressable>
+                    <View style={styles.modal}>
+                      <Text style={styles.modalTitle}>item.title</Text>
+                      <View style={styles.modalBox}>
+                        <Pressable
+                          onPress={() => setModalVisible(!modalVisible)}
+                        >
+                          <Text>취소</Text>
+                        </Pressable>
+                      </View>
+                    </View>
+                  </Modal>
                 </View>
-              </View>
-            ))}
-            {/* <ItemSelectBox title="Bookmark" />
-            <ItemSelectBox title="OUTER" />
-            <ItemSelectBox title="TOP" />
-            <ItemSelectBox title="BOTTOM" />
-            <ItemSelectBox title="ETC" /> */}
+              ))}
+              <TouchableOpacity style={styles.container} onPress={handleModal}>
+                <Text>123</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </ImageBackground>
-    </View>
+        </ImageBackground>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 export default Select;
 const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
@@ -107,6 +141,27 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     borderRadius: 5,
     flexDirection: 'column',
+  },
+  modal: {
+    width: screenWidth / 1.3,
+    height: screenWidth / 1.3 + 30,
+    left: (screenWidth - screenWidth / 1.3) / 2,
+    top: (screenWidth / 1.3 + 30) / 2,
+    position: 'absolute',
+  },
+  modalBox: {
+    backgroundColor: '#212121',
+    opacity: 0.2,
+    height: '100%',
+    width: '100%',
+    borderRadius: 32,
+  },
+  modalTitle: {
+    fontSize: 36,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#f1eeee',
+    marginBottom: 10,
   },
 });
 const DATA = [
