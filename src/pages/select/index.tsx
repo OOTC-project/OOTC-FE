@@ -11,13 +11,12 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import React, { useState } from 'react';
-import ItemSelectBox from '../../components/template/SelectBox';
 import SelectImage from '../../components/organism/SelectImage';
+import Item from '../../components/organism/Item';
+import ImageBox from '../../components/atoms/ImagesBox';
 const Select = () => {
+  const [selected, setSelected] = useState<null | number>(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const handleModal = () => {
-    setModalVisible(true);
-  };
 
   return (
     <TouchableWithoutFeedback onPress={() => alert('Pressed!')}>
@@ -32,23 +31,11 @@ const Select = () => {
             <View style={styles.scrollView}>
               {DATA.map(item => (
                 <View style={styles.boxBox} key={item.id}>
-                  <TouchableOpacity style={styles.box}>
-                    <View style={styles.bb}>
-                      <View style={styles.bbb}>
-                        <Text>1</Text>
-                      </View>
-                      <View style={styles.bbb}>
-                        <Text>2</Text>
-                      </View>
-                      <View style={styles.bbb}>
-                        <Text>3</Text>
-                      </View>
-                    </View>
-                  </TouchableOpacity>
-                  <View style={styles.fontBox}>
-                    <Text style={styles.boxTitle}>{item.title}</Text>
-                  </View>
-
+                  <Item
+                    item={item}
+                    setSelected={setSelected}
+                    setModalVisible={setModalVisible}
+                  />
                   <Modal
                     transparent={true}
                     visible={modalVisible}
@@ -63,21 +50,24 @@ const Select = () => {
                       onPress={() => setModalVisible(false)}
                     ></Pressable>
                     <View style={styles.modal}>
-                      <Text style={styles.modalTitle}>item.title</Text>
+                      <Text style={styles.modalTitle}>
+                        {selected === item.id ? item.title : null}
+                      </Text>
                       <View style={styles.modalBox}>
-                        <Pressable
-                          onPress={() => setModalVisible(!modalVisible)}
-                        >
-                          <Text>취소</Text>
-                        </Pressable>
+                        <ImageBox height={'30%'} margin={5} />
+                        <ImageBox height={'30%'} margin={5} />
+                        <ImageBox height={'30%'} margin={5} />
+                        <ImageBox height={'30%'} margin={5} />
+                        <ImageBox height={'30%'} margin={5} />
+                        <ImageBox height={'30%'} margin={5} />
+                        <ImageBox height={'30%'} margin={5} />
+                        <ImageBox height={'30%'} margin={5} />
+                        <ImageBox height={'30%'} margin={5} />
                       </View>
                     </View>
                   </Modal>
                 </View>
               ))}
-              <TouchableOpacity style={styles.container} onPress={handleModal}>
-                <Text>123</Text>
-              </TouchableOpacity>
             </View>
           </View>
         </ImageBackground>
@@ -109,39 +99,7 @@ const styles = StyleSheet.create({
     width: screenWidth / 4,
     flexDirection: 'column',
   },
-  box: {
-    backgroundColor: '#000',
-    opacity: 0.7,
-    marginTop: 15,
-    marginHorizontal: 10,
-    width: '80%',
-    height: screenWidth / 5,
-    borderRadius: 13,
-    padding: 8,
-    display: 'flex',
-    alignItems: 'center',
-  },
-  fontBox: {
-    width: '80%',
-  },
-  boxTitle: { fontSize: 16, textAlign: 'center', fontWeight: 'bold' },
 
-  bb: {
-    justifyContent: 'space-between',
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  bbb: {
-    display: 'flex',
-    alignItems: 'center',
-    width: '30%',
-    height: screenWidth / 5 / 3 - 8,
-    backgroundColor: 'blue',
-    borderRadius: 5,
-    flexDirection: 'column',
-  },
   modal: {
     width: screenWidth / 1.3,
     height: screenWidth / 1.3 + 30,
@@ -153,8 +111,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#212121',
     opacity: 0.2,
     height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
     width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     borderRadius: 32,
+    padding: 10,
   },
   modalTitle: {
     fontSize: 36,
