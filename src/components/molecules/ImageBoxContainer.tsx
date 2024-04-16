@@ -4,10 +4,13 @@ import ImageBox from '../atoms/ImagesBox';
 
 const ImageBoxContainer = () => {
   return (
-    <View style={styles.bb}>
-      <ImageBox />
-      <ImageBox />
-      <ImageBox />
+    <View style={styles.container}>
+      <ImageBox height={'30%'} margin={1.2} borderRadius={5} />
+      <ImageBox height={'30%'} margin={1.2} borderRadius={5} />
+      <ImageBox height={'30%'} margin={1.2} borderRadius={5} />
+      <ImageBox height={'30%'} margin={1.2} borderRadius={5} />
+      <ImageBox height={'30%'} margin={1.2} borderRadius={5} />
+      <ImageBox height={'30%'} margin={1.2} borderRadius={5} />
     </View>
   );
 };
@@ -18,11 +21,15 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
-  bb: {
-    justifyContent: 'space-between',
+  container: {
+    backgroundColor: '#111111',
+    height: '100%',
+    alignItems: 'center',
     display: 'flex',
     width: '100%',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    borderRadius: 13,
+    padding: 7,
   },
 });

@@ -31,14 +31,13 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   box: {
-    backgroundColor: '#000',
     opacity: 0.7,
     marginTop: 15,
     marginHorizontal: 10,
-    width: '80%',
-    height: screenWidth / 5,
+    width: '85%',
+    height: screenWidth / 4.7,
     borderRadius: 13,
-    padding: 8,
+    padding: 4,
     display: 'flex',
     alignItems: 'center',
   },

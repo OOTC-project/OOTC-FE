@@ -14,6 +14,8 @@ import React, { useState } from 'react';
 import SelectImage from '../../components/organism/SelectImage';
 import Item from '../../components/organism/Item';
 import ImageBox from '../../components/atoms/ImagesBox';
+import { BlurView } from 'expo-blur';
+
 const Select = () => {
   const [selected, setSelected] = useState<null | number>(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -53,16 +55,53 @@ const Select = () => {
                       <Text style={styles.modalTitle}>
                         {selected === item.id ? item.title : null}
                       </Text>
-                      <View style={styles.modalBox}>
-                        <ImageBox height={'30%'} margin={5} />
-                        <ImageBox height={'30%'} margin={5} />
-                        <ImageBox height={'30%'} margin={5} />
-                        <ImageBox height={'30%'} margin={5} />
-                        <ImageBox height={'30%'} margin={5} />
-                        <ImageBox height={'30%'} margin={5} />
-                        <ImageBox height={'30%'} margin={5} />
-                        <ImageBox height={'30%'} margin={5} />
-                        <ImageBox height={'30%'} margin={5} />
+                      <View style={{ borderRadius: 30, overflow: 'hidden' }}>
+                        <BlurView
+                          intensity={20}
+                          tint="systemThickMaterialDark"
+                          style={styles.modalBox}
+                        >
+                          <ImageBox
+                            height={'30%'}
+                            margin={5}
+                            borderRadius={12}
+                          />
+                          <ImageBox
+                            height={'30%'}
+                            margin={5}
+                            borderRadius={12}
+                          />
+                          <ImageBox
+                            height={'30%'}
+                            margin={5}
+                            borderRadius={12}
+                          />
+                          <ImageBox
+                            height={'30%'}
+                            margin={5}
+                            borderRadius={12}
+                          />
+                          <ImageBox
+                            height={'30%'}
+                            margin={5}
+                            borderRadius={12}
+                          />
+                          <ImageBox
+                            height={'30%'}
+                            margin={5}
+                            borderRadius={12}
+                          />
+                          <ImageBox
+                            height={'30%'}
+                            margin={5}
+                            borderRadius={12}
+                          />
+                          <ImageBox
+                            height={'30%'}
+                            margin={5}
+                            borderRadius={12}
+                          />
+                        </BlurView>
                       </View>
                     </View>
                   </Modal>
@@ -102,16 +141,13 @@ const styles = StyleSheet.create({
 
   modal: {
     width: screenWidth / 1.3,
-    height: screenWidth / 1.3 + 30,
+    height: screenWidth / 1.3 + 10,
     left: (screenWidth - screenWidth / 1.3) / 2,
-    top: (screenWidth / 1.3 + 30) / 2,
+    top: (screenWidth / 1.3 + 10) / 2,
     position: 'absolute',
   },
   modalBox: {
-    backgroundColor: '#212121',
-    opacity: 0.2,
     height: '100%',
-    justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
     width: '100%',
