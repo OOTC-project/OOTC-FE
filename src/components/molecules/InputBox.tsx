@@ -1,7 +1,12 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 
-const InputBox = ({ placeHolder, title }: any) => {
+interface InputBoxProp {
+  placeHolder?: string;
+  title?: string;
+}
+
+const InputBox = ({ placeHolder, title }: InputBoxProp) => {
   const [name, setName] = useState('');
 
   return (

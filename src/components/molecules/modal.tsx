@@ -1,7 +1,17 @@
 import { View, Text, Modal, StyleSheet, Pressable } from 'react-native';
 import React, { useState } from 'react';
 
-const ModalBox = ({ modalVisible, setModalVisible, children }: any) => {
+interface ModalBoxProps {
+  modalVisible: boolean;
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  children: React.ReactNode;
+}
+
+const ModalBox = ({
+  modalVisible,
+  setModalVisible,
+  children,
+}: ModalBoxProps) => {
   return (
     <Modal
       animationType="slide"

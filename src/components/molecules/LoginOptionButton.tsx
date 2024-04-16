@@ -1,7 +1,12 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 
-const LoginOptionButton = ({ title, onPress }: any) => {
+interface LoginOptionButtonProp {
+  title?: string;
+  onPress?: () => void;
+}
+
+const LoginOptionButton = ({ title, onPress }: LoginOptionButtonProp) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>

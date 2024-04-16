@@ -1,6 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
+interface ButtonProps {
+  children?: React.ReactNode;
+  color?: string;
+  backgroundColor?: string;
+  fontSize?: number;
+  text?: string;
+  borderRadius?: number;
+}
+
 const Button = ({
   children,
   color,
@@ -8,7 +17,7 @@ const Button = ({
   fontSize,
   text,
   borderRadius,
-}: any) => {
+}: ButtonProps) => {
   return (
     <TouchableOpacity
       style={[styles.container, { backgroundColor, borderRadius }]}

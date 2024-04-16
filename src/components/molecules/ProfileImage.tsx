@@ -4,7 +4,7 @@ import React from 'react';
 interface ProfileImageProps {
   width?: number;
   height?: number;
-  image?: any;
+  image?: string;
 }
 
 const ProfileImage = ({ width, height, image }: ProfileImageProps) => {

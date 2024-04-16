@@ -9,7 +9,11 @@ import {
 import React from 'react';
 import ImageBoxContainer from '../molecules/ImageBoxContainer';
 
-const ItemModal = ({ modalVisible, setModalVisible }: any) => {
+interface ItemModalProps {
+  modalVisible: boolean;
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const ItemModal = ({ modalVisible, setModalVisible }: ItemModalProps) => {
   return (
     <Modal
       transparent={true}
