@@ -210,7 +210,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modal: {
-    opacity: 0.7,
+    backgroundColor: '#181818',
+    opacity: 0.95,
     width: '100%',
     height: '100%',
     borderRadius: 18,

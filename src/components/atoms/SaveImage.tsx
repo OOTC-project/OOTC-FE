@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   saveBtnText: {
-    color: '#2b2929',
+    color: '#fff',
     fontSize: 20,
   },
   closeBtn: {
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   closeBtnText: {
-    color: '#2b2929',
+    color: '#fff',
     fontSize: 20,
   },
   textInput: {
