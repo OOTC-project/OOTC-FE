@@ -2,7 +2,7 @@ import {
   View,
   Text,
   StyleSheet,
-  ImageBackground,
+  Image,
   ScrollView,
   Dimensions,
   TouchableOpacity,
@@ -20,13 +20,13 @@ const Select = () => {
   const [selected, setSelected] = useState<null | number>(null);
   const [modalVisible, setModalVisible] = useState(false);
 
+  const image = require('../../../assets/bg.png');
+
   return (
     <TouchableWithoutFeedback onPress={() => alert('Pressed!')}>
       <View style={styles.container}>
-        <ImageBackground
-          source={require('../../../assets/backGround/default.png')}
-          style={styles.background}
-        >
+        <Image source={image} style={styles.background} resizeMode="cover" />
+        <View style={styles.menuContainer}>
           <View style={styles.marginTop} />
           <SelectImage />
           <View style={styles.mt}>
@@ -61,45 +61,26 @@ const Select = () => {
                           tint="systemThickMaterialDark"
                           style={styles.modalBox}
                         >
+                          {/* ImageBox components */}
                           <ImageBox
                             height={'30%'}
-                            margin={5}
-                            borderRadius={12}
+                            margin={1.2}
+                            borderRadius={5}
                           />
                           <ImageBox
                             height={'30%'}
-                            margin={5}
-                            borderRadius={12}
+                            margin={1.2}
+                            borderRadius={5}
                           />
                           <ImageBox
                             height={'30%'}
-                            margin={5}
-                            borderRadius={12}
+                            margin={1.2}
+                            borderRadius={5}
                           />
                           <ImageBox
                             height={'30%'}
-                            margin={5}
-                            borderRadius={12}
-                          />
-                          <ImageBox
-                            height={'30%'}
-                            margin={5}
-                            borderRadius={12}
-                          />
-                          <ImageBox
-                            height={'30%'}
-                            margin={5}
-                            borderRadius={12}
-                          />
-                          <ImageBox
-                            height={'30%'}
-                            margin={5}
-                            borderRadius={12}
-                          />
-                          <ImageBox
-                            height={'30%'}
-                            margin={5}
-                            borderRadius={12}
+                            margin={1.2}
+                            borderRadius={5}
                           />
                         </BlurView>
                       </View>
@@ -109,13 +90,14 @@ const Select = () => {
               ))}
             </View>
           </View>
-        </ImageBackground>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
 };
 
 export default Select;
+
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
@@ -128,7 +110,12 @@ const styles = StyleSheet.create({
   marginTop: { marginBottom: 40 },
   background: {
     flex: 1,
-    resizeMode: 'cover',
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+  },
+  menuContainer: {
+    flex: 1,
   },
   mt: { marginTop: 10 },
   scrollView: { width: screenWidth, flexDirection: 'row', flexWrap: 'wrap' },
@@ -138,7 +125,6 @@ const styles = StyleSheet.create({
     width: screenWidth / 4,
     flexDirection: 'column',
   },
-
   modal: {
     width: screenWidth / 1.3,
     height: screenWidth / 1.3 + 10,
@@ -164,6 +150,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
 const DATA = [
   { id: 0, title: 'Bookmark' },
   { id: 1, title: 'Outer' },

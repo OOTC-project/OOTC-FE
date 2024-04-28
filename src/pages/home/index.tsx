@@ -88,92 +88,92 @@ const OotdPage = () => {
 
   return (
     <>
-      <ImageBackground
-        source={require('../../../assets/backGround/default.png')}
+      {/* <ImageBackground
+        source={require('../../../assets/bg.png')}
         style={styles.background}
+      > */}
+      <View style={styles.marginTop} />
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        onMomentumScrollEnd={() => {
+          console.log('Scrolling is End');
+        }}
+        contentContainerStyle={styles.scrollViewContent}
+        data={list}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            onPress={() => {
+              index === list.length - 1 ? setModalVisible(true) : null;
+            }}
+          >
+            <OotdItemBox>
+              <Text style={styles.title}>{item.screen}</Text>
+            </OotdItemBox>
+          </TouchableOpacity>
+        )}
+      />
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
       >
-        <View style={styles.marginTop} />
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          onMomentumScrollEnd={() => {
-            console.log('Scrolling is End');
-          }}
-          contentContainerStyle={styles.scrollViewContent}
-          data={list}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity
-              onPress={() => {
-                index === list.length - 1 ? setModalVisible(true) : null;
-              }}
-            >
-              <OotdItemBox>
-                <Text style={styles.title}>{item.screen}</Text>
-              </OotdItemBox>
-            </TouchableOpacity>
-          )}
-        />
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modal}>
-              <View style={styles.modalBox}>
-                <ImagePickerExample setPhotoData={setPhotoData} />
-                <TextInput
-                  placeholder="위치를 입력해주세요."
-                  placeholderTextColor="grey"
-                  keyboardType="default"
-                  style={styles.textInput}
-                  value={photoData.position}
-                  onChangeText={text => {
-                    setPhotoData(prevData => ({
-                      ...prevData,
-                      position: text,
-                    }));
-                  }}
-                />
-                <TextInput
-                  placeholder="간단한 설명을 써주세요."
-                  placeholderTextColor="grey"
-                  style={[
-                    styles.textInput,
-                    {
-                      height: 120,
-                      textAlignVertical: 'top',
-                    },
-                  ]}
-                  value={photoData.des}
-                  onChangeText={text => {
-                    setPhotoData(prevData => ({
-                      ...prevData,
-                      des: text,
-                    }));
-                  }}
-                />
-              </View>
-              {!keyboardVisible && (
-                <>
-                  <Pressable style={styles.saveBtn} onPress={handleSave}>
-                    <Text style={styles.saveBtnText}>저장</Text>
-                  </Pressable>
-                  <Pressable
-                    style={styles.closeBtn}
-                    onPress={() => setModalVisible(!modalVisible)}
-                  >
-                    <Text style={styles.closeBtnText}>취소</Text>
-                  </Pressable>
-                </>
-              )}
+        <View style={styles.centeredView}>
+          <View style={styles.modal}>
+            <View style={styles.modalBox}>
+              <ImagePickerExample setPhotoData={setPhotoData} />
+              <TextInput
+                placeholder="위치를 입력해주세요."
+                placeholderTextColor="grey"
+                keyboardType="default"
+                style={styles.textInput}
+                value={photoData.position}
+                onChangeText={text => {
+                  setPhotoData(prevData => ({
+                    ...prevData,
+                    position: text,
+                  }));
+                }}
+              />
+              <TextInput
+                placeholder="간단한 설명을 써주세요."
+                placeholderTextColor="grey"
+                style={[
+                  styles.textInput,
+                  {
+                    height: 120,
+                    textAlignVertical: 'top',
+                  },
+                ]}
+                value={photoData.des}
+                onChangeText={text => {
+                  setPhotoData(prevData => ({
+                    ...prevData,
+                    des: text,
+                  }));
+                }}
+              />
             </View>
+            {!keyboardVisible && (
+              <>
+                <Pressable style={styles.saveBtn} onPress={handleSave}>
+                  <Text style={styles.saveBtnText}>저장</Text>
+                </Pressable>
+                <Pressable
+                  style={styles.closeBtn}
+                  onPress={() => setModalVisible(!modalVisible)}
+                >
+                  <Text style={styles.closeBtnText}>취소</Text>
+                </Pressable>
+              </>
+            )}
           </View>
-        </Modal>
-      </ImageBackground>
+        </View>
+      </Modal>
+      {/* </ImageBackground> */}
     </>
   );
 };
