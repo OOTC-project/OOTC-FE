@@ -15,11 +15,12 @@ import SelectImage from '../../components/organism/SelectImage';
 import Item from '../../components/organism/Item';
 import ImageBox from '../../components/atoms/ImagesBox';
 import { BlurView } from 'expo-blur';
+import ImageSelectBox from '../../components/atoms/ImageSelectBox';
 
 const Select = () => {
   const [selected, setSelected] = useState<null | number>(null);
+  const [selectTitle, setSelectTitle] = useState<null | string>(null);
   const [modalVisible, setModalVisible] = useState(false);
-
   const image = require('../../../assets/bg.png');
 
   return (
@@ -27,7 +28,6 @@ const Select = () => {
       <View style={styles.container}>
         <Image source={image} style={styles.background} resizeMode="cover" />
         <View style={styles.menuContainer}>
-          <View style={styles.marginTop} />
           <SelectImage />
           <View style={styles.mt}>
             <View style={styles.scrollView}>
@@ -36,58 +36,57 @@ const Select = () => {
                   <Item
                     item={item}
                     setSelected={setSelected}
+                    setSelectTitle={setSelectTitle}
                     setModalVisible={setModalVisible}
                   />
-                  <Modal
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-                      setModalVisible(!modalVisible);
-                    }}
-                  >
-                    <Pressable
-                      style={{
-                        flex: 1,
-                      }}
-                      onPress={() => setModalVisible(false)}
-                    ></Pressable>
-                    <View style={styles.modal}>
-                      <Text style={styles.modalTitle}>
-                        {selected === item.id ? item.title : null}
-                      </Text>
-                      <View style={{ borderRadius: 30, overflow: 'hidden' }}>
-                        <BlurView
-                          intensity={20}
-                          tint="systemThickMaterialDark"
-                          style={styles.modalBox}
-                        >
-                          {/* ImageBox components */}
-                          <ImageBox
-                            height={'30%'}
-                            margin={1.2}
-                            borderRadius={5}
-                          />
-                          <ImageBox
-                            height={'30%'}
-                            margin={1.2}
-                            borderRadius={5}
-                          />
-                          <ImageBox
-                            height={'30%'}
-                            margin={1.2}
-                            borderRadius={5}
-                          />
-                          <ImageBox
-                            height={'30%'}
-                            margin={1.2}
-                            borderRadius={5}
-                          />
-                        </BlurView>
-                      </View>
-                    </View>
-                  </Modal>
                 </View>
               ))}
+              <Modal
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                <Pressable
+                  style={{
+                    flex: 1,
+                  }}
+                  onPress={() => setModalVisible(false)}
+                ></Pressable>
+                <View style={styles.modal}>
+                  <View style={{ borderRadius: 30, overflow: 'hidden' }}>
+                    <BlurView
+                      intensity={90}
+                      tint="systemThickMaterialDark"
+                      style={styles.modalBox}
+                    >
+                      <ImageSelectBox
+                        height={'30%'}
+                        margin={1.2}
+                        borderRadius={5}
+                      />
+                      <ImageSelectBox
+                        height={'30%'}
+                        margin={1.2}
+                        borderRadius={5}
+                      />
+                      <ImageSelectBox
+                        height={'30%'}
+                        margin={1.2}
+                        borderRadius={5}
+                      />
+                      <ImageSelectBox
+                        height={'30%'}
+                        margin={1.2}
+                        borderRadius={5}
+                      />
+                    </BlurView>
+                  </View>
+
+                  <Text style={styles.modalTitle}>{selectTitle}</Text>
+                </View>
+              </Modal>
             </View>
           </View>
         </View>
@@ -143,11 +142,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   modalTitle: {
-    fontSize: 36,
+    fontSize: 52,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#f1eeee',
-    marginBottom: 10,
+    marginTop: 10,
   },
 });
 

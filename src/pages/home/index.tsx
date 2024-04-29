@@ -1,6 +1,7 @@
 import {
   Alert,
   FlatList,
+  Image,
   ImageBackground,
   Keyboard,
   Modal,
@@ -24,6 +25,8 @@ interface ListType {
 }
 
 const OotdPage = () => {
+  const image = require('../../../assets/bg.png');
+
   const data = [
     { key: '1', screen: 'Screen 1' },
     { key: '2', screen: 'Screen 2' },
@@ -88,10 +91,8 @@ const OotdPage = () => {
 
   return (
     <>
-      {/* <ImageBackground
-        source={require('../../../assets/bg.png')}
-        style={styles.background}
-      > */}
+      <Image source={image} style={styles.background} resizeMode="cover" />
+
       <View style={styles.marginTop} />
       <FlatList
         showsVerticalScrollIndicator={false}
@@ -173,7 +174,6 @@ const OotdPage = () => {
           </View>
         </View>
       </Modal>
-      {/* </ImageBackground> */}
     </>
   );
 };
@@ -193,8 +193,9 @@ const styles = StyleSheet.create({
 
   background: {
     flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
   },
   scrollViewContent: { alignItems: 'center' },
   title: {

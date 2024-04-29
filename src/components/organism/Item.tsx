@@ -8,12 +8,13 @@ import {
 import React from 'react';
 import ImageBoxContainer from '../molecules/ImageBoxContainer';
 
-const Item = ({ item, setModalVisible, setSelected }: any) => {
+const Item = ({ item, setModalVisible, setSelectTitle, setSelected }: any) => {
   return (
     <>
       <TouchableOpacity
         style={styles.box}
         onPress={() => {
+          setSelectTitle(item.title);
           setModalVisible(true), setSelected(item.id);
         }}
       >
@@ -44,5 +45,10 @@ const styles = StyleSheet.create({
   fontBox: {
     width: '80%',
   },
-  boxTitle: { fontSize: 16, textAlign: 'center', fontWeight: 'bold' },
+  boxTitle: {
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: '#e8e2e2',
+  },
 });
