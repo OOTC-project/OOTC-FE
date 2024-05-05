@@ -11,22 +11,22 @@ import SelectImage from '../../components/organism/SelectImage';
 const Select = () => {
   return (
     <View style={styles.container}>
-      {/* <ImageBackground
-        source={require('../../../assets/back.png')}
+      <ImageBackground
+        source={require('../../assets/screen.png')}
         style={styles.background}
-      > */}
-      <View style={styles.marginTop} />
-      <SelectImage />
-      <View style={styles.mt}>
-        <ScrollView style={styles.scrollView}>
-          <ItemSelectBox title="Bookmark" />
-          <ItemSelectBox title="OUTER" />
-          <ItemSelectBox title="TOP" />
-          <ItemSelectBox title="BOTTOM" />
-          <ItemSelectBox title="ETC" />
-        </ScrollView>
-      </View>
-      {/* </ImageBackground> */}
+      >
+        <View style={styles.marginTop} />
+        <SelectImage />
+        <View style={styles.mt}>
+          <ScrollView style={styles.scrollView}>
+            <ItemSelectBox title="Bookmark" />
+            <ItemSelectBox title="OUTER" />
+            <ItemSelectBox title="TOP" />
+            <ItemSelectBox title="BOTTOM" />
+            <ItemSelectBox title="ETC" />
+          </ScrollView>
+        </View>
+      </ImageBackground>
     </View>
   );
 };

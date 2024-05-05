@@ -16,16 +16,16 @@ const MyPage = () => {
 
   return (
     <View style={styles.container}>
-      {/* <ImageBackground
-        source={require('../../../assets/back.png')}
+      <ImageBackground
+        source={require('../../assets/screen.png')}
         style={styles.background}
-      > */}
-      <View style={styles.marginTop} />
-      <ProfileBox height={120} />
-      <EventBox height={120} />
-      <SaveImages />
-      <Button onPress={openModal} title="Open Modal" />
-      {/* </ImageBackground> */}
+      >
+        <View style={styles.marginTop} />
+        <ProfileBox height={120} />
+        <EventBox height={120} />
+        <SaveImages />
+        <Button onPress={openModal} title="Open Modal" />
+      </ImageBackground>
     </View>
   );
 };
