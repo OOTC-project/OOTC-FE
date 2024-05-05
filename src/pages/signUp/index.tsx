@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import SignUpBox from '../../components/organism/SignUpBox';
-import { scale } from '../../utils';
+import { moderateScale, scale } from '../../utils';
 
 const SignUpPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -30,7 +30,7 @@ export default SignUpPage;
 
 const styles = StyleSheet.create({
   container: {},
-  marginTop: { marginBottom: 40 },
+  marginTop: { marginBottom: moderateScale(40) },
 
   ButtonBox: {
     width: '100%',

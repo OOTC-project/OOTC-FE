@@ -37,15 +37,12 @@ const ImageBox = ({
 
 export default ImageBox;
 
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
-
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '30%',
+    width: '32%',
     flexDirection: 'column',
   },
 });

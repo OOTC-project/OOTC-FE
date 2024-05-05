@@ -6,6 +6,7 @@ import EventBox from '../../components/organism/EventBox';
 import SaveImages from '../../components/organism/SaveImages';
 import OotdPage from '../home';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { scale } from '../../utils';
 
 const MyPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -31,7 +32,7 @@ export default MyPage;
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#2b2929' },
-  marginTop: { marginBottom: 40 },
+  marginTop: { marginBottom: scale(40) },
   background: {
     flex: 1,
     width: '100%',

@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import ImageBoxContainer from '../molecules/ImageBoxContainer';
-import { moderateScale, verticalScale } from '../../utils';
+import { moderateScale, scale, verticalScale } from '../../utils';
 
 const Item = ({ item, setModalVisible, setSelectTitle, setSelected }: any) => {
   return (
@@ -36,9 +36,10 @@ const styles = StyleSheet.create({
   },
   fontBox: {
     width: '80%',
+    flexWrap: 'nowrap',
   },
   boxTitle: {
-    fontSize: moderateScale(10, 0.4),
+    fontSize: scale(12),
     textAlign: 'center',
     fontWeight: 'bold',
     color: '#e8e2e2',

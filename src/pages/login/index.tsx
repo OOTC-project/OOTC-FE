@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import LoginForm from '../../components/template/LoginForm';
-import { moderateScale, verticalScale } from '../../utils';
+import { moderateScale, scale, verticalScale } from '../../utils';
 
 const LoginPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -22,7 +22,7 @@ const LoginPage = () => {
             />
           </TouchableOpacity>
         </View>
-        <Text style={styles.logoFont}>OOTD</Text>
+        <Text style={styles.logoFont}>OOTC</Text>
         <Text style={styles.logoDetail}>Your closet in my hand!</Text>
         <LoginForm />
       </View>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 
   right: { textAlign: 'right', marginRight: 10 },
 
-  marginTop: { marginBottom: 40 },
+  marginTop: { marginBottom: scale(40) },
   logoFont: {
     fontSize: moderateScale(80, 2.4),
     fontWeight: '900',

@@ -6,7 +6,7 @@ const TitleBox = () => {
   return (
     <View>
       <TextStyle fontSize={30} color="white" fontWeight="600">
-        OOTD
+        OOTC
       </TextStyle>
     </View>
   );

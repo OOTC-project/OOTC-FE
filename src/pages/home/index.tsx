@@ -18,6 +18,7 @@ import OotdItemContainer from '../../components/organism/OotdItemContainer';
 import OotdItemBox from '../../components/organism/OotdItemBox';
 import ItemBox from '../../components/organism/ItemBox';
 import ImagePickerExample from '../../components/organism/ImagePicker';
+import { scale } from '../../utils';
 
 interface ListType {
   key: string;
@@ -189,7 +190,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginVertical: 40,
   },
-  marginTop: { marginBottom: 40 },
+  marginTop: { marginBottom: scale(40) },
 
   background: {
     flex: 1,

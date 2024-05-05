@@ -16,7 +16,7 @@ import Item from '../../components/organism/Item';
 import ImageBox from '../../components/atoms/ImagesBox';
 import { BlurView } from 'expo-blur';
 import ImageSelectBox from '../../components/atoms/ImageSelectBox';
-import { moderateScale } from '../../utils';
+import { moderateScale, scale } from '../../utils';
 
 const Select = () => {
   const [selected, setSelected] = useState<null | number>(null);
@@ -25,9 +25,10 @@ const Select = () => {
   const image = require('../../../assets/bg.png');
 
   return (
-    <TouchableWithoutFeedback onPress={() => alert('Pressed!')}>
+    <TouchableWithoutFeedback>
       <View style={styles.container}>
         <Image source={image} style={styles.background} resizeMode="cover" />
+        <View style={styles.marginTop} />
         <View style={styles.menuContainer}>
           <SelectImage />
           <View style={styles.mt}>
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  marginTop: { marginBottom: 40 },
+  marginTop: { marginBottom: scale(40) },
   background: {
     flex: 1,
     width: '100%',

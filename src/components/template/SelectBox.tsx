@@ -97,7 +97,7 @@ const ItemSelectBox = ({ title }: ItemSelectBoxProps) => {
         />
       ) : (
         <View style={styles.noDataContainer}>
-          <Text style={styles.noData}>OOTD에서 추가해주세요 :)</Text>
+          <Text style={styles.noData}>OOTC에서 추가해주세요 :)</Text>
         </View>
       )}
     </View>
