@@ -3,6 +3,7 @@ import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import LoginForm from '../../components/template/LoginForm';
+import { moderateScale, verticalScale } from '../../utils';
 
 const LoginPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -46,10 +47,10 @@ const styles = StyleSheet.create({
 
   marginTop: { marginBottom: 40 },
   logoFont: {
-    fontSize: 80,
+    fontSize: moderateScale(80, 2.4),
     fontWeight: '900',
     fontStyle: 'italic',
-    marginTop: 30,
+    marginTop: verticalScale(8),
   },
   logoDetail: { fontSize: 20 },
 
@@ -58,5 +59,4 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
   },
-  loginForm: { flex: 1, backgroundColor: 'red', marginTop: 50 },
 });

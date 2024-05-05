@@ -4,6 +4,7 @@ import LoginBox from '../organism/LoginBox';
 import SocialBox from '../organism/SocialBox';
 import LoginOption from '../organism/LoginOption';
 import LoginButton from '../molecules/LoginBox';
+import { verticalScale } from '../../utils';
 
 const LoginForm = () => {
   const [keyboardVisible, setKeyboardVisible] = useState(false);
@@ -47,14 +48,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderRadius: 20,
-    marginBottom: 50,
-    marginTop: 60,
+    marginTop: verticalScale(20),
     padding: 5,
     width: 'auto',
   },
 
   formContainer: {
-    flex: 1,
     width: screenWidth,
   },
 });

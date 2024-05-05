@@ -14,8 +14,12 @@ import ImagePickerExample from '../organism/ImagePicker';
 import OotdItemContainer from '../organism/OotdItemContainer';
 import OotdItemBox from '../organism/OotdItemBox';
 
-const SaveImage = ({ index }: any) => {
-  const data: string | any[] | (() => any[]) = [
+interface SaveImageProp {
+  index: number;
+}
+
+const SaveImage = ({ index }: SaveImageProp) => {
+  const data: string | { key: string; screen: string }[] = [
     { key: '1', screen: 'Screen 1' },
     { key: '2', screen: 'Screen 2' },
     { key: '3', screen: 'Screen 3' },
@@ -149,7 +153,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   saveBtnText: {
-    color: '#2b2929',
+    color: '#fff',
     fontSize: 20,
   },
   closeBtn: {
@@ -161,7 +165,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   closeBtnText: {
-    color: '#2b2929',
+    color: '#fff',
     fontSize: 20,
   },
   textInput: {

@@ -1,6 +1,7 @@
 import {
   Alert,
   FlatList,
+  Image,
   ImageBackground,
   Keyboard,
   Modal,
@@ -24,6 +25,8 @@ interface ListType {
 }
 
 const OotdPage = () => {
+  const image = require('../../../assets/bg.png');
+
   const data = [
     { key: '1', screen: 'Screen 1' },
     { key: '2', screen: 'Screen 2' },
@@ -88,92 +91,89 @@ const OotdPage = () => {
 
   return (
     <>
-      <ImageBackground
-        source={require('../../assets/screen.png')}
-        style={styles.background}
+      <Image source={image} style={styles.background} resizeMode="cover" />
+
+      <View style={styles.marginTop} />
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        onMomentumScrollEnd={() => {
+          console.log('Scrolling is End');
+        }}
+        contentContainerStyle={styles.scrollViewContent}
+        data={list}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            onPress={() => {
+              index === list.length - 1 ? setModalVisible(true) : null;
+            }}
+          >
+            <OotdItemBox>
+              <Text style={styles.title}>{item.screen}</Text>
+            </OotdItemBox>
+          </TouchableOpacity>
+        )}
+      />
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
       >
-        <View style={styles.marginTop} />
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          onMomentumScrollEnd={() => {
-            console.log('Scrolling is End');
-          }}
-          contentContainerStyle={styles.scrollViewContent}
-          data={list}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity
-              onPress={() => {
-                index === list.length - 1 ? setModalVisible(true) : null;
-              }}
-            >
-              <OotdItemBox>
-                <Text style={styles.title}>{item.screen}</Text>
-              </OotdItemBox>
-            </TouchableOpacity>
-          )}
-        />
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modal}>
-              <View style={styles.modalBox}>
-                <ImagePickerExample setPhotoData={setPhotoData} />
-                <TextInput
-                  placeholder="위치를 입력해주세요."
-                  placeholderTextColor="grey"
-                  keyboardType="default"
-                  style={styles.textInput}
-                  value={photoData.position}
-                  onChangeText={text => {
-                    setPhotoData(prevData => ({
-                      ...prevData,
-                      position: text,
-                    }));
-                  }}
-                />
-                <TextInput
-                  placeholder="간단한 설명을 써주세요."
-                  placeholderTextColor="grey"
-                  style={[
-                    styles.textInput,
-                    {
-                      height: 120,
-                      textAlignVertical: 'top',
-                    },
-                  ]}
-                  value={photoData.des}
-                  onChangeText={text => {
-                    setPhotoData(prevData => ({
-                      ...prevData,
-                      des: text,
-                    }));
-                  }}
-                />
-              </View>
-              {!keyboardVisible && (
-                <>
-                  <Pressable style={styles.saveBtn} onPress={handleSave}>
-                    <Text style={styles.saveBtnText}>저장</Text>
-                  </Pressable>
-                  <Pressable
-                    style={styles.closeBtn}
-                    onPress={() => setModalVisible(!modalVisible)}
-                  >
-                    <Text style={styles.closeBtnText}>취소</Text>
-                  </Pressable>
-                </>
-              )}
+        <View style={styles.centeredView}>
+          <View style={styles.modal}>
+            <View style={styles.modalBox}>
+              <ImagePickerExample setPhotoData={setPhotoData} />
+              <TextInput
+                placeholder="위치를 입력해주세요."
+                placeholderTextColor="grey"
+                keyboardType="default"
+                style={styles.textInput}
+                value={photoData.position}
+                onChangeText={text => {
+                  setPhotoData(prevData => ({
+                    ...prevData,
+                    position: text,
+                  }));
+                }}
+              />
+              <TextInput
+                placeholder="간단한 설명을 써주세요."
+                placeholderTextColor="grey"
+                style={[
+                  styles.textInput,
+                  {
+                    height: 120,
+                    textAlignVertical: 'top',
+                  },
+                ]}
+                value={photoData.des}
+                onChangeText={text => {
+                  setPhotoData(prevData => ({
+                    ...prevData,
+                    des: text,
+                  }));
+                }}
+              />
             </View>
+            {!keyboardVisible && (
+              <>
+                <Pressable style={styles.saveBtn} onPress={handleSave}>
+                  <Text style={styles.saveBtnText}>저장</Text>
+                </Pressable>
+                <Pressable
+                  style={styles.closeBtn}
+                  onPress={() => setModalVisible(!modalVisible)}
+                >
+                  <Text style={styles.closeBtnText}>취소</Text>
+                </Pressable>
+              </>
+            )}
           </View>
-        </Modal>
-      </ImageBackground>
+        </View>
+      </Modal>
     </>
   );
 };
@@ -193,8 +193,9 @@ const styles = StyleSheet.create({
 
   background: {
     flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
   },
   scrollViewContent: { alignItems: 'center' },
   title: {

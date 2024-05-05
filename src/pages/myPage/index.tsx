@@ -1,4 +1,4 @@
-import { Button, ImageBackground, View } from 'react-native';
+import { Button, Image, ImageBackground, View } from 'react-native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import ProfileBox from '../../components/organism/ProfileBox';
@@ -9,6 +9,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 const MyPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
+  const image = require('../../../assets/bg.png');
 
   const openModal = () => {
     navigation.navigate('LoginPage');
@@ -16,16 +17,12 @@ const MyPage = () => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require('../../assets/screen.png')}
-        style={styles.background}
-      >
-        <View style={styles.marginTop} />
-        <ProfileBox height={120} />
-        <EventBox height={120} />
-        <SaveImages />
-        <Button onPress={openModal} title="Open Modal" />
-      </ImageBackground>
+      <Image source={image} style={styles.background} resizeMode="cover" />
+      <View style={styles.marginTop} />
+      <ProfileBox height={120} />
+      <EventBox height={120} />
+      <SaveImages />
+      <Button onPress={openModal} title="Open Modal" />
     </View>
   );
 };
@@ -37,7 +34,8 @@ const styles = StyleSheet.create({
   marginTop: { marginBottom: 40 },
   background: {
     flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
   },
 });

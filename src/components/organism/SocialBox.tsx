@@ -23,6 +23,24 @@ const SocialBox = () => {
           <Text>카카오로 로그인</Text>
         </View>
       </Button>
+      <Button backgroundColor="#c1c1c13a">
+        <View style={styles.buttonContainer}>
+          <Image
+            source={require('../../../assets/apple_logo.png')}
+            style={styles.image}
+          />
+          <Text> 애플로 로그인 </Text>
+        </View>
+      </Button>
+      <Button backgroundColor="#c1c1c13a">
+        <View style={styles.buttonContainer}>
+          <Image
+            source={require('../../../assets/google_logo.png')}
+            style={styles.image}
+          />
+          <Text> 구글로 로그인 </Text>
+        </View>
+      </Button>
     </View>
   );
 };
@@ -30,9 +48,7 @@ const SocialBox = () => {
 export default SocialBox;
 
 const styles = StyleSheet.create({
-  loginForm: {
-    flex: 0.8,
-  },
+  loginForm: {},
   buttonContainer: {
     display: 'flex',
     flexDirection: 'row',

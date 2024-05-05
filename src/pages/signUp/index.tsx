@@ -3,6 +3,7 @@ import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import SignUpBox from '../../components/organism/SignUpBox';
+import { scale } from '../../utils';
 
 const SignUpPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -14,7 +15,7 @@ const SignUpPage = () => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons
             name="arrow-back-outline"
-            size={45}
+            size={scale(25)}
             color="black"
             style={styles.left}
           />

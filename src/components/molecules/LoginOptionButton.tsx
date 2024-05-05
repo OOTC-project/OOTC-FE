@@ -1,7 +1,13 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { scale } from '../../utils';
 
-const LoginOptionButton = ({ title, onPress }: any) => {
+interface LoginOptionButtonProp {
+  title?: string;
+  onPress?: () => void;
+}
+
+const LoginOptionButton = ({ title, onPress }: LoginOptionButtonProp) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
@@ -17,13 +23,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: 110,
-    padding: 10,
-    margin: 10,
+    padding: scale(5),
+    margin: scale(5),
   },
   text: {
     flexWrap: 'nowrap',
     textDecorationLine: 'underline',
-    fontSize: 12,
+    fontSize: scale(12),
     fontWeight: 'bold',
   },
 });

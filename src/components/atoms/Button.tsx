@@ -1,5 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { scale } from '../../utils';
+
+interface ButtonProps {
+  children?: React.ReactNode;
+  color?: string;
+  backgroundColor?: string;
+  fontSize?: number;
+  text?: string;
+  borderRadius?: number;
+}
 
 const Button = ({
   children,
@@ -8,7 +18,7 @@ const Button = ({
   fontSize,
   text,
   borderRadius,
-}: any) => {
+}: ButtonProps) => {
   return (
     <TouchableOpacity
       style={[styles.container, { backgroundColor, borderRadius }]}
@@ -31,8 +41,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    marginTop: 10,
-    paddingVertical: 15,
+    marginTop: scale(10),
+    paddingVertical: scale(10),
     borderRadius: 8,
   },
   button: {},

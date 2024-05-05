@@ -4,7 +4,10 @@ import InputBox from '../molecules/InputBox';
 import LoginButton from '../molecules/LoginBox';
 import LoginOption from './LoginOption';
 
-const LoginBox = ({ signUp }: any) => {
+interface LoginBoxProp {
+  signUp?: boolean;
+}
+const LoginBox = ({ signUp }: LoginBoxProp) => {
   return (
     <View style={styles.container}>
       <InputBox title="아이디" placeHolder="예) thisIsOotdId" />

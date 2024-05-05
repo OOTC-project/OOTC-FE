@@ -2,6 +2,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
 import LoginOptionButton from '../molecules/LoginOptionButton';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { scale } from '../../utils';
 
 const LoginOption = () => {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -27,6 +28,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    marginVertical: 20,
+    marginVertical: scale(10),
   },
 });
