@@ -17,86 +17,107 @@ import ImageBox from '../../components/atoms/ImagesBox';
 import { BlurView } from 'expo-blur';
 import ImageSelectBox from '../../components/atoms/ImageSelectBox';
 import { moderateScale, scale } from '../../utils';
+import ImageBoxContainer from '../../components/molecules/ImageBoxContainer';
 
 const Select = () => {
   const [selected, setSelected] = useState<null | number>(null);
   const [selectTitle, setSelectTitle] = useState<null | string>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const image = require('../../../assets/bg.png');
+  const loadingImage = require('../../../assets/splashW.png');
+  const [loading, setLoading] = useState(false);
+  const handleImageLoad = () => {
+    setLoading(true);
+  };
 
   return (
     <TouchableWithoutFeedback>
       <View style={styles.container}>
-        <Image source={image} style={styles.background} resizeMode="cover" />
-        <View style={styles.marginTop} />
-        <View style={styles.menuContainer}>
-          <SelectImage />
-          <View style={styles.mt}>
-            <View style={styles.scrollView}>
-              {DATA.map(item => (
-                <View style={styles.boxBox} key={item.id}>
-                  <Item
-                    item={item}
-                    setSelected={setSelected}
-                    setSelectTitle={setSelectTitle}
-                    setModalVisible={setModalVisible}
-                  />
-                </View>
-              ))}
-              <Modal
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                  setModalVisible(!modalVisible);
-                }}
-              >
-                <Pressable
-                  style={{
-                    flex: 1,
-                  }}
-                  onPress={() => setModalVisible(false)}
-                ></Pressable>
-                <View style={styles.modal}>
-                  <View style={{ borderRadius: 30, overflow: 'hidden' }}>
-                    <BlurView
-                      intensity={90}
-                      tint="systemThickMaterialDark"
-                      style={styles.modalBox}
-                    >
-                      <ImageSelectBox
-                        height={'30%'}
-                        margin={1.2}
-                        borderRadius={5}
+        <Image
+          source={image}
+          style={styles.background}
+          onLoad={handleImageLoad}
+        />
+        {loading ? (
+          <>
+            <View style={styles.marginTop} />
+            <View style={styles.menuContainer}>
+              <SelectImage />
+              <View style={styles.mt}>
+                <View style={styles.scrollView}>
+                  {DATA.map(item => (
+                    <View style={styles.boxBox} key={item.id}>
+                      <Item
+                        item={item}
+                        setSelected={setSelected}
+                        setSelectTitle={setSelectTitle}
+                        setModalVisible={setModalVisible}
                       />
-                      <ImageSelectBox
-                        height={'30%'}
-                        margin={1.2}
-                        borderRadius={5}
-                      />
-                      <ImageSelectBox
-                        height={'30%'}
-                        margin={1.2}
-                        borderRadius={5}
-                      />
-                      <ImageSelectBox
-                        height={'30%'}
-                        margin={1.2}
-                        borderRadius={5}
-                      />
-                      <ImageSelectBox
-                        height={'30%'}
-                        margin={1.2}
-                        borderRadius={5}
-                      />
-                    </BlurView>
-                  </View>
+                    </View>
+                  ))}
+                  <Modal
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                      setModalVisible(!modalVisible);
+                    }}
+                  >
+                    <Pressable
+                      style={{
+                        flex: 1,
+                      }}
+                      onPress={() => setModalVisible(false)}
+                    ></Pressable>
+                    <View style={styles.modal}>
+                      <View style={{ borderRadius: 30, overflow: 'hidden' }}>
+                        <BlurView
+                          intensity={90}
+                          tint="systemThickMaterialDark"
+                          style={styles.modalBox}
+                        >
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={1.2}
+                            borderRadius={5}
+                          />
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={1.2}
+                            borderRadius={5}
+                          />
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={1.2}
+                            borderRadius={5}
+                          />
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={1.2}
+                            borderRadius={5}
+                          />
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={1.2}
+                            borderRadius={5}
+                          />
+                        </BlurView>
+                      </View>
 
-                  <Text style={styles.modalTitle}>{selectTitle}</Text>
+                      <Text style={styles.modalTitle}>{selectTitle}</Text>
+                    </View>
+                  </Modal>
                 </View>
-              </Modal>
+              </View>
             </View>
-          </View>
-        </View>
+          </>
+        ) : (
+          <Image
+            source={loadingImage}
+            style={styles.loading}
+            resizeMode="cover"
+            onLoad={handleImageLoad}
+          />
+        )}
       </View>
     </TouchableWithoutFeedback>
   );
@@ -119,6 +140,13 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     position: 'absolute',
+  },
+  loading: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    zIndex: 999,
   },
   menuContainer: {
     flex: 1,
