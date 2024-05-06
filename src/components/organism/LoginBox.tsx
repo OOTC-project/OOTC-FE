@@ -1,25 +1,82 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  ScrollView,
+  Keyboard,
+} from 'react-native';
+import React, { useState } from 'react';
 import InputBox from '../molecules/InputBox';
-import LoginButton from '../molecules/LoginBox';
-import LoginOption from './LoginOption';
 
 interface LoginBoxProp {
   signUp?: boolean;
+  formData: any;
+  handleChange: (value: string, name: string) => void;
 }
-const LoginBox = ({ signUp }: LoginBoxProp) => {
+const LoginBox = ({ signUp, formData, handleChange }: LoginBoxProp) => {
+  const [KeyboardOpen, setKeyboardOpen] = useState(false);
+  const keyboardDidShowListener = Keyboard.addListener(
+    'keyboardDidShow',
+    () => {
+      setKeyboardOpen(true);
+    },
+  );
+  const keyboardDidHideListener = Keyboard.addListener(
+    'keyboardDidHide',
+    () => {
+      setKeyboardOpen(false);
+    },
+  );
+
   return (
     <View style={styles.container}>
-      {signUp && (
-        <InputBox title="이름" placeHolder="예) ootc" autoFocus={true} />
-      )}
-      <InputBox title="아이디" placeHolder="예) thisIsOotcId" />
-      {signUp && (
-        <InputBox title="이메일" placeHolder="예) thisIsOotcId@gmail.com" />
-      )}
-      <InputBox title="비밀번호" secureTextEntry={true} />
+      <ScrollView
+        style={{ height: signUp ? (KeyboardOpen ? 300 : null) : null }}
+      >
+        {signUp && (
+          <InputBox
+            title="이름"
+            placeHolder="예) ootc"
+            autoFocus={true}
+            handleChange={handleChange}
+            name="name"
+            formData={formData.name}
+          />
+        )}
+        <InputBox
+          title="아이디"
+          placeHolder="예) thisIsOotcId"
+          formData={formData.id}
+          handleChange={handleChange}
+          name="id"
+        />
+        {signUp && (
+          <InputBox
+            title="이메일"
+            placeHolder="예) thisIsOotcId@gmail.com"
+            handleChange={handleChange}
+            name="email"
+            formData={formData.email}
+          />
+        )}
+        <InputBox
+          title="비밀번호"
+          secureTextEntry={true}
+          formData={formData.pw}
+          handleChange={handleChange}
+          name="pw"
+        />
 
-      {signUp && <InputBox title="비밀번호 확인" />}
+        {signUp && (
+          <InputBox
+            title="비밀번호 확인"
+            handleChange={handleChange}
+            name="pwCheck"
+            formData={formData.pwCheck}
+          />
+        )}
+      </ScrollView>
     </View>
   );
 };

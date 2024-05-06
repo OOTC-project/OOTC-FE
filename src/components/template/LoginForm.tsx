@@ -5,6 +5,12 @@ import SocialBox from '../organism/SocialBox';
 import LoginOption from '../organism/LoginOption';
 import LoginButton from '../molecules/LoginBox';
 import { verticalScale } from '../../utils/styleGuide';
+import useFormData from '../../utils/useFormData';
+
+export interface LoginFormDataType {
+  id: string;
+  pw: string;
+}
 
 const LoginForm = () => {
   const [keyboardVisible, setKeyboardVisible] = useState(false);
@@ -29,11 +35,23 @@ const LoginForm = () => {
     };
   }, []);
 
+  const { formData, handleChange } = useFormData(LoginFormData);
+
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    if (formData.id.length > 0 || formData.pw.length > 0) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  });
+
   return (
     <View style={styles.container}>
-      <LoginBox />
+      <LoginBox formData={formData} handleChange={handleChange} />
       <View style={styles.formContainer}>
-        <LoginButton />
+        <LoginButton disabled={disabled} />
         <LoginOption />
       </View>
       {!keyboardVisible && <SocialBox />}
@@ -57,3 +75,8 @@ const styles = StyleSheet.create({
     width: screenWidth,
   },
 });
+
+const LoginFormData: LoginFormDataType = {
+  id: '',
+  pw: '',
+};
