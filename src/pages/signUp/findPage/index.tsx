@@ -2,11 +2,20 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import SignUpBox from '../../components/organism/SignUpBox';
-import { moderateScale, scale } from '../../utils/styleGuide';
+import { moderateScale, scale } from '../../../utils/styleGuide';
+import FindBox from '../../../components/organism/FindBox';
 
-const SignUpPage = () => {
+interface FindPageProps {
+  route: {
+    params: {
+      what: string;
+    };
+  };
+}
+
+const FindPage = ({ route }: FindPageProps) => {
   const navigation = useNavigation<NavigationProp<any>>();
+  const { what } = route.params;
 
   return (
     <View style={styles.container}>
@@ -21,12 +30,12 @@ const SignUpPage = () => {
           />
         </TouchableOpacity>
       </View>
-      <SignUpBox />
+      <FindBox what={what} />
     </View>
   );
 };
 
-export default SignUpPage;
+export default FindPage;
 
 const styles = StyleSheet.create({
   container: {},

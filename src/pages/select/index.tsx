@@ -16,7 +16,7 @@ import Item from '../../components/organism/Item';
 import ImageBox from '../../components/atoms/ImagesBox';
 import { BlurView } from 'expo-blur';
 import ImageSelectBox from '../../components/atoms/ImageSelectBox';
-import { moderateScale, scale } from '../../utils';
+import { moderateScale, scale } from '../../utils/styleGuide';
 import ImageBoxContainer from '../../components/molecules/ImageBoxContainer';
 
 const Select = () => {
@@ -27,7 +27,9 @@ const Select = () => {
   const loadingImage = require('../../../assets/splashW.png');
   const [loading, setLoading] = useState(false);
   const handleImageLoad = () => {
-    setLoading(true);
+    setTimeout(() => {
+      setLoading(true);
+    }, 1000);
   };
 
   return (
@@ -103,7 +105,18 @@ const Select = () => {
                         </BlurView>
                       </View>
 
-                      <Text style={styles.modalTitle}>{selectTitle}</Text>
+                      <Text
+                        style={[
+                          styles.modalTitle,
+                          {
+                            fontSize: scale(
+                              selectTitle && selectTitle.length > 6 ? 50 : 60,
+                            ),
+                          },
+                        ]}
+                      >
+                        {selectTitle}
+                      </Text>
                     </View>
                   </Modal>
                 </View>
@@ -111,12 +124,14 @@ const Select = () => {
             </View>
           </>
         ) : (
-          <Image
-            source={loadingImage}
-            style={styles.loading}
-            resizeMode="cover"
-            onLoad={handleImageLoad}
-          />
+          <View style={styles.loadingBackground}>
+            <Image
+              source={loadingImage}
+              style={styles.loading}
+              onLoad={handleImageLoad}
+              resizeMode="contain"
+            />
+          </View>
         )}
       </View>
     </TouchableWithoutFeedback>
@@ -134,18 +149,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  marginTop: { marginBottom: scale(40) },
+  marginTop: { marginBottom: scale(30) },
   background: {
     flex: 1,
     width: '100%',
     height: '100%',
     position: 'absolute',
   },
-  loading: {
+  loadingBackground: {
     flex: 1,
     width: '100%',
     height: '100%',
     position: 'absolute',
+    backgroundColor: '#fff',
+  },
+  loading: {
+    flex: 1,
+    width: '100%',
     zIndex: 999,
   },
   menuContainer: {
@@ -177,7 +197,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   modalTitle: {
-    fontSize: moderateScale(70, 0.4),
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#f1eeee',

@@ -4,7 +4,7 @@ import LoginBox from '../organism/LoginBox';
 import SocialBox from '../organism/SocialBox';
 import LoginOption from '../organism/LoginOption';
 import LoginButton from '../molecules/LoginBox';
-import { verticalScale } from '../../utils';
+import { verticalScale } from '../../utils/styleGuide';
 
 const LoginForm = () => {
   const [keyboardVisible, setKeyboardVisible] = useState(false);

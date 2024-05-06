@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { scale } from '../../utils';
+import { scale } from '../../utils/styleGuide';
 
 interface ButtonProps {
   children?: React.ReactNode;
@@ -9,6 +9,7 @@ interface ButtonProps {
   fontSize?: number;
   text?: string;
   borderRadius?: number;
+  disabled?: boolean;
 }
 
 const Button = ({
@@ -18,9 +19,11 @@ const Button = ({
   fontSize,
   text,
   borderRadius,
+  disabled,
 }: ButtonProps) => {
   return (
     <TouchableOpacity
+      disabled={disabled}
       style={[styles.container, { backgroundColor, borderRadius }]}
     >
       <View style={styles.button}>

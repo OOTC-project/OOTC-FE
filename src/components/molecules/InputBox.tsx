@@ -1,26 +1,39 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface InputBoxProp {
   placeHolder?: string;
   title?: string;
+  autoFocus?: boolean;
+  secureTextEntry?: boolean;
+  formData?: string;
+  name?: string;
+  handleChange?: any;
 }
 
-const InputBox = ({ placeHolder, title }: InputBoxProp) => {
-  const [name, setName] = useState('');
+const InputBox = ({
+  autoFocus,
+  secureTextEntry,
+  placeHolder,
+  title,
+  name,
+  handleChange,
+}: InputBoxProp) => {
+  const handleTextChange = (text: string) => {
+    handleChange && name && handleChange(text, name);
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>{title}</Text>
       <TextInput
+        autoFocus={autoFocus}
         placeholder={placeHolder}
         placeholderTextColor="grey"
         keyboardType="default"
         style={styles.textInput}
-        value={name}
-        onChangeText={text => {
-          setName(text);
-        }}
+        onChangeText={text => handleTextChange(text)}
+        secureTextEntry={secureTextEntry}
       />
     </View>
   );

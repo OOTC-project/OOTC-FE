@@ -6,7 +6,7 @@ import EventBox from '../../components/organism/EventBox';
 import SaveImages from '../../components/organism/SaveImages';
 import OotdPage from '../home';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { scale } from '../../utils';
+import { scale } from '../../utils/styleGuide';
 
 const MyPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();

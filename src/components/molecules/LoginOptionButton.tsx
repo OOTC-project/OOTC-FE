@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { scale } from '../../utils';
+import { scale } from '../../utils/styleGuide';
 
 interface LoginOptionButtonProp {
   title?: string;

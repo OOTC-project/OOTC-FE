@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import ImageBoxContainer from '../molecules/ImageBoxContainer';
-import { moderateScale, scale, verticalScale } from '../../utils';
+import { moderateScale, scale, verticalScale } from '../../utils/styleGuide';
 
 const Item = ({ item, setModalVisible, setSelectTitle, setSelected }: any) => {
   return (
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginHorizontal: 10,
     height: verticalScale(70),
+    width: verticalScale(70),
     borderRadius: 13,
     padding: 4,
     display: 'flex',

@@ -1,13 +1,13 @@
 import { View, Text, Dimensions, StyleSheet } from 'react-native';
 import React from 'react';
 import ImageBox from '../atoms/ImagesBox';
-import { moderateScale, scale } from '../../utils';
+import { moderateScale, scale } from '../../utils/styleGuide';
 
 const ImageBoxContainer = () => {
   return (
     <View style={styles.container}>
       <View style={styles.boxConatainer}>
-        <ImageBox height={'33%'} margin={scale(0.2)} borderRadius={5} />
+        <ImageBox height={'33%'} margin={scale(0.3)} borderRadius={5} />
         <ImageBox height={'33%'} margin={scale(0.2)} borderRadius={5} />
         <ImageBox height={'33%'} margin={scale(0.2)} borderRadius={5} />
         <ImageBox height={'33%'} margin={scale(0.2)} borderRadius={5} />
@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#111111',
     display: 'flex',
-
     borderRadius: 13,
     padding: scale(6),
     marginHorizontal: 20,
-    width: moderateScale(80, 0.4),
+    width: '100%',
   },
+
   boxConatainer: {
     display: 'flex',
     alignItems: 'center',

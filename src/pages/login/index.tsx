@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import LoginForm from '../../components/template/LoginForm';
-import { moderateScale, scale, verticalScale } from '../../utils';
+import { moderateScale, scale, verticalScale } from '../../utils/styleGuide';
 
 const LoginPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();

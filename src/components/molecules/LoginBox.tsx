@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import Button from '../atoms/Button';
-import { scale } from '../../utils';
+import { scale } from '../../utils/styleGuide';
 
 const LoginButton = () => {
   return (

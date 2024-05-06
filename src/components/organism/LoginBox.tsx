@@ -10,8 +10,14 @@ interface LoginBoxProp {
 const LoginBox = ({ signUp }: LoginBoxProp) => {
   return (
     <View style={styles.container}>
-      <InputBox title="아이디" placeHolder="예) thisIsOotdId" />
-      <InputBox title="비밀번호" />
+      {signUp && (
+        <InputBox title="이름" placeHolder="예) ootc" autoFocus={true} />
+      )}
+      <InputBox title="아이디" placeHolder="예) thisIsOotcId" />
+      {signUp && (
+        <InputBox title="이메일" placeHolder="예) thisIsOotcId@gmail.com" />
+      )}
+      <InputBox title="비밀번호" secureTextEntry={true} />
 
       {signUp && <InputBox title="비밀번호 확인" />}
     </View>

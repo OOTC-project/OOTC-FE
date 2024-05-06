@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, Button } from 'react-native';
 import LoginPage from './src/pages/login';
 import SignUpPage from './src/pages/signUp';
+import FindPage from './src/pages/signUp/findPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -109,6 +110,11 @@ export default function Router() {
         <Stack.Screen
           name="SignUpPage"
           component={SignUpPage}
+          options={{ presentation: 'modal', headerShown: false }}
+        />
+        <Stack.Screen
+          name="FindPage"
+          component={FindPage}
           options={{ presentation: 'modal', headerShown: false }}
         />
       </Stack.Navigator>

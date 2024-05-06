@@ -18,7 +18,7 @@ import OotdItemContainer from '../../components/organism/OotdItemContainer';
 import OotdItemBox from '../../components/organism/OotdItemBox';
 import ItemBox from '../../components/organism/ItemBox';
 import ImagePickerExample from '../../components/organism/ImagePicker';
-import { scale } from '../../utils';
+import { scale } from '../../utils/styleGuide';
 
 interface ListType {
   key: string;
