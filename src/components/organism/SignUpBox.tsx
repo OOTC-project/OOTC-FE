@@ -15,7 +15,6 @@ export interface SignUpBoxType {
 
 const SignUpBox = () => {
   const { formData, handleChange } = useFormData(SignUpBoxData);
-  console.log(formData);
 
   return (
     <View style={styles.container}>
