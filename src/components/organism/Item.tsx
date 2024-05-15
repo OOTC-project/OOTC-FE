@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     fontSize: scale(12),
     textAlign: 'center',
     fontWeight: 'bold',
-    color: '#e8e2e2',
+    // color: '#e8e2e2',
+    color: '#3c3c3c',
   },
 });

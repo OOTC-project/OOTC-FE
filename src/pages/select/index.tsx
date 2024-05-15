@@ -75,7 +75,7 @@ const Select = () => {
                       <View style={styles.modal}>
                         <View style={{ borderRadius: 30, overflow: 'hidden' }}>
                           <BlurView
-                            intensity={90}
+                            intensity={100}
                             tint="systemThickMaterialDark"
                             style={styles.modalBox}
                           >
@@ -202,7 +202,8 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#f1eeee',
+    color: '#3c3c3c',
+    // color: '#f1eeee',
     marginTop: 10,
   },
 });

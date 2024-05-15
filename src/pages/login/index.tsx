@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    justifyContent: 'center',
     alignItems: 'center',
   },
   ButtonBox: {
@@ -47,10 +46,10 @@ const styles = StyleSheet.create({
 
   marginTop: { marginBottom: scale(10) },
   logoFont: {
-    fontSize: moderateScale(80, 1.4),
+    fontSize: scale(70),
     fontWeight: '900',
     fontStyle: 'italic',
-    marginTop: verticalScale(1),
+    marginTop: verticalScale(10),
   },
   logoDetail: { fontSize: 20 },
 
