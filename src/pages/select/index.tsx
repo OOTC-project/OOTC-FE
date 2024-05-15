@@ -9,6 +9,7 @@ import {
   Pressable,
   Modal,
   TouchableWithoutFeedback,
+  ImageBackground,
 } from 'react-native';
 import React, { useState } from 'react';
 import SelectImage from '../../components/organism/SelectImage';
@@ -23,7 +24,8 @@ const Select = () => {
   const [selected, setSelected] = useState<null | number>(null);
   const [selectTitle, setSelectTitle] = useState<null | string>(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const image = require('../../../assets/bg.png');
+  // const image = {url:'https://legacy.reactjs.org/logo-og.png'}
+  // const image = require('../../../assets/bg.png');
   const loadingImage = require('../../../assets/splashW.png');
   const [loading, setLoading] = useState(false);
   const handleImageLoad = () => {
@@ -35,104 +37,105 @@ const Select = () => {
   return (
     <TouchableWithoutFeedback>
       <View style={styles.container}>
-        <Image
-          source={image}
+        <ImageBackground
+          source={{ uri: 'https://ifh.cc/g/NqpJCd.jpg' }}
           style={styles.background}
           onLoad={handleImageLoad}
-        />
-        {loading ? (
-          <>
-            <View style={styles.marginTop} />
-            <View style={styles.menuContainer}>
-              <SelectImage />
-              <View style={styles.mt}>
-                <View style={styles.scrollView}>
-                  {DATA.map(item => (
-                    <View style={styles.boxBox} key={item.id}>
-                      <Item
-                        item={item}
-                        setSelected={setSelected}
-                        setSelectTitle={setSelectTitle}
-                        setModalVisible={setModalVisible}
-                      />
-                    </View>
-                  ))}
-                  <Modal
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-                      setModalVisible(!modalVisible);
-                    }}
-                  >
-                    <Pressable
-                      style={{
-                        flex: 1,
-                      }}
-                      onPress={() => setModalVisible(false)}
-                    ></Pressable>
-                    <View style={styles.modal}>
-                      <View style={{ borderRadius: 30, overflow: 'hidden' }}>
-                        <BlurView
-                          intensity={90}
-                          tint="systemThickMaterialDark"
-                          style={styles.modalBox}
-                        >
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={1.2}
-                            borderRadius={5}
-                          />
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={1.2}
-                            borderRadius={5}
-                          />
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={1.2}
-                            borderRadius={5}
-                          />
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={1.2}
-                            borderRadius={5}
-                          />
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={1.2}
-                            borderRadius={5}
-                          />
-                        </BlurView>
+        >
+          {loading ? (
+            <>
+              <View style={styles.marginTop} />
+              <View style={styles.menuContainer}>
+                <SelectImage />
+                <View style={styles.mt}>
+                  <View style={styles.scrollView}>
+                    {DATA.map(item => (
+                      <View style={styles.boxBox} key={item.id}>
+                        <Item
+                          item={item}
+                          setSelected={setSelected}
+                          setSelectTitle={setSelectTitle}
+                          setModalVisible={setModalVisible}
+                        />
                       </View>
+                    ))}
+                    <Modal
+                      transparent={true}
+                      visible={modalVisible}
+                      onRequestClose={() => {
+                        setModalVisible(!modalVisible);
+                      }}
+                    >
+                      <Pressable
+                        style={{
+                          flex: 1,
+                        }}
+                        onPress={() => setModalVisible(false)}
+                      ></Pressable>
+                      <View style={styles.modal}>
+                        <View style={{ borderRadius: 30, overflow: 'hidden' }}>
+                          <BlurView
+                            intensity={90}
+                            tint="systemThickMaterialDark"
+                            style={styles.modalBox}
+                          >
+                            <ImageSelectBox
+                              height={'30%'}
+                              margin={1.2}
+                              borderRadius={5}
+                            />
+                            <ImageSelectBox
+                              height={'30%'}
+                              margin={1.2}
+                              borderRadius={5}
+                            />
+                            <ImageSelectBox
+                              height={'30%'}
+                              margin={1.2}
+                              borderRadius={5}
+                            />
+                            <ImageSelectBox
+                              height={'30%'}
+                              margin={1.2}
+                              borderRadius={5}
+                            />
+                            <ImageSelectBox
+                              height={'30%'}
+                              margin={1.2}
+                              borderRadius={5}
+                            />
+                          </BlurView>
+                        </View>
 
-                      <Text
-                        style={[
-                          styles.modalTitle,
-                          {
-                            fontSize: scale(
-                              selectTitle && selectTitle.length > 6 ? 50 : 60,
-                            ),
-                          },
-                        ]}
-                      >
-                        {selectTitle}
-                      </Text>
-                    </View>
-                  </Modal>
+                        <Text
+                          style={[
+                            styles.modalTitle,
+                            {
+                              fontSize: scale(
+                                selectTitle && selectTitle.length > 6 ? 50 : 60,
+                              ),
+                            },
+                          ]}
+                        >
+                          {selectTitle}
+                        </Text>
+                      </View>
+                    </Modal>
+                  </View>
                 </View>
               </View>
+            </>
+          ) : (
+            <View style={styles.loadingBackground}>
+              <Image
+                source={loadingImage}
+                style={styles.loading}
+                onLoad={handleImageLoad}
+                resizeMode="contain"
+              />
             </View>
-          </>
-        ) : (
-          <View style={styles.loadingBackground}>
-            <Image
-              source={loadingImage}
-              style={styles.loading}
-              onLoad={handleImageLoad}
-              resizeMode="contain"
-            />
-          </View>
-        )}
+          )}
+        </ImageBackground>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -149,7 +152,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  marginTop: { marginBottom: scale(30) },
+  marginTop: { marginBottom: scale(10) },
   background: {
     flex: 1,
     width: '100%',

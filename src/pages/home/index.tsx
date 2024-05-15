@@ -26,7 +26,7 @@ interface ListType {
 }
 
 const OotdPage = () => {
-  const image = require('../../../assets/bg.png');
+  const image = { uri: 'https://ifh.cc/g/NqpJCd.jpg' };
 
   const data = [
     { key: '1', screen: 'Screen 1' },
@@ -92,7 +92,11 @@ const OotdPage = () => {
 
   return (
     <>
-      <Image source={image} style={styles.background} resizeMode="cover" />
+      <ImageBackground
+        source={image}
+        style={styles.background}
+        resizeMode="cover"
+      />
 
       <View style={styles.marginTop} />
       <FlatList
@@ -190,7 +194,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginVertical: 40,
   },
-  marginTop: { marginBottom: scale(40) },
+  marginTop: { marginBottom: scale(10) },
 
   background: {
     flex: 1,

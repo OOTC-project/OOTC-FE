@@ -45,12 +45,12 @@ const styles = StyleSheet.create({
 
   right: { textAlign: 'right', marginRight: 10 },
 
-  marginTop: { marginBottom: scale(40) },
+  marginTop: { marginBottom: scale(10) },
   logoFont: {
-    fontSize: moderateScale(80, 2.4),
+    fontSize: moderateScale(80, 1.4),
     fontWeight: '900',
     fontStyle: 'italic',
-    marginTop: verticalScale(8),
+    marginTop: verticalScale(1),
   },
   logoDetail: { fontSize: 20 },
 

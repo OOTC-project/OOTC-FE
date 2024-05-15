@@ -10,7 +10,7 @@ import { scale } from '../../utils/styleGuide';
 
 const MyPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
-  const image = require('../../../assets/bg.png');
+  const image = { uri: 'https://ifh.cc/g/NqpJCd.jpg' };
 
   const openModal = () => {
     navigation.navigate('LoginPage');
@@ -18,7 +18,11 @@ const MyPage = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={image} style={styles.background} resizeMode="cover" />
+      <ImageBackground
+        source={image}
+        style={styles.background}
+        resizeMode="cover"
+      />
       <View style={styles.marginTop} />
       <ProfileBox height={120} />
       <EventBox height={120} />
@@ -32,7 +36,7 @@ export default MyPage;
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#2b2929' },
-  marginTop: { marginBottom: scale(40) },
+  marginTop: { marginBottom: scale(10) },
   background: {
     flex: 1,
     width: '100%',
