@@ -24,15 +24,17 @@ const ProfileBox = ({ width, height }: ProfileBoxProps) => {
     }
   };
   return (
-    <View style={[styles.container, { width }]}>
-      <TouchableOpacity onPress={pickImage}>
-        <ProfileImage
-          height={height ? height - 10 : 0}
-          width={height ? height - 10 : 0}
-          image={image}
-        />
-      </TouchableOpacity>
-      <ProfileInfo />
+    <View style={styles.container}>
+      <View style={[styles.box, { width }]}>
+        <TouchableOpacity onPress={pickImage}>
+          <ProfileImage
+            height={height ? height - 10 : 0}
+            width={height ? height - 10 : 0}
+            image={image}
+          />
+        </TouchableOpacity>
+        <ProfileInfo />
+      </View>
     </View>
   );
 };
@@ -41,6 +43,12 @@ export default ProfileBox;
 
 const styles = StyleSheet.create({
   container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  box: {
     display: 'flex',
     flexDirection: 'row',
   },

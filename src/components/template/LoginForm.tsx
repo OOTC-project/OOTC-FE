@@ -54,6 +54,9 @@ const LoginForm = () => {
         <LoginButton disabled={disabled} />
         <LoginOption />
       </View>
+      <View style={styles.socialLoginBox}>
+        <Text style={styles.socialText}>간단하게 로그인하기</Text>
+      </View>
       {!keyboardVisible && <SocialBox />}
     </View>
   );
@@ -73,6 +76,15 @@ const styles = StyleSheet.create({
   formContainer: {
     width: screenWidth,
   },
+
+  socialLoginBox: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 20,
+  },
+
+  socialText: { color: 'gray' },
 });
 
 const LoginFormData: LoginFormDataType = {

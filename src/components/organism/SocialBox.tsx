@@ -1,46 +1,35 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import Button from '../atoms/Button';
+import { scale } from '../../utils/styleGuide';
 
 const SocialBox = () => {
   return (
     <View style={styles.loginForm}>
-      <Button backgroundColor="#c1c1c13a">
-        <View style={styles.buttonContainer}>
-          <Image
-            source={require('../../../assets/naver_logo.png')}
-            style={styles.image}
-          />
-          <Text>네이버로 로그인</Text>
-        </View>
-      </Button>
-      <Button backgroundColor="#c1c1c13a">
-        <View style={styles.buttonContainer}>
-          <Image
-            source={require('../../../assets/kakao_logo.png')}
-            style={styles.image}
-          />
-          <Text>카카오로 로그인</Text>
-        </View>
-      </Button>
-      <Button backgroundColor="#c1c1c13a">
-        <View style={styles.buttonContainer}>
-          <Image
-            source={require('../../../assets/apple_logo.png')}
-            style={styles.image}
-          />
-          <Text> 애플로 로그인 </Text>
-        </View>
-      </Button>
-      <Button backgroundColor="#c1c1c13a">
-        <View style={styles.buttonContainer}>
-          <Image
-            source={require('../../../assets/google_logo.png')}
-            style={styles.image}
-          />
-          <Text> 구글로 로그인 </Text>
-        </View>
-      </Button>
+      <TouchableOpacity>
+        <Image
+          source={require('../../../assets/naver_logo.png')}
+          style={styles.image}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image
+          source={require('../../../assets/kakao_logo.png')}
+          style={styles.image}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image
+          source={require('../../../assets/apple_logo.png')}
+          style={styles.image}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image
+          source={require('../../../assets/google_logo.png')}
+          style={styles.image}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -48,13 +37,17 @@ const SocialBox = () => {
 export default SocialBox;
 
 const styles = StyleSheet.create({
-  loginForm: {},
+  loginForm: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   buttonContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 5,
   },
-  image: { width: 26, height: 26, marginRight: 10 },
+  image: { width: scale(36), height: scale(36), margin: 18 },
 });

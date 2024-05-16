@@ -30,5 +30,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: { color: '#FFF', fontWeight: '700' },
+  text: { color: '#2b2929', fontWeight: '700' },
 });

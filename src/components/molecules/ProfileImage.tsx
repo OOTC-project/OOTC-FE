@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     borderRadius: 100,
     margin: 5,
+    marginHorizontal: 10,
   },
   Text: {
     color: '#fff',
