@@ -4,6 +4,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import LoginForm from '../../components/template/LoginForm';
 import { moderateScale, scale, verticalScale } from '../../utils/styleGuide';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const LoginPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -11,7 +12,7 @@ const LoginPage = () => {
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.marginTop} />
+        <SafeAreaView />
         <View style={styles.ButtonBox}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons

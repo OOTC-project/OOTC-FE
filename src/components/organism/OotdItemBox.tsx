@@ -13,7 +13,7 @@ const OotdItemBox = ({ width, height, children }: OotdItemBoxProps) => {
       style={[
         styles.container,
         {
-          width: width || screenWidth / 1.5,
+          width: width || screenWidth / 1.3,
           height: height || screenHeight / 4,
         },
       ]}
@@ -33,12 +33,13 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     borderRadius: 18,
     padding: 5,
-    marginTop: 10,
+    marginTop: 5,
     borderColor: '#2e2e2e',
     backgroundColor: '#000',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
+    marginVertical: 5,
   },
 });

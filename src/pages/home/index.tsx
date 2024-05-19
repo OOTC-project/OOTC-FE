@@ -19,6 +19,7 @@ import OotdItemBox from '../../components/organism/OotdItemBox';
 import ItemBox from '../../components/organism/ItemBox';
 import ImagePickerExample from '../../components/organism/ImagePicker';
 import { scale } from '../../utils/styleGuide';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface ListType {
   key: string;
@@ -98,7 +99,7 @@ const OotdPage = () => {
         resizeMode="cover"
       />
 
-      <View style={styles.marginTop} />
+      <SafeAreaView />
       <FlatList
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
@@ -209,7 +210,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 10,
   },
-
   centeredView: {
     flex: 1,
     justifyContent: 'center',

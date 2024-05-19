@@ -4,13 +4,14 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import SignUpBox from '../../components/organism/SignUpBox';
 import { moderateScale, scale } from '../../utils/styleGuide';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SignUpPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
 
   return (
     <View style={styles.container}>
-      <View style={styles.marginTop} />
+      <SafeAreaView />
       <View style={styles.ButtonBox}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons

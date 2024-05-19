@@ -4,6 +4,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { moderateScale, scale } from '../../../utils/styleGuide';
 import FindBox from '../../../components/organism/FindBox';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface FindPageProps {
   route: {
@@ -19,7 +20,7 @@ const FindPage = ({ route }: FindPageProps) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.marginTop} />
+      <SafeAreaView />
       <View style={styles.ButtonBox}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons
