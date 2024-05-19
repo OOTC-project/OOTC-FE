@@ -12,10 +12,18 @@ import {
 } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
-const ImageSelectBox = ({ height, margin, borderRadius, width }: any) => {
+const ImageSelectBox = ({
+  height,
+  margin,
+  borderRadius,
+  width,
+  select,
+  setSelect,
+}: any) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [imgLoading, setImgLoading] = useState(true);
   const [loading, setLoading] = useState(true);
+
   const scaleValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -30,6 +38,11 @@ const ImageSelectBox = ({ height, margin, borderRadius, width }: any) => {
     }
   }, [modalVisible, scaleValue]);
 
+  useEffect(() => {
+    if (!modalVisible) {
+      setSelect(0);
+    }
+  }, [modalVisible]);
   return (
     <>
       <View style={[styles.container, { height, margin, borderRadius }]}>
@@ -75,11 +88,21 @@ const ImageSelectBox = ({ height, margin, borderRadius, width }: any) => {
               style={styles.loadingIndicator}
             />
           ) : ( */}
-          <Image
-            source={require('../../../assets/bg.png')}
-            style={[styles.image, { borderRadius: 32 }]}
-            onLoad={() => setImgLoading(false)}
-          />
+          <TouchableOpacity onPress={() => setSelect(1)}>
+            <Image
+              source={require('../../../assets/bg.png')}
+              style={[
+                styles.image,
+                {
+                  borderRadius: 32,
+                  borderWidth: 4,
+                  borderColor: select !== 0 ? '#332ed1' : '#212121',
+                },
+              ]}
+              onLoad={() => setImgLoading(false)}
+            />
+          </TouchableOpacity>
+
           {/* )} */}
         </Animated.View>
       </Modal>

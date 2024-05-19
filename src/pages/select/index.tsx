@@ -21,6 +21,7 @@ import ImageSelectBox from '../../components/atoms/ImageSelectBox';
 import { moderateScale, scale } from '../../utils/styleGuide';
 import ImageBoxContainer from '../../components/molecules/ImageBoxContainer';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import SnackBar from '../../components/molecules/SnackBar';
 
 const Select = () => {
   const [selected, setSelected] = useState<null | number>(null);
@@ -47,6 +48,9 @@ const Select = () => {
       scaleValue.setValue(0);
     }
   }, [modalVisible, scaleValue]);
+
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+  const [select, setSelect] = useState(0);
 
   return (
     <TouchableWithoutFeedback>
@@ -104,26 +108,36 @@ const Select = () => {
                                 height={'30%'}
                                 margin={1.2}
                                 borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
                               />
                               <ImageSelectBox
                                 height={'30%'}
                                 margin={1.2}
                                 borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
                               />
                               <ImageSelectBox
                                 height={'30%'}
                                 margin={1.2}
                                 borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
                               />
                               <ImageSelectBox
                                 height={'30%'}
                                 margin={1.2}
                                 borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
                               />
                               <ImageSelectBox
                                 height={'30%'}
                                 margin={1.2}
                                 borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
                               />
                             </BlurView>
                           </View>
@@ -137,6 +151,7 @@ const Select = () => {
                                     ? 45
                                     : 55,
                                 ),
+                                color: select !== 0 ? '#332ed1' : '#212121',
                               },
                             ]}
                           >
@@ -148,6 +163,9 @@ const Select = () => {
                   </View>
                 </View>
               </SafeAreaView>
+              <SnackBar snackbarVisible={select !== 0 ? true : false}>
+                아이템이 선택되었습니다
+              </SnackBar>
             </>
           ) : (
             <View style={styles.loadingBackground}>
@@ -227,7 +245,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#3c3c3c',
-    marginTop: 10,
+    marginTop: 5,
+
+    fontStyle: 'italic',
   },
 });
 
