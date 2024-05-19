@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import OotdPage from './src/pages/home';
+import OotdPage from './src/pages/select';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MyPage from './src/pages/myPage';
-import Select from './src/pages/select';
+import Select from './src/pages/home';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, Button } from 'react-native';

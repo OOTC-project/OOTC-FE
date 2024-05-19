@@ -9,16 +9,18 @@ interface OotdItemBoxProps {
 
 const OotdItemBox = ({ width, height, children }: OotdItemBoxProps) => {
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          width: width || screenWidth / 1.3,
-          height: height || screenHeight / 4,
-        },
-      ]}
-    >
-      {children}
+    <View style={styles.container}>
+      <View
+        style={[
+          styles.box,
+          {
+            width: width || screenWidth / 1.3,
+            height: height || screenHeight / 4,
+          },
+        ]}
+      >
+        {children}
+      </View>
     </View>
   );
 };
@@ -30,16 +32,18 @@ const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
-    opacity: 0.7,
-    borderRadius: 18,
-    padding: 5,
+    borderColor: '#000',
+    borderWidth: 4.5,
     marginTop: 5,
-    borderColor: '#2e2e2e',
+    marginVertical: 5,
+    borderRadius: 18,
+  },
+  box: {
+    opacity: 0.7,
     backgroundColor: '#000',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    marginVertical: 5,
+    borderRadius: 12,
   },
 });

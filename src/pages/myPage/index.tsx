@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import ProfileBox from '../../components/organism/ProfileBox';
 import EventBox from '../../components/organism/EventBox';
 import SaveImages from '../../components/organism/SaveImages';
-import OotdPage from '../home';
+import OotdPage from '../select';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { scale } from '../../utils/styleGuide';
 

@@ -1,259 +1,265 @@
+import React, { useEffect, useRef, useState } from 'react';
 import {
-  Alert,
-  FlatList,
-  Image,
-  ImageBackground,
-  Keyboard,
-  Modal,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
   View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Dimensions,
+  TouchableOpacity,
+  Pressable,
+  Modal,
+  TouchableWithoutFeedback,
+  ImageBackground,
+  Animated,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import TitleBox from '../../components/molecules/TitleBox';
-import OotdItemContainer from '../../components/organism/OotdItemContainer';
-import OotdItemBox from '../../components/organism/OotdItemBox';
-import ItemBox from '../../components/organism/ItemBox';
-import ImagePickerExample from '../../components/organism/ImagePicker';
-import { scale } from '../../utils/styleGuide';
+import SelectImage from '../../components/organism/SelectImage';
+import Item from '../../components/organism/Item';
+import ImageBox from '../../components/atoms/ImagesBox';
+import { BlurView } from 'expo-blur';
+import ImageSelectBox from '../../components/atoms/ImageSelectBox';
+import { moderateScale, scale } from '../../utils/styleGuide';
+import ImageBoxContainer from '../../components/molecules/ImageBoxContainer';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import SnackBar from '../../components/molecules/SnackBar';
 
-interface ListType {
-  key: string;
-  screen: string;
-}
-
-const OotdPage = () => {
-  const image = { uri: 'https://ifh.cc/g/NqpJCd.jpg' };
-
-  const data = [
-    { key: '1', screen: 'Screen 1' },
-    { key: '2', screen: 'Screen 2' },
-    { key: '3', screen: 'Screen 3' },
-    { key: '4', screen: 'Screen 3' },
-    { key: '5', screen: 'Screen 3' },
-    { key: '6', screen: 'Screen 3' },
-  ];
-  const [list, setList] = useState(data);
-  const [keyboardVisible, setKeyboardVisible] = useState(false);
-
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      'keyboardDidShow',
-      () => {
-        setKeyboardVisible(true);
-      },
-    );
-    const keyboardDidHideListener = Keyboard.addListener(
-      'keyboardDidHide',
-      () => {
-        setKeyboardVisible(false);
-      },
-    );
-
-    return () => {
-      keyboardDidShowListener.remove();
-      keyboardDidHideListener.remove();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (list.length === data.length) {
-      setList(prevList => [
-        ...prevList,
-        { key: new Date().toString(), screen: '+' },
-      ]);
-    }
-  }, [list]);
+const Select = () => {
+  const [selected, setSelected] = useState<null | number>(null);
+  const [selectTitle, setSelectTitle] = useState<null | string>(null);
   const [modalVisible, setModalVisible] = useState(false);
-
-  const [photoData, setPhotoData] = useState({
-    url: '',
-    position: '',
-    tag: '',
-    des: '',
-  });
-  const [name, setName] = useState('');
-  const handleSave = () => {
-    if (photoData.position && photoData.url) {
-      setModalVisible(!modalVisible);
-    } else {
-      Alert.alert(
-        '',
-        '빠진 곳이 있어요!!',
-        [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-        { cancelable: false },
-      );
-    }
+  const loadingImage = require('../../../assets/splashW.png');
+  const [loading, setLoading] = useState(false);
+  const handleImageLoad = () => {
+    setTimeout(() => {
+      setLoading(true);
+    }, 1000);
   };
-  console.log(photoData);
+
+  const scaleValue = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    if (modalVisible) {
+      Animated.timing(scaleValue, {
+        toValue: 1,
+        duration: 80,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      scaleValue.setValue(0);
+    }
+  }, [modalVisible, scaleValue]);
+
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+  const [select, setSelect] = useState(0);
 
   return (
-    <>
-      <ImageBackground
-        source={image}
-        style={styles.background}
-        resizeMode="cover"
-      />
+    <TouchableWithoutFeedback>
+      <View style={styles.container}>
+        <ImageBackground
+          source={{ uri: 'https://ifh.cc/g/NqpJCd.jpg' }}
+          style={styles.background}
+          onLoad={handleImageLoad}
+        >
+          {loading ? (
+            <>
+              <SafeAreaView>
+                <View style={styles.menuContainer}>
+                  <SelectImage />
+                  <View style={styles.mt}>
+                    <View style={styles.scrollView}>
+                      {DATA.map(item => (
+                        <View style={styles.boxBox} key={item.id}>
+                          <Item
+                            item={item}
+                            setSelected={setSelected}
+                            setSelectTitle={setSelectTitle}
+                            setModalVisible={setModalVisible}
+                          />
+                        </View>
+                      ))}
+                      <Modal
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={() => {
+                          setModalVisible(!modalVisible);
+                        }}
+                      >
+                        <Pressable
+                          style={{
+                            flex: 1,
+                          }}
+                          onPress={() => setModalVisible(false)}
+                        ></Pressable>
+                        <Animated.View
+                          style={[
+                            styles.modal,
+                            { transform: [{ scale: scaleValue }] },
+                          ]}
+                        >
+                          <View
+                            style={{ borderRadius: 30, overflow: 'hidden' }}
+                          >
+                            <BlurView
+                              intensity={100}
+                              tint="systemThickMaterialDark"
+                              style={styles.modalBox}
+                            >
+                              <ImageSelectBox
+                                height={'30%'}
+                                margin={1.2}
+                                borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
+                              />
+                              <ImageSelectBox
+                                height={'30%'}
+                                margin={1.2}
+                                borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
+                              />
+                              <ImageSelectBox
+                                height={'30%'}
+                                margin={1.2}
+                                borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
+                              />
+                              <ImageSelectBox
+                                height={'30%'}
+                                margin={1.2}
+                                borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
+                              />
+                              <ImageSelectBox
+                                height={'30%'}
+                                margin={1.2}
+                                borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
+                              />
+                            </BlurView>
+                          </View>
 
-      <SafeAreaView />
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        onMomentumScrollEnd={() => {
-          console.log('Scrolling is End');
-        }}
-        contentContainerStyle={styles.scrollViewContent}
-        data={list}
-        renderItem={({ item, index }) => (
-          <TouchableOpacity
-            onPress={() => {
-              index === list.length - 1 ? setModalVisible(true) : null;
-            }}
-          >
-            <OotdItemBox>
-              <Text style={styles.title}>{item.screen}</Text>
-            </OotdItemBox>
-          </TouchableOpacity>
-        )}
-      />
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modal}>
-            <View style={styles.modalBox}>
-              <ImagePickerExample setPhotoData={setPhotoData} />
-              <TextInput
-                placeholder="위치를 입력해주세요."
-                placeholderTextColor="grey"
-                keyboardType="default"
-                style={styles.textInput}
-                value={photoData.position}
-                onChangeText={text => {
-                  setPhotoData(prevData => ({
-                    ...prevData,
-                    position: text,
-                  }));
-                }}
-              />
-              <TextInput
-                placeholder="간단한 설명을 써주세요."
-                placeholderTextColor="grey"
-                style={[
-                  styles.textInput,
-                  {
-                    height: 120,
-                    textAlignVertical: 'top',
-                  },
-                ]}
-                value={photoData.des}
-                onChangeText={text => {
-                  setPhotoData(prevData => ({
-                    ...prevData,
-                    des: text,
-                  }));
-                }}
+                          <Text
+                            style={[
+                              styles.modalTitle,
+                              {
+                                fontSize: scale(
+                                  selectTitle && selectTitle.length > 6
+                                    ? 45
+                                    : 55,
+                                ),
+                                color: select !== 0 ? '#332ed1' : '#212121',
+                              },
+                            ]}
+                          >
+                            {selectTitle}
+                          </Text>
+                        </Animated.View>
+                      </Modal>
+                    </View>
+                  </View>
+                </View>
+              </SafeAreaView>
+              <SnackBar snackbarVisible={select !== 0 ? true : false}>
+                아이템이 선택되었습니다
+              </SnackBar>
+            </>
+          ) : (
+            <View style={styles.loadingBackground}>
+              <Image
+                source={loadingImage}
+                style={styles.loading}
+                onLoad={handleImageLoad}
+                resizeMode="contain"
               />
             </View>
-            {!keyboardVisible && (
-              <>
-                <Pressable style={styles.saveBtn} onPress={handleSave}>
-                  <Text style={styles.saveBtnText}>저장</Text>
-                </Pressable>
-                <Pressable
-                  style={styles.closeBtn}
-                  onPress={() => setModalVisible(!modalVisible)}
-                >
-                  <Text style={styles.closeBtnText}>취소</Text>
-                </Pressable>
-              </>
-            )}
-          </View>
-        </View>
-      </Modal>
-    </>
+          )}
+        </ImageBackground>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
-export default OotdPage;
+export default Select;
+
+const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
-    flexWrap: 'wrap',
-    marginTop: 10,
-    marginVertical: 40,
   },
   marginTop: { marginBottom: scale(10) },
-
   background: {
     flex: 1,
     width: '100%',
     height: '100%',
     position: 'absolute',
   },
-  scrollViewContent: { alignItems: 'center' },
-  title: {
-    fontSize: 30,
-    color: 'white',
-    fontWeight: '600',
-    marginBottom: 10,
-  },
-  centeredView: {
+  loadingBackground: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modal: {
-    backgroundColor: '#181818',
-    opacity: 0.95,
     width: '100%',
     height: '100%',
-    borderRadius: 18,
+    position: 'absolute',
+    backgroundColor: '#fff',
+  },
+  loading: {
+    flex: 1,
+    width: '100%',
+    zIndex: 999,
+  },
+  menuContainer: {
+    flex: 1,
+  },
+  mt: { marginTop: 10 },
+  scrollView: { width: screenWidth, flexDirection: 'row', flexWrap: 'wrap' },
+  boxBox: {
+    display: 'flex',
+    alignItems: 'center',
+    width: screenWidth / 4,
+    flexDirection: 'column',
+    height: screenWidth / 4 + 15,
+  },
+  modal: {
+    width: screenWidth / 1.3,
+    height: screenWidth / 1.3 + 10,
+    left: (screenWidth - screenWidth / 1.3) / 2,
+    top: (screenWidth / 1.3 + 10) / 2,
+    position: 'absolute',
+  },
+  modalBox: {
+    height: '100%',
+    alignItems: 'center',
+    display: 'flex',
+    width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    borderRadius: 32,
     padding: 10,
   },
-  modalBox: { flex: 8 },
-  saveBtn: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 13,
-    backgroundColor: '#2b2929',
-    marginTop: 10,
-  },
-  saveBtnText: {
-    color: '#fff',
-    fontSize: 20,
-  },
-  closeBtn: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 13,
-    backgroundColor: '#2b2929',
-    marginTop: 10,
-  },
-  closeBtnText: {
-    color: '#fff',
-    fontSize: 20,
-  },
-  textInput: {
-    padding: 10,
-    borderRadius: 13,
-    backgroundColor: '#2b2929',
-    color: '#fff',
+  modalTitle: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#3c3c3c',
+    marginTop: 5,
 
-    marginVertical: 5,
+    fontStyle: 'italic',
   },
 });
+
+const DATA = [
+  { id: 0, title: 'Bookmark' },
+  { id: 1, title: 'Outer' },
+  { id: 2, title: 'Top' },
+  { id: 3, title: 'Bottom' },
+  { id: 4, title: 'Hat' },
+  { id: 5, title: 'shoes' },
+  { id: 6, title: 'Accessories' },
+  { id: 7, title: 'Bag' },
+  { id: 8, title: 'Socks' },
+  { id: 9, title: 'Glasses' },
+];
