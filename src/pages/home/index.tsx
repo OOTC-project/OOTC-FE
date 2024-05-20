@@ -106,35 +106,63 @@ const Select = () => {
                             >
                               <ImageSelectBox
                                 height={'30%'}
-                                margin={1.2}
+                                margin={3}
                                 borderRadius={5}
                                 select={select}
                                 setSelect={setSelect}
                               />
                               <ImageSelectBox
                                 height={'30%'}
-                                margin={1.2}
+                                margin={3}
                                 borderRadius={5}
                                 select={select}
                                 setSelect={setSelect}
                               />
                               <ImageSelectBox
                                 height={'30%'}
-                                margin={1.2}
+                                margin={3}
                                 borderRadius={5}
                                 select={select}
                                 setSelect={setSelect}
                               />
                               <ImageSelectBox
                                 height={'30%'}
-                                margin={1.2}
+                                margin={3}
                                 borderRadius={5}
                                 select={select}
                                 setSelect={setSelect}
                               />
                               <ImageSelectBox
                                 height={'30%'}
-                                margin={1.2}
+                                margin={3}
+                                borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
+                              />
+                              <ImageSelectBox
+                                height={'30%'}
+                                margin={3}
+                                borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
+                              />
+                              <ImageSelectBox
+                                height={'30%'}
+                                margin={3}
+                                borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
+                              />
+                              <ImageSelectBox
+                                height={'30%'}
+                                margin={3}
+                                borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
+                              />
+                              <ImageSelectBox
+                                height={'30%'}
+                                margin={3}
                                 borderRadius={5}
                                 select={select}
                                 setSelect={setSelect}
@@ -234,6 +262,7 @@ const styles = StyleSheet.create({
   modalBox: {
     height: '100%',
     alignItems: 'center',
+    justifyContent: 'center',
     display: 'flex',
     width: '100%',
     flexDirection: 'row',

@@ -28,8 +28,10 @@ const ImageBox = ({
   return (
     <View style={[styles.container, containerStyle]}>
       <Image
-        source={require('../../../assets/naver_logo.png')}
-        style={{ width: '100%', height: '100%' }}
+        source={{
+          uri: 'https://i.ibb.co/KXZY4ZY/mojtaba-mosayebzadeh-kc-Ztpg-Tm0og-unsplash.jpg',
+        }}
+        style={{ width: '80%', height: '80%', borderRadius: 3 }}
       />
     </View>
   );

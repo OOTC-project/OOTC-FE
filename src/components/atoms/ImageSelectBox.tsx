@@ -44,27 +44,28 @@ const ImageSelectBox = ({
     }
   }, [modalVisible]);
   return (
-    <>
-      <View style={[styles.container, { height, margin, borderRadius }]}>
-        <TouchableOpacity
-          style={styles.image}
-          onPress={() => setModalVisible(!modalVisible)}
-        >
-          {/* {loading ? (
+    <View style={[styles.container, { height, margin, borderRadius }]}>
+      <TouchableOpacity
+        style={styles.image}
+        onPress={() => setModalVisible(!modalVisible)}
+      >
+        {/* {loading ? (
             <ActivityIndicator
               color="#000"
               size="large"
               style={styles.loadingIndicator}
             />
           ) : ( */}
-          <Image
-            source={require('../../../assets/naver_logo.png')}
-            style={styles.image}
-            onLoad={() => setLoading(false)}
-          />
-          {/* )} */}
-        </TouchableOpacity>
-      </View>
+        <Image
+          source={{
+            uri: 'https://i.ibb.co/KXZY4ZY/mojtaba-mosayebzadeh-kc-Ztpg-Tm0og-unsplash.jpg',
+          }}
+          style={[styles.image, { borderRadius: 13 }]}
+          onLoad={() => setLoading(false)}
+        />
+        {/* )} */}
+      </TouchableOpacity>
+
       <Modal
         transparent={true}
         visible={modalVisible}
@@ -90,7 +91,9 @@ const ImageSelectBox = ({
           ) : ( */}
           <TouchableOpacity onPress={() => setSelect(1)}>
             <Image
-              source={require('../../../assets/bg.png')}
+              source={{
+                uri: 'https://i.ibb.co/KXZY4ZY/mojtaba-mosayebzadeh-kc-Ztpg-Tm0og-unsplash.jpg',
+              }}
               style={[
                 styles.image,
                 {
@@ -106,7 +109,7 @@ const ImageSelectBox = ({
           {/* )} */}
         </Animated.View>
       </Modal>
-    </>
+    </View>
   );
 };
 
@@ -117,9 +120,10 @@ const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 4.5,
     display: 'flex',
     alignItems: 'center',
-    width: '32%',
+    width: '31%',
     height: screenWidth / 5 / 3 - 8,
     flexDirection: 'column',
   },
