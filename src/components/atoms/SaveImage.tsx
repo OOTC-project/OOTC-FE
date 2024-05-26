@@ -13,6 +13,7 @@ import React, { useEffect, useState } from 'react';
 import ImagePickerExample from '../organism/ImagePicker';
 import OotdItemContainer from '../organism/OotdItemContainer';
 import OotdItemBox from '../organism/OotdItemBox';
+import { scale } from '../../utils/styleGuide';
 
 interface SaveImageProp {
   index: number;
@@ -25,7 +26,7 @@ const SaveImage = ({ index }: SaveImageProp) => {
     { key: '3', screen: 'Screen 3' },
     { key: '4', screen: 'Screen 3' },
     { key: '5', screen: 'Screen 3' },
-    { key: '6', screen: 'Screen 3' },
+    { key: '6', screen: 'Screen 8' },
   ];
 
   const [list, setList] = useState(data);
@@ -82,7 +83,7 @@ const SaveImage = ({ index }: SaveImageProp) => {
           <View style={styles.modal}>
             <View style={styles.modalBox}>
               <TextInput
-                placeholder="태그명을 입력해주세요."
+                placeholder="사진 이름을 입력해주세요."
                 placeholderTextColor="grey"
                 keyboardType="default"
                 style={styles.textInput}
@@ -94,6 +95,7 @@ const SaveImage = ({ index }: SaveImageProp) => {
               <ImagePickerExample
                 photoData={photoData}
                 setPhotoData={setPhotoData}
+                height={screenHeight / 2}
               />
             </View>
             <Pressable style={styles.saveBtn} onPress={handleSave}>
@@ -145,7 +147,7 @@ const styles = StyleSheet.create({
   },
   modalBox: { flex: 8 },
   saveBtn: {
-    flex: 1,
+    paddingVertical: scale(10),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
@@ -154,10 +156,10 @@ const styles = StyleSheet.create({
   },
   saveBtnText: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: scale(15),
   },
   closeBtn: {
-    flex: 1,
+    paddingVertical: scale(10),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
@@ -166,7 +168,7 @@ const styles = StyleSheet.create({
   },
   closeBtnText: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: scale(15),
   },
   textInput: {
     padding: 10,

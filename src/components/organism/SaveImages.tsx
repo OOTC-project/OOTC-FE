@@ -5,7 +5,7 @@ import SaveImage from '../atoms/SaveImage';
 const SaveImages = () => {
   return (
     <View style={styles.container}>
-      <SaveImage />
+      <SaveImage index={0} />
     </View>
   );
 };

@@ -3,8 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import OotdPage from './src/pages/select';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MyPage from './src/pages/myPage';
-import Select from './src/pages/home';
+import Home from './src/pages/home';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icons from 'react-native-vector-icons/FontAwesome5';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, Button } from 'react-native';
 import LoginPage from './src/pages/login';
@@ -46,7 +47,7 @@ const Tab = createBottomTabNavigator();
 function RootNavigator() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Ootd"
       tabBarOptions={{
         activeTintColor: '#fff',
         inactiveTintColor: 'gray',
@@ -57,24 +58,24 @@ function RootNavigator() {
       }}
     >
       <Tab.Screen
-        name="Home"
-        component={Select}
+        name="Ootd"
+        component={Home}
         options={{
           headerShown: false,
-          tabBarLabel: 'Home',
+          tabBarLabel: 'OOTD',
           tabBarIcon: ({ color, size }) => (
-            <Icon name="home" color={color} size={24} />
+            <Icon name="playlist-add-check" color={color} size={27} />
           ),
         }}
       />
       <Tab.Screen
-        name="Ootd"
+        name="Item"
         component={OotdStackRouter}
         options={{
           headerShown: false,
-          tabBarLabel: 'Ootd',
+          tabBarLabel: 'ITEMS',
           tabBarIcon: ({ color, size }) => (
-            <Icon name="notifications" color={color} size={24} />
+            <Icons name="tshirt" color={color} size={18} />
           ),
         }}
       />
@@ -83,7 +84,7 @@ function RootNavigator() {
         component={MyPageStackRouter}
         options={{
           headerShown: false,
-          tabBarLabel: 'MyPage',
+          tabBarLabel: 'MY',
           tabBarIcon: ({ color, size }) => (
             <Icon name="person" color={color} size={24} />
           ),

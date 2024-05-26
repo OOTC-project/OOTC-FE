@@ -1,5 +1,6 @@
 import {
   Alert,
+  Dimensions,
   FlatList,
   Image,
   ImageBackground,
@@ -18,8 +19,9 @@ import OotdItemContainer from '../../components/organism/OotdItemContainer';
 import OotdItemBox from '../../components/organism/OotdItemBox';
 import ItemBox from '../../components/organism/ItemBox';
 import ImagePickerExample from '../../components/organism/ImagePicker';
-import { scale } from '../../utils/styleGuide';
+import { scale, verticalScale } from '../../utils/styleGuide';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import BadgeBox from '../../components/molecules/BadgeBox';
 
 interface ListType {
   key: string;
@@ -90,6 +92,7 @@ const OotdPage = () => {
     }
   };
   console.log(photoData);
+  const screenHeight = Dimensions.get('window').height;
 
   return (
     <>
@@ -99,7 +102,7 @@ const OotdPage = () => {
         resizeMode="cover"
       />
 
-      <SafeAreaView />
+      <SafeAreaView style={{ marginTop: verticalScale(20) }} />
       <FlatList
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
@@ -131,7 +134,11 @@ const OotdPage = () => {
         <View style={styles.centeredView}>
           <View style={styles.modal}>
             <View style={styles.modalBox}>
-              <ImagePickerExample setPhotoData={setPhotoData} />
+              <ImagePickerExample
+                setPhotoData={setPhotoData}
+                height={screenHeight / 4}
+                width
+              />
               <TextInput
                 placeholder="위치를 입력해주세요."
                 placeholderTextColor="grey"
@@ -163,6 +170,7 @@ const OotdPage = () => {
                   }));
                 }}
               />
+              <BadgeBox />
             </View>
             {!keyboardVisible && (
               <>
@@ -224,7 +232,7 @@ const styles = StyleSheet.create({
   },
   modalBox: { flex: 8 },
   saveBtn: {
-    flex: 1,
+    paddingVertical: scale(10),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
@@ -236,7 +244,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   closeBtn: {
-    flex: 1,
+    paddingVertical: scale(10),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,

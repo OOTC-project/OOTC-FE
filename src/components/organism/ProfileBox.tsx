@@ -43,6 +43,7 @@ export default ProfileBox;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#ffffffbd',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

@@ -11,7 +11,7 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 
 interface ImagePickerExampleProps {}
-const ImagePickerExample = ({ setPhotoData }: any) => {
+const ImagePickerExample = ({ setPhotoData, height, width }: any) => {
   const [image, setImage] = useState('');
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
@@ -39,7 +39,7 @@ const ImagePickerExample = ({ setPhotoData }: any) => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: width ? [4, 3] : [3, 4],
       quality: 1,
     });
 
@@ -60,7 +60,7 @@ const ImagePickerExample = ({ setPhotoData }: any) => {
         </TouchableOpacity>
       )}
       <TouchableOpacity onPress={pickImage}>
-        <View style={styles.imageContainer}>
+        <View style={[styles.imageContainer, { height: height }]}>
           {image !== '' ? (
             <Image
               source={{ uri: image }}
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   addText: { fontSize: 20, color: '#fff' },
   imageContainer: {
     width: '100%',
-    aspectRatio: 4 / 3,
+    // aspectRatio: 4 / 3,
     borderWidth: 1,
     borderColor: '#070707',
     borderRadius: 13,

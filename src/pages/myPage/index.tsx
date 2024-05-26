@@ -7,6 +7,7 @@ import SaveImages from '../../components/organism/SaveImages';
 import OotdPage from '../select';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { scale } from '../../utils/styleGuide';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MyPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -23,7 +24,11 @@ const MyPage = () => {
         style={styles.background}
         resizeMode="cover"
       />
-      <View style={styles.marginTop} />
+      <SafeAreaView
+        style={{
+          backgroundColor: '#ffffffbd',
+        }}
+      />
       <ProfileBox height={120} />
       <EventBox height={120} />
       <SaveImages />

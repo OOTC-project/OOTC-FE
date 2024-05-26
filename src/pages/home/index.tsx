@@ -23,7 +23,7 @@ import ImageBoxContainer from '../../components/molecules/ImageBoxContainer';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SnackBar from '../../components/molecules/SnackBar';
 
-const Select = () => {
+const Home = () => {
   const [selected, setSelected] = useState<null | number>(null);
   const [selectTitle, setSelectTitle] = useState<null | string>(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -62,135 +62,128 @@ const Select = () => {
         >
           {loading ? (
             <>
-              <SafeAreaView>
-                <View style={styles.menuContainer}>
-                  <SelectImage />
-                  <View style={styles.mt}>
-                    <View style={styles.scrollView}>
-                      {DATA.map(item => (
-                        <View style={styles.boxBox} key={item.id}>
-                          <Item
-                            item={item}
-                            setSelected={setSelected}
-                            setSelectTitle={setSelectTitle}
-                            setModalVisible={setModalVisible}
-                          />
-                        </View>
-                      ))}
-                      <Modal
-                        transparent={true}
-                        visible={modalVisible}
-                        onRequestClose={() => {
-                          setModalVisible(!modalVisible);
-                        }}
-                      >
-                        <Pressable
-                          style={{
-                            flex: 1,
-                          }}
-                          onPress={() => setModalVisible(false)}
-                        ></Pressable>
-                        <Animated.View
-                          style={[
-                            styles.modal,
-                            { transform: [{ scale: scaleValue }] },
-                          ]}
-                        >
-                          <View
-                            style={{ borderRadius: 30, overflow: 'hidden' }}
-                          >
-                            <BlurView
-                              intensity={100}
-                              tint="systemThickMaterialDark"
-                              style={styles.modalBox}
-                            >
-                              <ImageSelectBox
-                                height={'30%'}
-                                margin={3}
-                                borderRadius={5}
-                                select={select}
-                                setSelect={setSelect}
-                              />
-                              <ImageSelectBox
-                                height={'30%'}
-                                margin={3}
-                                borderRadius={5}
-                                select={select}
-                                setSelect={setSelect}
-                              />
-                              <ImageSelectBox
-                                height={'30%'}
-                                margin={3}
-                                borderRadius={5}
-                                select={select}
-                                setSelect={setSelect}
-                              />
-                              <ImageSelectBox
-                                height={'30%'}
-                                margin={3}
-                                borderRadius={5}
-                                select={select}
-                                setSelect={setSelect}
-                              />
-                              <ImageSelectBox
-                                height={'30%'}
-                                margin={3}
-                                borderRadius={5}
-                                select={select}
-                                setSelect={setSelect}
-                              />
-                              <ImageSelectBox
-                                height={'30%'}
-                                margin={3}
-                                borderRadius={5}
-                                select={select}
-                                setSelect={setSelect}
-                              />
-                              <ImageSelectBox
-                                height={'30%'}
-                                margin={3}
-                                borderRadius={5}
-                                select={select}
-                                setSelect={setSelect}
-                              />
-                              <ImageSelectBox
-                                height={'30%'}
-                                margin={3}
-                                borderRadius={5}
-                                select={select}
-                                setSelect={setSelect}
-                              />
-                              <ImageSelectBox
-                                height={'30%'}
-                                margin={3}
-                                borderRadius={5}
-                                select={select}
-                                setSelect={setSelect}
-                              />
-                            </BlurView>
-                          </View>
-
-                          <Text
-                            style={[
-                              styles.modalTitle,
-                              {
-                                fontSize: scale(
-                                  selectTitle && selectTitle.length > 6
-                                    ? 45
-                                    : 55,
-                                ),
-                                color: select !== 0 ? '#332ed1' : '#212121',
-                              },
-                            ]}
-                          >
-                            {selectTitle}
-                          </Text>
-                        </Animated.View>
-                      </Modal>
+              <SafeAreaView />
+              <View style={styles.menuContainer}>
+                <SelectImage />
+                <View style={styles.scrollView}>
+                  {DATA.map(item => (
+                    <View style={styles.boxBox} key={item.id}>
+                      <Item
+                        item={item}
+                        setSelected={setSelected}
+                        setSelectTitle={setSelectTitle}
+                        setModalVisible={setModalVisible}
+                      />
                     </View>
-                  </View>
+                  ))}
+                  <Modal
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                      setModalVisible(!modalVisible);
+                    }}
+                  >
+                    <Pressable
+                      style={{
+                        flex: 1,
+                      }}
+                      onPress={() => setModalVisible(false)}
+                    ></Pressable>
+                    <Animated.View
+                      style={[
+                        styles.modal,
+                        { transform: [{ scale: scaleValue }] },
+                      ]}
+                    >
+                      <View style={{ borderRadius: 30, overflow: 'hidden' }}>
+                        <BlurView
+                          intensity={100}
+                          tint="systemThickMaterialDark"
+                          style={styles.modalBox}
+                        >
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={3}
+                            borderRadius={5}
+                            select={select}
+                            setSelect={setSelect}
+                          />
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={3}
+                            borderRadius={5}
+                            select={select}
+                            setSelect={setSelect}
+                          />
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={3}
+                            borderRadius={5}
+                            select={select}
+                            setSelect={setSelect}
+                          />
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={3}
+                            borderRadius={5}
+                            select={select}
+                            setSelect={setSelect}
+                          />
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={3}
+                            borderRadius={5}
+                            select={select}
+                            setSelect={setSelect}
+                          />
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={3}
+                            borderRadius={5}
+                            select={select}
+                            setSelect={setSelect}
+                          />
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={3}
+                            borderRadius={5}
+                            select={select}
+                            setSelect={setSelect}
+                          />
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={3}
+                            borderRadius={5}
+                            select={select}
+                            setSelect={setSelect}
+                          />
+                          <ImageSelectBox
+                            height={'30%'}
+                            margin={3}
+                            borderRadius={5}
+                            select={select}
+                            setSelect={setSelect}
+                          />
+                        </BlurView>
+                      </View>
+
+                      <Text
+                        style={[
+                          styles.modalTitle,
+                          {
+                            fontSize: scale(
+                              selectTitle && selectTitle.length > 6 ? 45 : 55,
+                            ),
+                            color: select !== 0 ? '#332ed1' : '#212121',
+                          },
+                        ]}
+                      >
+                        {selectTitle}
+                      </Text>
+                    </Animated.View>
+                  </Modal>
                 </View>
-              </SafeAreaView>
+              </View>
               <SnackBar snackbarVisible={select !== 0 ? true : false}>
                 아이템이 선택되었습니다
               </SnackBar>
@@ -211,7 +204,7 @@ const Select = () => {
   );
 };
 
-export default Select;
+export default Home;
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -243,7 +236,6 @@ const styles = StyleSheet.create({
   menuContainer: {
     flex: 1,
   },
-  mt: { marginTop: 10 },
   scrollView: { width: screenWidth, flexDirection: 'row', flexWrap: 'wrap' },
   boxBox: {
     display: 'flex',
