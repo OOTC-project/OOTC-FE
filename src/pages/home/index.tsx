@@ -103,63 +103,63 @@ const Home = () => {
                         >
                           <ImageSelectBox
                             height={'30%'}
-                            margin={3}
+                            margin={screenWidth < 340 ? 1 : 3}
                             borderRadius={5}
                             select={select}
                             setSelect={setSelect}
                           />
                           <ImageSelectBox
                             height={'30%'}
-                            margin={3}
+                            margin={screenWidth < 340 ? 1 : 3}
                             borderRadius={5}
                             select={select}
                             setSelect={setSelect}
                           />
                           <ImageSelectBox
                             height={'30%'}
-                            margin={3}
+                            margin={screenWidth < 340 ? 1 : 3}
                             borderRadius={5}
                             select={select}
                             setSelect={setSelect}
                           />
                           <ImageSelectBox
                             height={'30%'}
-                            margin={3}
+                            margin={screenWidth < 340 ? 1 : 3}
                             borderRadius={5}
                             select={select}
                             setSelect={setSelect}
                           />
                           <ImageSelectBox
                             height={'30%'}
-                            margin={3}
+                            margin={screenWidth < 340 ? 1 : 3}
                             borderRadius={5}
                             select={select}
                             setSelect={setSelect}
                           />
                           <ImageSelectBox
                             height={'30%'}
-                            margin={3}
+                            margin={screenWidth < 340 ? 1 : 3}
                             borderRadius={5}
                             select={select}
                             setSelect={setSelect}
                           />
                           <ImageSelectBox
                             height={'30%'}
-                            margin={3}
+                            margin={screenWidth < 340 ? 1 : 3}
                             borderRadius={5}
                             select={select}
                             setSelect={setSelect}
                           />
                           <ImageSelectBox
                             height={'30%'}
-                            margin={3}
+                            margin={screenWidth < 340 ? 1 : 3}
                             borderRadius={5}
                             select={select}
                             setSelect={setSelect}
                           />
                           <ImageSelectBox
                             height={'30%'}
-                            margin={3}
+                            margin={screenWidth < 340 ? 1 : 3}
                             borderRadius={5}
                             select={select}
                             setSelect={setSelect}

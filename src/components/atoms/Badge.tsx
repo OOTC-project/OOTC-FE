@@ -1,4 +1,10 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
 import React from 'react';
 import { scale } from '../../utils/styleGuide';
 
@@ -35,6 +41,7 @@ const Badge = ({
         style={[
           styles.button,
           {
+            padding: screenWidth < 340 ? 6 : 10,
             backgroundColor: select && select === text ? '#3c3c3c' : '#e8e2e2',
           },
         ]}
@@ -58,6 +65,8 @@ const Badge = ({
 };
 
 export default Badge;
+
+const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {

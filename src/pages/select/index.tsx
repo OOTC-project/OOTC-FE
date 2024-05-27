@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
   },
   saveBtnText: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: scale(15),
   },
   closeBtn: {
     paddingVertical: scale(10),
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
   },
   closeBtnText: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: scale(15),
   },
   textInput: {
     padding: 10,
