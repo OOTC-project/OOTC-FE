@@ -1,14 +1,13 @@
 import { MutationFunction } from 'react-query';
 import axios from 'axios';
 import { PostSignInType } from './types';
-
 export const PostSignIn: MutationFunction<
   PostSignInType,
   { userId: string; password: string }
 > = async variables => {
   const { userId, password } = variables;
   const { data } = await axios.post<PostSignInType>(
-    `http://54.180.108.187:7777/auth/signIn`,
+    `${process.env.EXPO_PUBLIC_API_URL}/auth/signIn`,
     {
       userId,
       password,
