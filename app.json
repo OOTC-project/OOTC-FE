@@ -29,7 +29,8 @@
     },
     "extra": {
       "eas": {
-        "projectId": "c9d11130-132b-4f21-bd77-8fdcce8947cb"
+        "projectId": "c9d11130-132b-4f21-bd77-8fdcce8947cb",
+        "API_URL": "http://54.180.108.187:7777"
       }
     }
   }

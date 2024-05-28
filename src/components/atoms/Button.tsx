@@ -10,6 +10,7 @@ interface ButtonProps {
   text?: string;
   borderRadius?: number;
   disabled?: boolean;
+  onPress?: () => void;
 }
 
 const Button = ({
@@ -20,9 +21,11 @@ const Button = ({
   text,
   borderRadius,
   disabled,
+  onPress,
 }: ButtonProps) => {
   return (
     <TouchableOpacity
+      onPress={onPress}
       disabled={disabled}
       style={[styles.container, { backgroundColor, borderRadius }]}
     >

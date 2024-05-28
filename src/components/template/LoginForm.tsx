@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Keyboard, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Keyboard,
+  Dimensions,
+  Alert,
+} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import LoginBox from '../organism/LoginBox';
 import SocialBox from '../organism/SocialBox';
@@ -6,6 +13,8 @@ import LoginOption from '../organism/LoginOption';
 import LoginButton from '../molecules/LoginBox';
 import { verticalScale } from '../../utils/styleGuide';
 import useFormData from '../../utils/useFormData';
+import { PostSignIn } from '../../api/query';
+import { useMutation } from 'react-query';
 
 export interface LoginFormDataType {
   id: string;
@@ -47,11 +56,27 @@ const LoginForm = () => {
     }
   });
 
+  const { mutate } = useMutation(PostSignIn);
+
+  const handleLogin = () => {
+    mutate(
+      { userId: formData.id, password: formData.pw },
+      {
+        onSuccess: e => {
+          console.log(e);
+        },
+        onError: () => {
+          Alert.alert('아이디 또는 비밀번호를 확인해주세요.');
+        },
+      },
+    );
+  };
+
   return (
     <View style={styles.container}>
       <LoginBox formData={formData} handleChange={handleChange} />
       <View style={styles.formContainer}>
-        <LoginButton disabled={disabled} />
+        <LoginButton disabled={disabled} onPress={handleLogin} />
         <LoginOption />
       </View>
       <View style={styles.socialLoginBox}>
