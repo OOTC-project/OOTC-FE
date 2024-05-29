@@ -13,7 +13,7 @@ import LoginOption from '../organism/LoginOption';
 import LoginButton from '../molecules/LoginBox';
 import { verticalScale } from '../../utils/styleGuide';
 import useFormData from '../../utils/useFormData';
-import { PostSignIn } from '../../api/query';
+import { PostSignIn } from '../../api/auth';
 import { useMutation } from 'react-query';
 
 export interface LoginFormDataType {
