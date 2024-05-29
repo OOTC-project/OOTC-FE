@@ -15,6 +15,8 @@ import { verticalScale } from '../../utils/styleGuide';
 import useFormData from '../../utils/useFormData';
 import { PostSignIn } from '../../api/auth';
 import { useMutation } from 'react-query';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 export interface LoginFormDataType {
   id: string;
@@ -22,6 +24,8 @@ export interface LoginFormDataType {
 }
 
 const LoginForm = () => {
+  const navigation = useNavigation<NavigationProp<any>>();
+
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
   useEffect(() => {
@@ -62,8 +66,18 @@ const LoginForm = () => {
     mutate(
       { userId: formData.id, password: formData.pw },
       {
-        onSuccess: e => {
-          console.log(e);
+        onSuccess: async response => {
+          const { accessToken } = response.data;
+          console.log(accessToken);
+
+          // 토큰을 AsyncStorage에 저장
+          try {
+            await AsyncStorage.setItem('@user_token', accessToken);
+            console.log('토큰 저장');
+            navigation.navigate('Ootd');
+          } catch (error) {
+            console.error('token애러', error);
+          }
         },
         onError: () => {
           Alert.alert('아이디 또는 비밀번호를 확인해주세요.');

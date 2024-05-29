@@ -1,19 +1,47 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import React from 'react';
 import LevelBox from './LevelBox';
 import { scale } from '../../utils/styleGuide';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 const ProfileInfo = () => {
+  const navigation = useNavigation<NavigationProp<any>>();
+
+  const removeToken = async () => {
+    try {
+      await AsyncStorage.removeItem('@user_token');
+      navigation.navigate('Ootd'); // 로그아웃 후 Ootd 페이지로 이동
+    } catch (error) {
+      console.error('token애러', error);
+    }
+  };
+
+  const handleLogout = () => {
+    Alert.alert(
+      '로그아웃',
+      '정말 로그아웃 하시겠습니까?',
+      [
+        { text: '취소', style: 'cancel' },
+        { text: '확인', onPress: removeToken },
+      ],
+      { cancelable: false },
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.name}>ProfileInfo</Text>
       <LevelBox />
-      <Text style={styles.logout}>로그아웃</Text>
+      <TouchableOpacity onPress={handleLogout}>
+        <Text style={styles.logout}>로그아웃</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 export default ProfileInfo;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -26,9 +54,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: scale(18),
   },
-
   logout: {
-    color: '#2b2929',
+    color: '#a02e2e',
     fontWeight: '600',
     fontSize: 12,
     margin: 5,
