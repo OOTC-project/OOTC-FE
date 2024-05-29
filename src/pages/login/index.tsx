@@ -14,7 +14,7 @@ const LoginPage = () => {
       <View style={styles.container}>
         <SafeAreaView />
         <View style={styles.ButtonBox}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <TouchableOpacity onPress={() => navigation.navigate('Ootd')}>
             <Ionicons
               name="close"
               size={24}

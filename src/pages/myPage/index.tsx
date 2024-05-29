@@ -9,11 +9,13 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { scale } from '../../utils/styleGuide';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LoginPage from '../login';
 
 const MyPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
   const image = { uri: 'https://ifh.cc/g/NqpJCd.jpg' };
   const [token, setToken] = useState<string | null>(null);
+
   const fetchToken = async () => {
     try {
       const token = await AsyncStorage.getItem('@user_token');
@@ -23,30 +25,39 @@ const MyPage = () => {
     }
   };
 
-  fetchToken();
-
   useEffect(() => {
-    if (!token) {
-      navigation.navigate('LoginPage');
-    }
+    fetchToken().then(() => {
+      if (!token) {
+        // navigation.navigate('LoginPage');
+      }
+    });
   }, [token]);
 
+  console.log(token === null);
+  console.log(token);
+
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={image}
-        style={styles.background}
-        resizeMode="cover"
-      />
-      <SafeAreaView
-        style={{
-          backgroundColor: '#ffffffbd',
-        }}
-      />
-      <ProfileBox height={120} />
-      <EventBox height={120} />
-      <SaveImages />
-    </View>
+    <>
+      {token === null ? (
+        <LoginPage />
+      ) : (
+        <View style={styles.container}>
+          <ImageBackground
+            source={image}
+            style={styles.background}
+            resizeMode="cover"
+          />
+          <SafeAreaView
+            style={{
+              backgroundColor: '#ffffffbd',
+            }}
+          />
+          <ProfileBox height={120} />
+          <EventBox height={120} />
+          <SaveImages />
+        </View>
+      )}
+    </>
   );
 };
 

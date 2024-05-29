@@ -3,7 +3,11 @@ import React from 'react';
 import LevelBox from './LevelBox';
 import { scale } from '../../utils/styleGuide';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import {
+  CommonActions,
+  NavigationProp,
+  useNavigation,
+} from '@react-navigation/native';
 
 const ProfileInfo = () => {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -11,7 +15,12 @@ const ProfileInfo = () => {
   const removeToken = async () => {
     try {
       await AsyncStorage.removeItem('@user_token');
-      navigation.navigate('Ootd'); // 로그아웃 후 Ootd 페이지로 이동
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: 'Ootd' }],
+        }),
+      );
     } catch (error) {
       console.error('token애러', error);
     }
