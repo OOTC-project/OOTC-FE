@@ -8,9 +8,12 @@ import {
   NavigationProp,
   useNavigation,
 } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { setAccessToken } from '../../redux/slice/userSlice';
 
 const ProfileInfo = () => {
   const navigation = useNavigation<NavigationProp<any>>();
+  const dispatch = useDispatch();
 
   const removeToken = async () => {
     try {
@@ -21,6 +24,7 @@ const ProfileInfo = () => {
           routes: [{ name: 'Ootd' }],
         }),
       );
+      dispatch(setAccessToken(null));
     } catch (error) {
       console.error('token애러', error);
     }

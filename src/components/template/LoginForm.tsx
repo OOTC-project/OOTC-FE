@@ -17,6 +17,8 @@ import { PostSignIn } from '../../api/auth';
 import { useMutation } from 'react-query';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { setAccessToken } from '../../redux/slice/userSlice';
 
 export interface LoginFormDataType {
   id: string;
@@ -61,6 +63,7 @@ const LoginForm = () => {
   });
 
   const { mutate } = useMutation(PostSignIn);
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
     mutate(
@@ -68,12 +71,10 @@ const LoginForm = () => {
       {
         onSuccess: async response => {
           const { accessToken } = response.data;
-          console.log(accessToken);
 
-          // 토큰을 AsyncStorage에 저장
           try {
+            dispatch(setAccessToken(accessToken));
             await AsyncStorage.setItem('@user_token', accessToken);
-            console.log('토큰 저장');
             navigation.navigate('Ootd');
           } catch (error) {
             console.error('token애러', error);

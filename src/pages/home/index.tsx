@@ -4,9 +4,7 @@ import {
   Text,
   StyleSheet,
   Image,
-  ScrollView,
   Dimensions,
-  TouchableOpacity,
   Pressable,
   Modal,
   TouchableWithoutFeedback,
@@ -15,11 +13,9 @@ import {
 } from 'react-native';
 import SelectImage from '../../components/organism/SelectImage';
 import Item from '../../components/organism/Item';
-import ImageBox from '../../components/atoms/ImagesBox';
 import { BlurView } from 'expo-blur';
 import ImageSelectBox from '../../components/atoms/ImageSelectBox';
-import { moderateScale, scale } from '../../utils/styleGuide';
-import ImageBoxContainer from '../../components/molecules/ImageBoxContainer';
+import { scale } from '../../utils/styleGuide';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SnackBar from '../../components/molecules/SnackBar';
 

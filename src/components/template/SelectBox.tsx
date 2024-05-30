@@ -15,7 +15,7 @@ import {
   setOuter,
   setTop,
 } from '../../redux/slice/itemSlice';
-import { RootState } from '../../redux/store';
+import { RootState } from '../../redux/reducer';
 
 interface ItemSelectBoxProps {
   title: string;

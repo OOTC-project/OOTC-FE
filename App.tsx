@@ -1,9 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { store } from './src/redux/slice';
 import { SafeAreaProvider } from 'react-native-safe-area-context'; // SafeAreaProvider import 추가
 import Router from './Router';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './src/redux/store';
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -12,7 +13,9 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>
         <Provider store={store}>
-          <Router />
+          <PersistGate loading={null} persistor={persistor}>
+            <Router />
+          </PersistGate>
         </Provider>
       </SafeAreaProvider>
     </QueryClientProvider>

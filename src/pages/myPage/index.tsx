@@ -1,63 +1,57 @@
-import { Button, Image, ImageBackground, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { ImageBackground, View } from 'react-native';
+import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import ProfileBox from '../../components/organism/ProfileBox';
 import EventBox from '../../components/organism/EventBox';
 import SaveImages from '../../components/organism/SaveImages';
-import OotdPage from '../select';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { scale } from '../../utils/styleGuide';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import LoginPage from '../login';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAccessToken } from '../../redux/slice/userSlice';
+import { RootState } from '../../redux/reducer';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 const MyPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
   const image = { uri: 'https://ifh.cc/g/NqpJCd.jpg' };
-  const [token, setToken] = useState<string | null>(null);
-
+  const dispatch = useDispatch();
+  const token = useSelector((state: RootState) => state.token.accessToken);
   const fetchToken = async () => {
     try {
       const token = await AsyncStorage.getItem('@user_token');
-      setToken(token);
+      dispatch(setAccessToken(token));
     } catch (error) {
       console.error('Error fetching token', error);
     }
   };
 
   useEffect(() => {
-    fetchToken().then(() => {
-      if (!token) {
-        // navigation.navigate('LoginPage');
-      }
-    });
+    fetchToken();
+  }, []);
+
+  useEffect(() => {
+    if (token === null) {
+      navigation.navigate('LoginPage');
+    }
   }, [token]);
 
-  console.log(token === null);
-  console.log(token);
-
   return (
-    <>
-      {token === null ? (
-        <LoginPage />
-      ) : (
-        <View style={styles.container}>
-          <ImageBackground
-            source={image}
-            style={styles.background}
-            resizeMode="cover"
-          />
-          <SafeAreaView
-            style={{
-              backgroundColor: '#ffffffbd',
-            }}
-          />
-          <ProfileBox height={120} />
-          <EventBox height={120} />
-          <SaveImages />
-        </View>
-      )}
-    </>
+    <View style={styles.container}>
+      <ImageBackground
+        source={image}
+        style={styles.background}
+        resizeMode="cover"
+      />
+      <SafeAreaView
+        style={{
+          backgroundColor: '#ffffffbd',
+        }}
+      />
+      <ProfileBox height={120} />
+      <EventBox height={120} />
+      <SaveImages />
+    </View>
   );
 };
 
