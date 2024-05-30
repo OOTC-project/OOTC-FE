@@ -2,18 +2,24 @@ import { View, Text, Dimensions, StyleSheet } from 'react-native';
 import React from 'react';
 import ImageBox from '../atoms/ImagesBox';
 import { moderateScale, scale } from '../../utils/styleGuide';
+import EmptyImagesBox from '../atoms/EmptyImagesBox';
 
 const ImageBoxContainer = () => {
   return (
     <View style={styles.container}>
       <View style={styles.boxConatainer}>
-        <ImageBox height={'33%'} margin={scale(0.3)} borderRadius={5} />
-        <ImageBox height={'33%'} margin={scale(0.2)} borderRadius={5} />
-        <ImageBox height={'33%'} margin={scale(0.2)} borderRadius={5} />
-        <ImageBox height={'33%'} margin={scale(0.2)} borderRadius={5} />
-        <ImageBox height={'33%'} margin={scale(0.2)} borderRadius={5} />
-        <ImageBox height={'33%'} margin={scale(0.2)} borderRadius={5} />
-        <ImageBox height={'33%'} margin={scale(0.2)} borderRadius={5} />
+        {true ? (
+          [1, 2, 3, 4, 5, 6, 7].map(() => (
+            <ImageBox height={'33%'} margin={scale(0.3)} borderRadius={5} />
+          ))
+        ) : (
+          <EmptyImagesBox
+            size={15}
+            height={'33%'}
+            margin={scale(0.3)}
+            borderRadius={5}
+          />
+        )}
       </View>
     </View>
   );

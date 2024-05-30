@@ -7,7 +7,6 @@ import Home from './src/pages/home';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icons from 'react-native-vector-icons/FontAwesome5';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, Button } from 'react-native';
 import LoginPage from './src/pages/login';
 import SignUpPage from './src/pages/signUp';
 import FindPage from './src/pages/signUp/findPage';

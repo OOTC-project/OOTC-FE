@@ -18,6 +18,8 @@ import ImageSelectBox from '../../components/atoms/ImageSelectBox';
 import { scale } from '../../utils/styleGuide';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SnackBar from '../../components/molecules/SnackBar';
+import EmptyImagesBox from '../../components/atoms/EmptyImagesBox';
+import NoticeSnackBar from '../../components/molecules/NoticeSnackBar';
 
 const Home = () => {
   const [selected, setSelected] = useState<null | number>(null);
@@ -47,6 +49,7 @@ const Home = () => {
 
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [select, setSelect] = useState(0);
+  const [noticeOn, setNoticeOn] = useState(true);
 
   return (
     <TouchableWithoutFeedback>
@@ -97,69 +100,25 @@ const Home = () => {
                           tint="systemThickMaterialDark"
                           style={styles.modalBox}
                         >
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={screenWidth < 340 ? 1 : 3}
-                            borderRadius={5}
-                            select={select}
-                            setSelect={setSelect}
-                          />
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={screenWidth < 340 ? 1 : 3}
-                            borderRadius={5}
-                            select={select}
-                            setSelect={setSelect}
-                          />
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={screenWidth < 340 ? 1 : 3}
-                            borderRadius={5}
-                            select={select}
-                            setSelect={setSelect}
-                          />
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={screenWidth < 340 ? 1 : 3}
-                            borderRadius={5}
-                            select={select}
-                            setSelect={setSelect}
-                          />
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={screenWidth < 340 ? 1 : 3}
-                            borderRadius={5}
-                            select={select}
-                            setSelect={setSelect}
-                          />
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={screenWidth < 340 ? 1 : 3}
-                            borderRadius={5}
-                            select={select}
-                            setSelect={setSelect}
-                          />
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={screenWidth < 340 ? 1 : 3}
-                            borderRadius={5}
-                            select={select}
-                            setSelect={setSelect}
-                          />
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={screenWidth < 340 ? 1 : 3}
-                            borderRadius={5}
-                            select={select}
-                            setSelect={setSelect}
-                          />
-                          <ImageSelectBox
-                            height={'30%'}
-                            margin={screenWidth < 340 ? 1 : 3}
-                            borderRadius={5}
-                            select={select}
-                            setSelect={setSelect}
-                          />
+                          {true ? (
+                            [1, 2, 3, 4, 5, 6, 7, 8, 9].map(() => (
+                              <ImageSelectBox
+                                height={'30%'}
+                                margin={screenWidth < 340 ? 1 : 3}
+                                borderRadius={5}
+                                select={select}
+                                setSelect={setSelect}
+                              />
+                            ))
+                          ) : (
+                            <EmptyImagesBox
+                              height={'100%'}
+                              margin={scale(0.3)}
+                              borderRadius={5}
+                              size={50}
+                              onPress={() => {}}
+                            />
+                          )}
                         </BlurView>
                       </View>
 
@@ -180,6 +139,11 @@ const Home = () => {
                   </Modal>
                 </View>
               </View>
+
+              <NoticeSnackBar
+                snackbarVisible={noticeOn}
+                setNoticeOn={setNoticeOn}
+              />
               <SnackBar snackbarVisible={select !== 0 ? true : false}>
                 아이템이 선택되었습니다
               </SnackBar>
