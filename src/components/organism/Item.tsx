@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     height: verticalScale(70),
     width: verticalScale(70),
-    borderRadius: 13,
+    borderRadius: 12,
     padding: 4,
     display: 'flex',
     alignItems: 'center',

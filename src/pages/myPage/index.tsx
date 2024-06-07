@@ -1,4 +1,4 @@
-import { ImageBackground, View } from 'react-native';
+import { Image, ImageBackground, View } from 'react-native';
 import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import ProfileBox from '../../components/organism/ProfileBox';
@@ -10,7 +10,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAccessToken } from '../../redux/slice/userSlice';
 import { RootState } from '../../redux/reducer';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import {
+  NavigationProp,
+  useFocusEffect,
+  useNavigation,
+} from '@react-navigation/native';
 
 const MyPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -30,11 +34,11 @@ const MyPage = () => {
     fetchToken();
   }, []);
 
-  useEffect(() => {
+  useFocusEffect(() => {
     if (token === null) {
       navigation.navigate('LoginPage');
     }
-  }, [token]);
+  });
 
   return (
     <View style={styles.container}>
@@ -48,9 +52,21 @@ const MyPage = () => {
           backgroundColor: '#ffffffbd',
         }}
       />
-      <ProfileBox height={120} />
-      <EventBox height={120} />
-      <SaveImages />
+
+      {token ? (
+        <>
+          <ProfileBox height={120} />
+          <EventBox height={120} />
+          <SaveImages />
+        </>
+      ) : (
+        <View style={styles.nodata}>
+          <Image
+            source={require('../../../assets/noData.gif')}
+            style={{ width: 100, height: 100 }}
+          />
+        </View>
+      )}
     </View>
   );
 };
@@ -65,5 +81,13 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     position: 'absolute',
+  },
+
+  nodata: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

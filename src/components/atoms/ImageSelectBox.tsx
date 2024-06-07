@@ -120,12 +120,11 @@ const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 4.5,
     display: 'flex',
     alignItems: 'center',
-    width: '31%',
-    height: screenWidth / 5 / 3 - 8,
+    width: '32%',
     flexDirection: 'column',
+    padding: 2,
   },
   modal: {
     width: screenWidth / 1.3,

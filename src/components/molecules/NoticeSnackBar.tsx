@@ -5,11 +5,12 @@ import {
   Animated,
   Dimensions,
   TouchableOpacity,
+  Image,
 } from 'react-native';
-import React, { useEffect, useRef, useState } from 'react';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { scale } from '../../utils/styleGuide';
+import { useFocusEffect } from '@react-navigation/native';
 interface NoticeSnackBarProps {
   snackbarVisible: boolean;
   setNoticeOn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -33,7 +34,15 @@ const NoticeSnackBar = ({
     }
   }, [snackbarVisible, scaleValue]);
 
-  const navigation = useNavigation<NavigationProp<any>>();
+  useFocusEffect(
+    useCallback(() => {
+      const timeoutId = setTimeout(() => {
+        setNoticeOn(false);
+      }, 7000);
+
+      return () => clearTimeout(timeoutId);
+    }, []),
+  );
 
   return (
     <Animated.View
@@ -47,17 +56,10 @@ const NoticeSnackBar = ({
       <Text style={styles.title}>환영합니다. </Text>
       <Text style={styles.pointText}>아래 메뉴의 ITEMS를 클릭하여</Text>
       <Text style={styles.pointText}>아이템을 추가하세요!</Text>
-
-      <View style={styles.textBox}>
-        <Text style={styles.text}>
-          당신의 옷장 속에서 발견된 멋진 스타일을 공유합니다.
-        </Text>
-        <Text style={styles.text}>OOTC는 Outfit of the Closet의 줄임말로</Text>
-        <Text style={styles.text}>일상적으로 사람들이 하루 동안 입은</Text>
-        <Text style={styles.text}>
-          의상이나 패션 스타일을 나타내는 데 사용됩니다.
-        </Text>
-      </View>
+      <Image
+        source={require('../../../assets/welcome.gif')}
+        style={{ width: 200 }}
+      />
     </Animated.View>
   );
 };
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
   right: { textAlign: 'right', marginRight: 10 },
 
   title: { fontSize: scale(18), color: '#fff', marginBottom: 10 },
-  pointText: { fontSize: scale(22), color: '#adb0c9' },
+  pointText: { fontSize: scale(15), color: '#adb0c9' },
   textBox: {
     marginTop: 30,
     display: 'flex',

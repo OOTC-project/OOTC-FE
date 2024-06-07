@@ -10,6 +10,7 @@ import {
   TouchableWithoutFeedback,
   ImageBackground,
   Animated,
+  FlatList,
 } from 'react-native';
 import SelectImage from '../../components/organism/SelectImage';
 import Item from '../../components/organism/Item';
@@ -101,15 +102,23 @@ const Home = () => {
                           style={styles.modalBox}
                         >
                           {true ? (
-                            [1, 2, 3, 4, 5, 6, 7, 8, 9].map(() => (
-                              <ImageSelectBox
-                                height={'30%'}
-                                margin={screenWidth < 340 ? 1 : 3}
-                                borderRadius={5}
-                                select={select}
-                                setSelect={setSelect}
-                              />
-                            ))
+                            <FlatList
+                              data={[1, 2, 3, 4, 5, 6, 7, 1].slice(0, 9)}
+                              numColumns={3}
+                              contentContainerStyle={{
+                                justifyContent: 'center',
+                              }}
+                              renderItem={({ item }) => (
+                                <ImageSelectBox
+                                  height={screenWidth / 4.5}
+                                  margin={screenWidth < 340 ? 1 : 2}
+                                  borderRadius={5}
+                                  select={select}
+                                  setSelect={setSelect}
+                                />
+                              )}
+                              // keyExtractor={(item, index) => index}
+                            />
                           ) : (
                             <EmptyImagesBox
                               height={'100%'}
@@ -212,12 +221,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   modalBox: {
-    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     display: 'flex',
     width: '100%',
-    flexDirection: 'row',
     flexWrap: 'wrap',
     borderRadius: 32,
     padding: 10,
