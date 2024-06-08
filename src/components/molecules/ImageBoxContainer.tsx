@@ -5,7 +5,7 @@ import EmptyImagesBox from '../atoms/EmptyImagesBox';
 import ImageBox from '../atoms/ImagesBox';
 
 const ImageBoxContainer = () => {
-  const data = [1, 2, 3, 4, 5, 6, 7, 1, 1, 1].slice(0, 9);
+  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].slice(0, 9);
   const imageSize = verticalScale(65);
 
   return (
@@ -17,7 +17,7 @@ const ImageBoxContainer = () => {
           keyExtractor={(item, index) => index.toString()}
           contentContainerStyle={styles.flatListContent}
           renderItem={({ item }) => (
-            <ImageBox borderRadius={5} size={imageSize} />
+            <ImageBox borderRadius={5} size={imageSize} data={item} />
           )}
         />
       ) : (
