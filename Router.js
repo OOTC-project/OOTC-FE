@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import OotdPage from './src/pages/select';
+import OotcPage from './src/pages/select';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MyPage from './src/pages/myPage';
 import Home from './src/pages/home';
@@ -10,15 +10,16 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LoginPage from './src/pages/login';
 import SignUpPage from './src/pages/signUp';
 import FindPage from './src/pages/signUp/findPage';
+import Main from './src/pages/main';
 
 const Stack = createNativeStackNavigator();
 
-function OotdStackRouter() {
+function OotcStackRouter() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Ootd"
-        component={OotdPage}
+        name="Ootc"
+        component={OotcPage}
         options={{
           headerShown: false,
         }}
@@ -57,11 +58,22 @@ function RootNavigator() {
       }}
     >
       <Tab.Screen
-        name="Ootd"
+        name="Main"
+        component={Main}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'MAIN',
+          tabBarIcon: ({ color, size }) => (
+            <Icons name="robot" color={color} size={18} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Ootc"
         component={Home}
         options={{
           headerShown: false,
-          tabBarLabel: 'OOTD',
+          tabBarLabel: 'OOTC',
           tabBarIcon: ({ color, size }) => (
             <Icon name="playlist-add-check" color={color} size={27} />
           ),
@@ -69,7 +81,7 @@ function RootNavigator() {
       />
       <Tab.Screen
         name="Item"
-        component={OotdStackRouter}
+        component={OotcStackRouter}
         options={{
           headerShown: false,
           tabBarLabel: 'ITEMS',

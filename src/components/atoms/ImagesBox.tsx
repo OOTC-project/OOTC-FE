@@ -1,48 +1,33 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  Image,
-  ViewStyle,
-} from 'react-native';
+import { Image, StyleSheet, Dimensions } from 'react-native';
 import React from 'react';
 
 interface ImageBoxProps {
   borderRadius: number;
+  size: number;
 }
 
-const ImageBox = ({ borderRadius }: ImageBoxProps) => {
-  const containerStyle: any = {
-    borderRadius,
-  };
-
+const ImageBox = ({ borderRadius, size }: ImageBoxProps) => {
   return (
-    <View style={[styles.container, containerStyle]}>
-      <Image
-        source={{
-          uri: 'https://i.ibb.co/KXZY4ZY/mojtaba-mosayebzadeh-kc-Ztpg-Tm0og-unsplash.jpg',
-        }}
-        style={{
-          width: screenWidth / 20,
-          height: screenWidth / 20,
-          borderRadius: 3,
-          margin: 1,
-        }}
-      />
-    </View>
+    <Image
+      source={{
+        uri: 'https://i.ibb.co/KXZY4ZY/mojtaba-mosayebzadeh-kc-Ztpg-Tm0og-unsplash.jpg',
+      }}
+      style={[
+        styles.image,
+        {
+          borderRadius,
+          width: size,
+          height: size,
+        },
+      ]}
+    />
   );
 };
 
 export default ImageBox;
 
-const screenWidth = Dimensions.get('window').width;
-
 const styles = StyleSheet.create({
-  container: {
-    width: '33.3%',
-    height: '100%',
-    display: 'flex',
-    alignItems: 'center',
+  image: {
+    resizeMode: 'cover',
   },
 });

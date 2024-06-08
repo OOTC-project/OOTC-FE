@@ -75,7 +75,7 @@ const LoginForm = () => {
           try {
             dispatch(setAccessToken(accessToken));
             await AsyncStorage.setItem('@user_token', accessToken);
-            navigation.navigate('Ootd');
+            navigation.navigate('Ootc');
           } catch (error) {
             console.error('token애러', error);
           }

@@ -1,20 +1,24 @@
-import { View, Text, Dimensions, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import React from 'react';
-import ImageBox from '../atoms/ImagesBox';
-import { moderateScale, scale } from '../../utils/styleGuide';
+import { scale, verticalScale } from '../../utils/styleGuide';
 import EmptyImagesBox from '../atoms/EmptyImagesBox';
+import ImageBox from '../atoms/ImagesBox';
 
 const ImageBoxContainer = () => {
+  const data = [1, 2, 3, 4, 5, 6, 7, 1, 1, 1].slice(0, 9);
+  const imageSize = verticalScale(65);
+
   return (
     <View style={styles.container}>
-      {true ? (
+      {data.length > 0 ? (
         <FlatList
-          data={[1, 2, 3, 4, 5, 6, 7, 1, 1, 1].slice(0, 9)}
+          data={data}
           numColumns={3}
-          contentContainerStyle={{
-            justifyContent: 'center',
-          }}
-          renderItem={({ item }) => <ImageBox borderRadius={5} />}
+          keyExtractor={(item, index) => index.toString()}
+          contentContainerStyle={styles.flatListContent}
+          renderItem={({ item }) => (
+            <ImageBox borderRadius={5} size={imageSize} />
+          )}
         />
       ) : (
         <EmptyImagesBox
@@ -30,17 +34,17 @@ const ImageBoxContainer = () => {
 
 export default ImageBoxContainer;
 
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#111111',
-    display: 'flex',
     borderRadius: 12,
-    padding: scale(4),
     width: '100%',
     height: '100%',
     overflow: 'hidden',
+    borderWidth: 1.5,
+    borderColor: '#3c3c3c',
+  },
+  flatListContent: {
+    justifyContent: 'center',
   },
 });

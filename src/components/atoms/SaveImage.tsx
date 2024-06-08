@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import ImagePickerExample from '../organism/ImagePicker';
-import OotdItemContainer from '../organism/OotdItemContainer';
 import OotdItemBox from '../organism/OotdItemBox';
 import { scale } from '../../utils/styleGuide';
 
