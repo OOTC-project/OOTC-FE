@@ -1,12 +1,13 @@
 import { MutationFunction } from 'react-query';
 import axios from 'axios';
+import { PostCategoryType } from './types';
 
 export const PostCategory: MutationFunction<
-  any,
+  PostCategoryType,
   { name: string }
 > = async variables => {
   const { name } = variables;
-  const { data } = await axios.post<any>(
+  const { data } = await axios.post<PostCategoryType>(
     `${process.env.EXPO_PUBLIC_API_URL}/category`,
     {
       name,

@@ -1,9 +1,15 @@
 import { MutationFunction } from 'react-query';
 import axios from 'axios';
-import { PostSignInType } from './types';
+import {
+  GetCheckValidateType,
+  GetFindIdType,
+  PostResetPasswordType,
+  PostSignInType,
+  PostSignUpType,
+} from './types';
 
 export const PostSignUp: MutationFunction<
-  PostSignInType,
+  PostSignUpType,
   {
     name: string;
     userId: string;
@@ -13,7 +19,7 @@ export const PostSignUp: MutationFunction<
   }
 > = async variables => {
   const { name, userId, email, password, passwordConfirm } = variables;
-  const { data } = await axios.post<PostSignInType>(
+  const { data } = await axios.post<PostSignUpType>(
     `${process.env.EXPO_PUBLIC_API_URL}/auth/signUp`,
     {
       name,
@@ -27,11 +33,11 @@ export const PostSignUp: MutationFunction<
 };
 
 export const PostSignIn: MutationFunction<
-  any,
+  PostSignInType,
   { userId: string; password: string }
 > = async variables => {
   const { userId, password } = variables;
-  const { data } = await axios.post<any>(
+  const { data } = await axios.post<PostSignInType>(
     `${process.env.EXPO_PUBLIC_API_URL}/auth/signIn`,
     {
       userId,
@@ -42,7 +48,7 @@ export const PostSignIn: MutationFunction<
 };
 
 export const GetFindId: MutationFunction<
-  any,
+  GetFindIdType,
   {
     name: string;
     email: string;
@@ -50,14 +56,14 @@ export const GetFindId: MutationFunction<
   }
 > = async variables => {
   const { name, email, userId } = variables;
-  const { data } = await axios.get<any>(
+  const { data } = await axios.get<GetFindIdType>(
     `${process.env.EXPO_PUBLIC_API_URL}/auth/find/id`,
   );
   return data;
 };
 
 export const GetCheckValidate: MutationFunction<
-  any,
+  GetCheckValidateType,
   {
     name: string;
     email: string;
@@ -65,37 +71,23 @@ export const GetCheckValidate: MutationFunction<
   }
 > = async variables => {
   const { name, email, userId } = variables;
-  const { data } = await axios.get<any>(
+  const { data } = await axios.get<GetCheckValidateType>(
     `${process.env.EXPO_PUBLIC_API_URL}/auth/check/validate`,
   );
   return data;
 };
 
 export const PostResetPassword: MutationFunction<
-  any,
+  PostResetPasswordType,
   { id: number; password: string; passwordConfirm: string }
 > = async variables => {
   const { id, password, passwordConfirm } = variables;
-  const { data } = await axios.post<any>(
+  const { data } = await axios.post<PostResetPasswordType>(
     `${process.env.EXPO_PUBLIC_API_URL}/auth/resetPassword`,
     {
       id,
       password,
       passwordConfirm,
-    },
-  );
-  return data;
-};
-
-export const PostCategory: MutationFunction<
-  any,
-  { name: string }
-> = async variables => {
-  const { name } = variables;
-  const { data } = await axios.post<any>(
-    `${process.env.EXPO_PUBLIC_API_URL}/category`,
-    {
-      name,
     },
   );
   return data;
