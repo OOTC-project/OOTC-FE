@@ -52,12 +52,11 @@ export const GetFindId: MutationFunction<
   {
     name: string;
     email: string;
-    userId: string;
   }
 > = async variables => {
-  const { name, email, userId } = variables;
+  const { name, email } = variables;
   const { data } = await axios.get<GetFindIdType>(
-    `${process.env.EXPO_PUBLIC_API_URL}/auth/find/id`,
+    `${process.env.EXPO_PUBLIC_API_URL}/auth/find/id/${encodeURIComponent(name)}/${encodeURIComponent(email)}`,
   );
   return data;
 };
@@ -79,15 +78,15 @@ export const GetCheckValidate: MutationFunction<
 
 export const PostResetPassword: MutationFunction<
   PostResetPasswordType,
-  { id: number; password: string; passwordConfirm: string }
+  { name: string; email: string; userId: string }
 > = async variables => {
-  const { id, password, passwordConfirm } = variables;
+  const { name, email, userId } = variables;
   const { data } = await axios.post<PostResetPasswordType>(
     `${process.env.EXPO_PUBLIC_API_URL}/auth/resetPassword`,
     {
-      id,
-      password,
-      passwordConfirm,
+      name,
+      email,
+      userId,
     },
   );
   return data;

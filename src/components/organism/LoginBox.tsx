@@ -72,6 +72,7 @@ const LoginBox = ({ signUp, formData, handleChange }: LoginBoxProp) => {
         {signUp && (
           <InputBox
             title="비밀번호 확인"
+            secureTextEntry={true}
             handleChange={handleChange}
             name="pwCheck"
             formData={formData.pwCheck}

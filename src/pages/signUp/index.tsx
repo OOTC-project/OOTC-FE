@@ -8,7 +8,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SignUpPage = () => {
   const navigation = useNavigation<NavigationProp<any>>();
-
   return (
     <View style={styles.container}>
       <SafeAreaView />

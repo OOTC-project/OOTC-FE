@@ -19,6 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../redux/slice/userSlice';
+import { PostSignInType } from '../../api/types';
 
 export interface LoginFormDataType {
   id: string;
@@ -69,15 +70,19 @@ const LoginForm = () => {
     mutate(
       { userId: formData.id, password: formData.pw },
       {
-        onSuccess: async response => {
-          const { accessToken } = response.data;
+        onSuccess: async (data: PostSignInType) => {
+          if (data.data && data.data.accessToken) {
+            const { accessToken } = data.data;
 
-          try {
-            dispatch(setAccessToken(accessToken));
-            await AsyncStorage.setItem('@user_token', accessToken);
-            navigation.navigate('Ootc');
-          } catch (error) {
-            console.error('token애러', error);
+            try {
+              dispatch(setAccessToken(accessToken));
+              await AsyncStorage.setItem('@user_token', accessToken);
+              navigation.navigate('Ootc');
+            } catch (error) {
+              console.error('token애러', error);
+            }
+          } else {
+            console.error('Access token is missing in the response data');
           }
         },
         onError: () => {
