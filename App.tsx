@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { SafeAreaProvider } from 'react-native-safe-area-context'; // SafeAreaProvider import 추가
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Router from './Router';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { PersistGate } from 'redux-persist/integration/react';

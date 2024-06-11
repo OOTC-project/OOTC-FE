@@ -11,14 +11,13 @@ const ImageBox = ({ borderRadius, size, data }: ImageBoxProps) => {
   const [index, setIndex] = useState(data);
 
   useEffect(() => {
-    // 각 ImageBox에 대해 랜덤한 속도를 설정합니다.
-    const randomSpeed = Math.floor(Math.random() * 3000) + 1000; // 1000ms ~ 4000ms 사이의 랜덤 값
+    const randomSpeed = Math.floor(Math.random() * 3000) + 1000;
     const interval = setInterval(() => {
       setIndex(prevIndex => prevIndex + 1);
     }, randomSpeed);
 
     return () => clearInterval(interval);
-  }, []); // 빈 배열로 설정하여 컴포넌트 마운트 시에만 실행
+  }, []);
 
   const images = [
     'https://i.ibb.co/YLgfC1R/ryan-hoffman-A7f7-XRKg-UWc-unsplash.jpg',
