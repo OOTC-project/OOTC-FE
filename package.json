@@ -35,7 +35,8 @@
     "react-native-web": "~0.19.6",
     "react-query": "^3.39.3",
     "react-redux": "latest",
-    "redux-persist": "latest"
+    "redux-persist": "latest",
+    "expo-secure-store": "~12.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
