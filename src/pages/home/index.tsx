@@ -21,6 +21,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import SnackBar from '../../components/molecules/SnackBar';
 import EmptyImagesBox from '../../components/atoms/EmptyImagesBox';
 import NoticeSnackBar from '../../components/molecules/NoticeSnackBar';
+import { useQuery } from 'react-query';
+import { GetCategory } from '../../api/home';
 
 const Home = () => {
   const [selected, setSelected] = useState<null | number>(null);
@@ -51,6 +53,11 @@ const Home = () => {
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [select, setSelect] = useState(0);
   const [noticeOn, setNoticeOn] = useState(true);
+
+  const { data } = useQuery('GetCategory', () => GetCategory({}), {
+    retry: 0,
+    onSuccess: e => {},
+  });
 
   return (
     <TouchableWithoutFeedback>

@@ -79,14 +79,14 @@ const LoginForm = () => {
               await AsyncStorage.setItem('@user_token', accessToken);
               navigation.navigate('Ootc');
             } catch (error) {
-              console.error('token애러', error);
+              console.error('Token error', error);
             }
           } else {
             console.error('Access token is missing in the response data');
           }
         },
         onError: () => {
-          Alert.alert('아이디 또는 비밀번호를 확인해주세요.');
+          Alert.alert('Please check your username or password.');
         },
       },
     );
