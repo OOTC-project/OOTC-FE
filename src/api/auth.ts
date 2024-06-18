@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   GetCheckValidateType,
   GetFindIdType,
-  PostResetPasswordType,
+  PatchResetPasswordType,
   PostSignInType,
   PostSignUpType,
 } from './types';
@@ -76,13 +76,13 @@ export const GetCheckValidate: MutationFunction<
   return data;
 };
 
-export const PostResetPassword: MutationFunction<
-  PostResetPasswordType,
+export const PatchResetPassword: MutationFunction<
+  PatchResetPasswordType,
   { name: string; email: string; userId: string }
 > = async variables => {
   const { name, email, userId } = variables;
-  const { data } = await axios.post<PostResetPasswordType>(
-    `${process.env.EXPO_PUBLIC_API_URL}/auth/resetPassword`,
+  const { data } = await axios.patch<PatchResetPasswordType>(
+    `${process.env.EXPO_PUBLIC_API_URL}/auth/reset/password`,
     {
       name,
       email,

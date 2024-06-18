@@ -62,19 +62,14 @@ export interface GetCheckValidateType {
   };
 }
 
-export interface PostResetPasswordType {
+export interface PatchResetPasswordType {
   statusCode: number;
   message: string;
   data?: {
-    result: string;
+    result: boolean;
   };
   timestamp?: string;
-  path?: string;
-  error?: {
-    error: string;
-    statusCode: number;
-    message: string;
-  };
+  error?: string;
 }
 
 export interface GetCategoryType {
@@ -123,7 +118,118 @@ export interface GetClothesDetailType {
   path?: string;
   error?: {
     error: string;
-    statusCode: number;
+    statusCode: string;
     message: string;
+  };
+}
+
+export interface ClothesType {
+  statusCode: string;
+  message: string;
+  data: {
+    id: string;
+    createdAt: string;
+    name: string;
+    clothesImg: string;
+    description: string;
+    position: string;
+    fkCategoryId: string;
+    fkMemberId: string;
+  };
+}
+
+export interface PostCodyType {
+  statusCode: number;
+  message: string;
+  data: {
+    id: number;
+    createdAt: string;
+    fkCodyId: number;
+    fkMemberId: number;
+    clothes: {
+      id: number;
+      name: string;
+      clothesImg: string;
+      description: string;
+      position: string;
+      fkCategoryId: number;
+      fkMemberId: number;
+      createdAt: string;
+    };
+    cody: {
+      id: number;
+      name: string;
+      createdAt: string;
+      fkMemberId: number;
+    };
+  };
+}
+
+export interface GetCodyType {
+  statusCode: number;
+  message: string;
+  data: {
+    data: GetCodyData[];
+  };
+}
+
+export interface GetCodyData {
+  id: number;
+  fkCodyId: number;
+  fkClothesId: number;
+  createdAt: string;
+  cody: {
+    id: number;
+    name: string;
+    createdAt: string;
+    fkMemberId: number;
+  };
+  clothes: {
+    id: number;
+    name: string;
+    clothesImg: string;
+    description: string;
+    position: string;
+    fkCategoryId: number;
+    fkMemberId: number;
+    createdAt: string;
+  };
+}
+
+export interface CodyDetailType {
+  statusCode: number;
+  message: string;
+  data: {
+    id: number;
+    createdAt: string;
+    fkCodyId: number;
+    fkMemberId: number;
+    clothes: {
+      id: number;
+      name: string;
+      clothesImg: string;
+      description: string;
+      position: string;
+      fkCategoryId: number;
+      fkMemberId: number;
+      createdAt: string;
+    };
+    cody: {
+      id: number;
+      name: string;
+      createdAt: string;
+      fkMemberId: number;
+    };
+  };
+}
+
+export interface RecommendType {
+  statusCode: number;
+  message: string;
+  data: {
+    id: number;
+    createdAt: string;
+    fkMemberId: number;
+    fkCodyId: number;
   };
 }

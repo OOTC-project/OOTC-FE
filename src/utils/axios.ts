@@ -16,10 +16,11 @@ instance.interceptors.request.use(
 
     if (token) {
       if (config.headers) {
-        (config.headers as AxiosRequestHeaders).Authorization = token;
+        (config.headers as AxiosRequestHeaders).Authorization =
+          `Bearer ${token}`;
       } else {
         config.headers = {
-          Authorization: token,
+          Authorization: `Bearer ${token}`,
         } as AxiosRequestHeaders;
       }
     }
@@ -34,7 +35,6 @@ instance.interceptors.response.use(
   response => response,
   async error => {
     if (error.response.status === 401) {
-      // Navigate to LoginPage without using hooks
       const navigation = useNavigation();
       navigation.dispatch(StackActions.replace('LoginPage'));
     }

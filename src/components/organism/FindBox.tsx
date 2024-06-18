@@ -7,7 +7,7 @@ import FindIdPwBox from './FindIdPwBox';
 import { scale } from '../../utils/styleGuide';
 import useFormData from '../../utils/useFormData';
 import { useMutation, useQuery } from 'react-query';
-import { GetFindId, PostResetPassword } from '../../api/auth';
+import { GetFindId, PatchResetPassword } from '../../api/auth';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 interface FindBoxProps {
@@ -59,7 +59,7 @@ const FindBox = ({ what }: FindBoxProps) => {
     },
   );
 
-  const { mutate: resetPassword } = useMutation(PostResetPassword, {
+  const { mutate: resetPassword } = useMutation(PatchResetPassword, {
     onSuccess: () => {
       Alert.alert(`이메일로 비밀번호가 전송되었습니다.`);
       navigation.goBack();
