@@ -8,6 +8,7 @@ import {
   GetCodyType,
   CodyDetailType,
   RecommendType,
+  GetOpenAiType,
 } from './types';
 import instance from '../utils/axios';
 
@@ -221,6 +222,17 @@ export const DeleteRecommend: MutationFunction<
   const { id } = variables;
   const { data } = await instance.delete<RecommendType>(
     `${process.env.EXPO_PUBLIC_API_URL}/recommend/${id}`,
+  );
+  return data;
+};
+
+export const GetOpenAi: MutationFunction<
+  GetOpenAiType,
+  { city: string; country: string }
+> = async variables => {
+  const { city, country } = variables;
+  const { data } = await instance.get<GetOpenAiType>(
+    `${process.env.EXPO_PUBLIC_API_URL}/open-ai/${city}/${country}`,
   );
   return data;
 };
