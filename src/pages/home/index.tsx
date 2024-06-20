@@ -22,7 +22,10 @@ import SnackBar from '../../components/molecules/SnackBar';
 import EmptyImagesBox from '../../components/atoms/EmptyImagesBox';
 import NoticeSnackBar from '../../components/molecules/NoticeSnackBar';
 import { useQuery } from 'react-query';
-import { GetCategory } from '../../api/home';
+import { GetCategory } from '../../api/service';
+import SelectSnackBar from '../../components/organism/SelectSnackBar';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/reducer';
 
 const Home = () => {
   const [selected, setSelected] = useState<null | number>(null);
@@ -58,6 +61,22 @@ const Home = () => {
     retry: 0,
     onSuccess: e => {},
   });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSelect(0);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [select]);
+
+  const { counter: itemCounter } = useSelector((state: RootState) => state);
+
+  useEffect(() => {
+    if (modalVisible || itemCounter.length > 0) {
+      setNoticeOn(false);
+    }
+  }, [modalVisible]);
 
   return (
     <TouchableWithoutFeedback>
@@ -160,9 +179,7 @@ const Home = () => {
                 snackbarVisible={noticeOn}
                 setNoticeOn={setNoticeOn}
               />
-              <SnackBar snackbarVisible={select !== 0 ? true : false}>
-                아이템이 선택되었습니다
-              </SnackBar>
+              <SelectSnackBar select={select} />
             </>
           ) : (
             <View style={styles.loadingBackground}>

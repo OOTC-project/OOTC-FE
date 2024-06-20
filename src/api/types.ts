@@ -247,3 +247,18 @@ export interface GetOpenAiType {
     finish_reason: string;
   };
 }
+
+export interface GetUserInfoType {
+  statusCode: number;
+  message: string;
+  data: {
+    id: number;
+    createdAt: string;
+    name: string;
+    userId: string;
+    profileImg: string;
+    backgroundImg: string;
+    isWithdrawal: number;
+    email: string;
+  };
+}

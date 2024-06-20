@@ -11,6 +11,8 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../redux/slice/itemSlice';
 
 const ImageSelectBox = ({
   height,
@@ -43,6 +45,16 @@ const ImageSelectBox = ({
       setSelect(0);
     }
   }, [modalVisible]);
+
+  const dispatch = useDispatch();
+
+  const handleClick = (id: number, img: string) => {
+    setSelect(1);
+
+    const newItem = { id: id, img: img };
+    dispatch(addItem(newItem));
+  };
+
   return (
     <View style={[styles.container, { height, margin, borderRadius }]}>
       <TouchableOpacity
@@ -89,7 +101,14 @@ const ImageSelectBox = ({
               style={styles.loadingIndicator}
             />
           ) : ( */}
-          <TouchableOpacity onPress={() => setSelect(1)}>
+          <TouchableOpacity
+            onPress={() =>
+              handleClick(
+                1,
+                'https://i.ibb.co/KXZY4ZY/mojtaba-mosayebzadeh-kc-Ztpg-Tm0og-unsplash.jpg',
+              )
+            }
+          >
             <Image
               source={{
                 uri: 'https://i.ibb.co/KXZY4ZY/mojtaba-mosayebzadeh-kc-Ztpg-Tm0og-unsplash.jpg',

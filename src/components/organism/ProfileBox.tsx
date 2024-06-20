@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import ProfileImage from '../molecules/ProfileImage';
 import ProfileInfo from '../molecules/ProfileInfo';
 import * as ImagePicker from 'expo-image-picker';
+import { useQuery } from 'react-query';
+import { GetUserInfo } from '../../api/auth';
 
 interface ProfileBoxProps {
   width?: number;
@@ -23,6 +25,14 @@ const ProfileBox = ({ width, height }: ProfileBoxProps) => {
       setImage(result.assets[0].uri);
     }
   };
+
+  const { data } = useQuery('GetUserInfo', () => GetUserInfo({}), {
+    retry: 0,
+    onSuccess: e => {
+      console.log(e);
+    },
+  });
+
   return (
     <View style={styles.container}>
       <View style={[styles.box, { width }]}>

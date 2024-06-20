@@ -1,30 +1,35 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Alert } from 'react-native';
 
-const initialState = {
-  top: null,
-  outer: null,
-  bottom: null,
-  etc: null,
-};
+interface Item {
+  id: number;
+  img: string;
+}
+
+const initialState: Item[] = [];
+
 const itemSlice = createSlice({
-  name: 'counter',
+  name: 'items',
   initialState,
   reducers: {
-    setTop(state, action) {
-      state.top = action.payload;
+    addItem(state, action: PayloadAction<Item>) {
+      const existingIndex = state.findIndex(
+        item => item.id === action.payload.id,
+      );
+      if (existingIndex !== -1) {
+        Alert.alert('같은 아이템이 선택되었습니다.');
+      } else {
+        state.push(action.payload);
+      }
     },
-    setOuter(state, action) {
-      state.outer = action.payload;
-    },
-    setBottom(state, action) {
-      state.bottom = action.payload;
-    },
-    setEtc(state, action) {
-      state.etc = action.payload;
+    removeItem(state, action: PayloadAction<number>) {
+      const indexToRemove = state.findIndex(item => item.id === action.payload);
+      if (indexToRemove !== -1) {
+        state.splice(indexToRemove, 1);
+      }
     },
   },
 });
 
-export const { setTop, setOuter, setBottom, setEtc } = itemSlice.actions;
-
+export const { addItem, removeItem } = itemSlice.actions;
 export default itemSlice.reducer;

@@ -3,10 +3,12 @@ import axios from 'axios';
 import {
   GetCheckValidateType,
   GetFindIdType,
+  GetUserInfoType,
   PatchResetPasswordType,
   PostSignInType,
   PostSignUpType,
 } from './types';
+import instance from '../utils/axios';
 
 export const PostSignUp: MutationFunction<
   PostSignUpType,
@@ -88,6 +90,16 @@ export const PatchResetPassword: MutationFunction<
       email,
       userId,
     },
+  );
+  return data;
+};
+
+export const GetUserInfo: MutationFunction<
+  GetUserInfoType,
+  {}
+> = async variables => {
+  const { data } = await instance.get<GetUserInfoType>(
+    `${process.env.EXPO_PUBLIC_API_URL}/user`,
   );
   return data;
 };

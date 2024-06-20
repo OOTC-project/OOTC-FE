@@ -34,16 +34,6 @@ const NoticeSnackBar = ({
     }
   }, [snackbarVisible, scaleValue]);
 
-  useFocusEffect(
-    useCallback(() => {
-      const timeoutId = setTimeout(() => {
-        setNoticeOn(false);
-      }, 7000);
-
-      return () => clearTimeout(timeoutId);
-    }, []),
-  );
-
   return (
     <Animated.View
       style={[styles.container, { transform: [{ scale: scaleValue }] }]}
