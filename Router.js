@@ -47,7 +47,7 @@ const Tab = createBottomTabNavigator();
 function RootNavigator() {
   return (
     <Tab.Navigator
-      initialRouteName="Ootd"
+      initialRouteName="MAIN"
       tabBarOptions={{
         activeTintColor: '#fff',
         inactiveTintColor: 'gray',
@@ -58,7 +58,7 @@ function RootNavigator() {
       }}
     >
       <Tab.Screen
-        name="Main"
+        name="MAIN"
         component={Main}
         options={{
           headerShown: false,
@@ -69,7 +69,7 @@ function RootNavigator() {
         }}
       />
       <Tab.Screen
-        name="Ootc"
+        name="OOTC"
         component={Home}
         options={{
           headerShown: false,
@@ -80,7 +80,7 @@ function RootNavigator() {
         }}
       />
       <Tab.Screen
-        name="Item"
+        name="ITEMS"
         component={OotcStackRouter}
         options={{
           headerShown: false,

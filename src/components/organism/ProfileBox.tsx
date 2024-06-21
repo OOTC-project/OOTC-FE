@@ -5,6 +5,8 @@ import ProfileInfo from '../molecules/ProfileInfo';
 import * as ImagePicker from 'expo-image-picker';
 import { useQuery } from 'react-query';
 import { GetUserInfo } from '../../api/auth';
+import { RootState } from '../../redux/reducer';
+import { useSelector } from 'react-redux';
 
 interface ProfileBoxProps {
   width?: number;
@@ -12,6 +14,8 @@ interface ProfileBoxProps {
 }
 const ProfileBox = ({ width, height }: ProfileBoxProps) => {
   const [image, setImage] = useState('');
+
+  const { token } = useSelector((state: RootState) => state);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -28,6 +32,7 @@ const ProfileBox = ({ width, height }: ProfileBoxProps) => {
 
   const { data } = useQuery('GetUserInfo', () => GetUserInfo({}), {
     retry: 0,
+    enabled: !!token,
     onSuccess: e => {
       console.log(e);
     },
