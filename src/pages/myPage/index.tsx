@@ -15,9 +15,10 @@ import {
   useFocusEffect,
   useNavigation,
 } from '@react-navigation/native';
+import { RootStackParamList } from '../../types';
 
 const MyPage = () => {
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const image = { uri: 'https://ifh.cc/g/NqpJCd.jpg' };
   const dispatch = useDispatch();
   const token = useSelector((state: RootState) => state.token.accessToken);

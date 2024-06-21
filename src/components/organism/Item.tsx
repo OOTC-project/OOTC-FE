@@ -3,7 +3,22 @@ import React from 'react';
 import ImageBoxContainer from '../molecules/ImageBoxContainer';
 import { moderateScale, scale, verticalScale } from '../../utils/styleGuide';
 
-const Item = ({ item, setModalVisible, setSelectTitle, setSelected }: any) => {
+interface ItemProps {
+  item: {
+    id: number;
+    title: string;
+  };
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectTitle: React.Dispatch<React.SetStateAction<null | string>>;
+  setSelected: React.Dispatch<React.SetStateAction<null | number>>;
+}
+
+const Item = ({
+  item,
+  setModalVisible,
+  setSelectTitle,
+  setSelected,
+}: ItemProps) => {
   return (
     <>
       <TouchableOpacity

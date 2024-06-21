@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { moderateScale, scale } from '../../../utils/styleGuide';
 import FindBox from '../../../components/organism/FindBox';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { RootStackParamList } from '../../../types';
 
 interface FindPageProps {
   route: {
@@ -15,7 +16,7 @@ interface FindPageProps {
 }
 
 const FindPage = ({ route }: FindPageProps) => {
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { what } = route.params;
 
   return (

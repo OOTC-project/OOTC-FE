@@ -10,8 +10,26 @@ import {
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
-interface ImagePickerExampleProps {}
-const ImagePickerExample = ({ setPhotoData, height, width }: any) => {
+interface ImagePickerExampleProps {
+  photoData?: { url: string; position: string; tag?: string; des?: string };
+  setPhotoData: React.Dispatch<
+    React.SetStateAction<{
+      url: string;
+      position: string;
+      tag?: string;
+      des?: string;
+    }>
+  >;
+  height?: number;
+  width?: number | boolean;
+}
+
+const ImagePickerExample = ({
+  photoData,
+  setPhotoData,
+  height,
+  width,
+}: ImagePickerExampleProps) => {
   const [image, setImage] = useState('');
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
@@ -45,7 +63,7 @@ const ImagePickerExample = ({ setPhotoData, height, width }: any) => {
 
     if (result.assets && !result.canceled) {
       setImage(result.assets[0].uri);
-      setPhotoData((prevData: any) => ({
+      setPhotoData(prevData => ({
         ...prevData,
         url: result.assets ? result.assets[0].uri : '',
       }));

@@ -10,7 +10,7 @@ const useFormData = <T extends Record<string, any>>(INITDATA: T) => {
     }));
   };
 
-  const handleChangeSelect = (event: any) => {
+  const handleChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
 
     setFormData(prevFormData => ({
@@ -19,12 +19,12 @@ const useFormData = <T extends Record<string, any>>(INITDATA: T) => {
     }));
   };
 
-  const handleChangeBoolean = (event: any) => {
-    const { name, value } = event.target;
+  const handleChangeBoolean = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
 
     setFormData(prevFormData => ({
       ...prevFormData,
-      [name]: value,
+      [name]: checked,
     }));
   };
 

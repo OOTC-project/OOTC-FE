@@ -1,10 +1,16 @@
-import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ViewStyle,
+  DimensionValue,
+} from 'react-native';
 import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 interface EmptyImagesBoxProps {
-  height: string;
-  margin?: number | undefined;
+  height: DimensionValue;
+  margin?: number;
   borderRadius: number;
   size: number;
   onPress?: () => void;
@@ -12,16 +18,15 @@ interface EmptyImagesBoxProps {
 
 const EmptyImagesBox = ({
   height,
-  margin = undefined,
+  margin,
   borderRadius,
   size,
   onPress,
 }: EmptyImagesBoxProps) => {
-  const containerStyle: any = {
+  const containerStyle: Partial<ViewStyle> = {
     height,
     margin,
     borderRadius,
-    size,
   };
 
   return (

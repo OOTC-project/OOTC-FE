@@ -5,9 +5,10 @@ import { Ionicons } from '@expo/vector-icons';
 import SignUpBox from '../../components/organism/SignUpBox';
 import { moderateScale, scale } from '../../utils/styleGuide';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { RootStackParamList } from '../../types';
 
 const SignUpPage = () => {
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <View style={styles.container}>
       <SafeAreaView />

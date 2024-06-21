@@ -20,6 +20,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../redux/slice/userSlice';
 import { PostSignInType } from '../../api/types';
+import { RootStackParamList } from '../../types';
 
 export interface LoginFormDataType {
   id: string;
@@ -27,7 +28,7 @@ export interface LoginFormDataType {
 }
 
 const LoginForm = () => {
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 

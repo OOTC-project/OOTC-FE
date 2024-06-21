@@ -13,15 +13,26 @@ import {
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../redux/slice/itemSlice';
+import { useQuery } from 'react-query';
+import { GetClothesDetail } from '../../api/service';
+
+interface ImageSelectBoxProps {
+  height: number;
+  margin: number;
+  borderRadius: number;
+  select: number;
+  setSelect: React.Dispatch<React.SetStateAction<number>>;
+  id: number;
+}
 
 const ImageSelectBox = ({
   height,
   margin,
   borderRadius,
-  width,
   select,
   setSelect,
-}: any) => {
+  id,
+}: ImageSelectBoxProps) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [imgLoading, setImgLoading] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -54,6 +65,15 @@ const ImageSelectBox = ({
     const newItem = { id: id, img: img };
     dispatch(addItem(newItem));
   };
+
+  const { data } = useQuery(
+    'GetClothesDetail',
+    () => GetClothesDetail({ id }),
+    {
+      retry: 0,
+      onSuccess: e => {},
+    },
+  );
 
   return (
     <View style={[styles.container, { height, margin, borderRadius }]}>

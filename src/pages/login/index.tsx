@@ -5,9 +5,10 @@ import { Ionicons } from '@expo/vector-icons';
 import LoginForm from '../../components/template/LoginForm';
 import { moderateScale, scale, verticalScale } from '../../utils/styleGuide';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { RootStackParamList } from '../../types';
 
 const LoginPage = () => {
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   return (
     <>

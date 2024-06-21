@@ -72,13 +72,18 @@ const OotdPage = () => {
   }, [list]);
   const [modalVisible, setModalVisible] = useState(false);
 
-  const [photoData, setPhotoData] = useState({
+  const [photoData, setPhotoData] = useState<{
+    url: string;
+    position: string;
+    tag?: string;
+    des?: string;
+  }>({
     url: '',
     position: '',
     tag: '',
     des: '',
   });
-  const [name, setName] = useState('');
+
   const handleSave = () => {
     if (photoData.position && photoData.url) {
       setModalVisible(!modalVisible);

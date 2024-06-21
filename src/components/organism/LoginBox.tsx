@@ -12,7 +12,13 @@ import InputBox from '../molecules/InputBox';
 
 interface LoginBoxProp {
   signUp?: boolean;
-  formData: any;
+  formData: {
+    id: string;
+    pw: string;
+    email?: string;
+    name?: string;
+    pwCheck?: string;
+  };
   handleChange: (value: string, name: string) => void;
 }
 const LoginBox = ({ signUp, formData, handleChange }: LoginBoxProp) => {

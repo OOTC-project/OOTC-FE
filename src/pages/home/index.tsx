@@ -5,32 +5,30 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  Pressable,
-  Modal,
   TouchableWithoutFeedback,
   ImageBackground,
   Animated,
-  FlatList,
 } from 'react-native';
 import SelectImage from '../../components/organism/SelectImage';
 import Item from '../../components/organism/Item';
-import { BlurView } from 'expo-blur';
-import ImageSelectBox from '../../components/atoms/ImageSelectBox';
 import { scale } from '../../utils/styleGuide';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import SnackBar from '../../components/molecules/SnackBar';
-import EmptyImagesBox from '../../components/atoms/EmptyImagesBox';
 import NoticeSnackBar from '../../components/molecules/NoticeSnackBar';
 import { useQuery } from 'react-query';
 import { GetCategory } from '../../api/service';
 import SelectSnackBar from '../../components/organism/SelectSnackBar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducer';
+import CategoryItems from '../../components/organism/CategoryItems';
 
 const Home = () => {
   const [selected, setSelected] = useState<null | number>(null);
   const [selectTitle, setSelectTitle] = useState<null | string>(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+  const [select, setSelect] = useState(0);
+  const [noticeOn, setNoticeOn] = useState(true);
+
   const loadingImage = require('../../../assets/splashW.png');
   const [loading, setLoading] = useState(false);
   const handleImageLoad = () => {
@@ -52,10 +50,6 @@ const Home = () => {
       scaleValue.setValue(0);
     }
   }, [modalVisible, scaleValue]);
-
-  const [snackbarVisible, setSnackbarVisible] = useState(false);
-  const [select, setSelect] = useState(0);
-  const [noticeOn, setNoticeOn] = useState(true);
 
   const { data } = useQuery('GetCategory', () => GetCategory({}), {
     retry: 0,
@@ -102,76 +96,14 @@ const Home = () => {
                       />
                     </View>
                   ))}
-                  <Modal
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-                      setModalVisible(!modalVisible);
-                    }}
-                  >
-                    <Pressable
-                      style={{
-                        flex: 1,
-                      }}
-                      onPress={() => setModalVisible(false)}
-                    ></Pressable>
-                    <Animated.View
-                      style={[
-                        styles.modal,
-                        { transform: [{ scale: scaleValue }] },
-                      ]}
-                    >
-                      <View style={{ borderRadius: 30, overflow: 'hidden' }}>
-                        <BlurView
-                          intensity={100}
-                          tint="systemThickMaterialDark"
-                          style={styles.modalBox}
-                        >
-                          {true ? (
-                            <FlatList
-                              data={[1, 2, 3, 4, 5, 6, 7, 1].slice(0, 9)}
-                              numColumns={3}
-                              contentContainerStyle={{
-                                justifyContent: 'center',
-                              }}
-                              renderItem={({ item }) => (
-                                <ImageSelectBox
-                                  height={screenWidth / 4.5}
-                                  margin={screenWidth < 340 ? 1 : 2}
-                                  borderRadius={5}
-                                  select={select}
-                                  setSelect={setSelect}
-                                />
-                              )}
-                              // keyExtractor={(item, index) => index}
-                            />
-                          ) : (
-                            <EmptyImagesBox
-                              height={'100%'}
-                              margin={scale(0.3)}
-                              borderRadius={5}
-                              size={50}
-                              onPress={() => {}}
-                            />
-                          )}
-                        </BlurView>
-                      </View>
-
-                      <Text
-                        style={[
-                          styles.modalTitle,
-                          {
-                            fontSize: scale(
-                              selectTitle && selectTitle.length > 6 ? 45 : 55,
-                            ),
-                            color: select !== 0 ? '#332ed1' : '#212121',
-                          },
-                        ]}
-                      >
-                        {selectTitle}
-                      </Text>
-                    </Animated.View>
-                  </Modal>
+                  <CategoryItems
+                    select={select}
+                    setSelect={setSelect}
+                    modalVisible={modalVisible}
+                    setModalVisible={setModalVisible}
+                    selectTitle={selectTitle}
+                    setSelectTitle={setSelectTitle}
+                  />
                 </View>
               </View>
 
@@ -236,30 +168,6 @@ const styles = StyleSheet.create({
     width: screenWidth / 4,
     flexDirection: 'column',
     height: screenWidth / 4 + 15,
-  },
-  modal: {
-    width: screenWidth / 1.3,
-    height: screenWidth / 1.3 + 10,
-    left: (screenWidth - screenWidth / 1.3) / 2,
-    top: (screenWidth / 1.3 + 10) / 2,
-    position: 'absolute',
-  },
-  modalBox: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-    width: '100%',
-    flexWrap: 'wrap',
-    borderRadius: 32,
-    padding: 10,
-  },
-  modalTitle: {
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#3c3c3c',
-    marginTop: 5,
-
-    fontStyle: 'italic',
   },
 });
 

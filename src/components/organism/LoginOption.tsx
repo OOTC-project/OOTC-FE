@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import LoginOptionButton from '../molecules/LoginOptionButton';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { scale } from '../../utils/styleGuide';
+import { RootStackParamList } from '../../types';
 
 const LoginOption = () => {
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const openSignUpModal = () => {
     navigation.navigate('SignUpPage');

@@ -10,9 +10,10 @@ import {
 } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../redux/slice/userSlice';
+import { RootStackParamList } from '../../types';
 
 const ProfileInfo = () => {
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const dispatch = useDispatch();
 
   const removeToken = async () => {

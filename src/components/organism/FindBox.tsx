@@ -1,7 +1,5 @@
 import { View, Text, StyleSheet, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import LoginBox from './LoginBox';
-import InputBox from '../molecules/InputBox';
 import Button from '../atoms/Button';
 import FindIdPwBox from './FindIdPwBox';
 import { scale } from '../../utils/styleGuide';
@@ -9,6 +7,7 @@ import useFormData from '../../utils/useFormData';
 import { useMutation, useQuery } from 'react-query';
 import { GetFindId, PatchResetPassword } from '../../api/auth';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../types';
 
 interface FindBoxProps {
   what: string;
@@ -20,10 +19,21 @@ export interface FindIdPwBoxDataType {
   email: string;
 }
 
+// Custom error type
+interface ApiError {
+  response: {
+    status: number;
+    data: {
+      message: string;
+    };
+  };
+}
+
 const FindBox = ({ what }: FindBoxProps) => {
-  const { formData, handleChange } = useFormData(FindIdPwBoxData);
+  const { formData, handleChange } =
+    useFormData<FindIdPwBoxDataType>(FindIdPwBoxData);
   const [disabled, setDisabled] = useState(true);
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   useEffect(() => {
     if (
@@ -64,7 +74,7 @@ const FindBox = ({ what }: FindBoxProps) => {
       Alert.alert(`이메일로 비밀번호가 전송되었습니다.`);
       navigation.goBack();
     },
-    onError: (e: any) => {
+    onError: (e: ApiError) => {
       if (e.response.status === 404) {
         Alert.alert(`해당 계정의 정보가 없습니다.`);
       }
