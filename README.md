@@ -36,12 +36,14 @@ root
 │  ├─ index.tsx
 │  ├─ api
 │  ├─ components
-│  │  └─ pages
+│  │  ├─ atoms
+│  │  ├─ molecules
+│  │  ├─ organism
+│  │  └─ template
+│  ├─ pages
 │  ├─ data
 │  ├─ hooks
-│  │  └─ pages
 │  ├─ layouts
-│  ├─ pages
 │  ├─ redux
 │  ├─ routes
 │  ├─ types
@@ -75,5 +77,9 @@ root
 - hooks/pages : 페이지에 해당하는 비즈니스 로직 구성 (재사용 x)
 - components : 재사용 컴포넌트
 - components/pages : 페이지의 컴포넌트 (재사용 x)
+
+#### `atomic 디자인 패턴 적용 진행중`
+
+- atoms -> molecule -> organism -> template -> pages
 
 <br /><br />
