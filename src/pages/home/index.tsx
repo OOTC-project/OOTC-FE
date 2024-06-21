@@ -42,8 +42,8 @@ const Home = () => {
   useEffect(() => {
     if (modalVisible) {
       Animated.timing(scaleValue, {
-        toValue: 1,
-        duration: 80,
+        toValue: 2,
+        duration: 20,
         useNativeDriver: true,
       }).start();
     } else {

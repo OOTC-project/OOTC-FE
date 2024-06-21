@@ -25,6 +25,7 @@ const SelectImage = () => {
   const { counter: itemCounter } = useSelector((state: RootState) => state);
   const handleDelete = (id: number) => {
     dispatch(removeItem(id));
+    setModalVisible(false);
     console.log(id);
   };
   return (
