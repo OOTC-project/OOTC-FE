@@ -2,7 +2,7 @@ import { MutationFunction } from 'react-query';
 import axios from 'axios';
 import {
   GetCheckValidateType,
-  GetFindIdType,
+  PostFindIdType,
   GetUserInfoType,
   PatchResetPasswordType,
   PostSignInType,
@@ -49,16 +49,17 @@ export const PostSignIn: MutationFunction<
   return data;
 };
 
-export const GetFindId: MutationFunction<
-  GetFindIdType,
+export const PostFindId: MutationFunction<
+  PostFindIdType,
   {
     name: string;
     email: string;
   }
 > = async variables => {
   const { name, email } = variables;
-  const { data } = await axios.get<GetFindIdType>(
-    `${process.env.EXPO_PUBLIC_API_URL}/auth/find/id/${encodeURIComponent(name)}/${encodeURIComponent(email)}`,
+  const { data } = await axios.post<PostFindIdType>(
+    `${process.env.EXPO_PUBLIC_API_URL}/auth/find/id`,
+    { name, email },
   );
   return data;
 };

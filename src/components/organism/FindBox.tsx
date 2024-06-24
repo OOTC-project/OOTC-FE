@@ -4,10 +4,11 @@ import Button from '../atoms/Button';
 import FindIdPwBox from './FindIdPwBox';
 import { scale } from '../../utils/styleGuide';
 import useFormData from '../../utils/useFormData';
-import { useMutation, useQuery } from 'react-query';
-import { GetFindId, PatchResetPassword } from '../../api/auth';
+import { useMutation } from 'react-query';
+import { PostFindId, PatchResetPassword } from '../../api/auth';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../types';
+import axios from 'axios';
 
 interface FindBoxProps {
   what: string;
@@ -51,23 +52,17 @@ const FindBox = ({ what }: FindBoxProps) => {
     }
   }, [formData, what]);
 
-  const [post, setPost] = useState(false);
-  const { refetch } = useQuery(
-    'GetFindId',
-    () =>
-      GetFindId({
-        name: formData.name,
-        email: formData.email,
-      }),
-    {
-      staleTime: 15 * 60 * 1000,
-      enabled: false,
-      retry: 0,
-      onSuccess: e => {
-        setPost(false);
-      },
+  const { mutate: findId } = useMutation(PostFindId, {
+    onError: (error: unknown) => {
+      if (axios.isAxiosError(error)) {
+        Alert.alert(error.response?.data?.message || error.message);
+      } else if (error instanceof Error) {
+        Alert.alert(error.message);
+      } else {
+        Alert.alert('애러가 발생했어요!');
+      }
     },
-  );
+  });
 
   const { mutate: resetPassword } = useMutation(PatchResetPassword, {
     onSuccess: () => {
@@ -105,7 +100,11 @@ const FindBox = ({ what }: FindBoxProps) => {
         backgroundColor={disabled ? 'gray' : '#1a63f6'}
         fontSize={scale(12)}
         disabled={disabled}
-        onPress={what === 'id' ? () => refetch() : handleResetPassword}
+        onPress={
+          what === 'id'
+            ? () => findId({ name: formData.name, email: formData.email })
+            : handleResetPassword
+        }
       />
     </View>
   );

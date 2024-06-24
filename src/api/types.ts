@@ -32,7 +32,7 @@ export interface PostSignInType {
   };
 }
 
-export interface GetFindIdType {
+export interface PostFindIdType {
   statusCode: number;
   message: string;
   data?: {
