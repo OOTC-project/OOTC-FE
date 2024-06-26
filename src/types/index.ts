@@ -8,6 +8,7 @@ export type RootStackParamList = {
   FindPage: { what: string };
   OOTC: undefined;
   LoginPage: undefined;
+  ModifyPage: undefined;
 };
 
 export interface AppNavigationProp extends NavigationProp<RootStackParamList> {}

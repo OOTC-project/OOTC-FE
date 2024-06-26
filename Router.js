@@ -11,6 +11,7 @@ import LoginPage from './src/pages/login';
 import SignUpPage from './src/pages/signUp';
 import FindPage from './src/pages/signUp/findPage';
 import Main from './src/pages/main';
+import ModifyPage from './src/pages/login/Modify';
 
 const Stack = createNativeStackNavigator();
 
@@ -127,6 +128,11 @@ export default function Router() {
         <Stack.Screen
           name="FindPage"
           component={FindPage}
+          options={{ presentation: 'modal', headerShown: false }}
+        />
+        <Stack.Screen
+          name="ModifyPage"
+          component={ModifyPage}
           options={{ presentation: 'modal', headerShown: false }}
         />
       </Stack.Navigator>

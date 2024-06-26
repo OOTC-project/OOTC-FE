@@ -38,6 +38,7 @@ const SaveImage = ({ index }: SaveImageProp) => {
       ]);
     }
   }, [list]);
+
   const [modalVisible, setModalVisible] = useState(false);
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;

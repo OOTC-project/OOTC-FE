@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Dimensions,
   StatusBar,
+  Alert,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import ProfileImage from '../molecules/ProfileImage';
@@ -21,10 +22,11 @@ interface ProfileBoxProps {
 }
 const ProfileBox = ({ width, height }: ProfileBoxProps) => {
   const [image, setImage] = useState('');
-
+  const [modify, setModify] = useState(false);
   const { token } = useSelector((state: RootState) => state);
 
   const pickImage = async () => {
+    setModify(true);
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
@@ -34,6 +36,7 @@ const ProfileBox = ({ width, height }: ProfileBoxProps) => {
 
     if (result.assets && !result.canceled) {
       setImage(result.assets[0].uri);
+      Alert.alert('저장을 눌러주세요.');
     }
   };
 
@@ -53,10 +56,15 @@ const ProfileBox = ({ width, height }: ProfileBoxProps) => {
           <ProfileImage
             height={height ? height - 10 : 0}
             width={height ? height - 10 : 0}
-            image={data?.data.profileImg}
+            image={data?.data.profileImg ?? image ?? ''}
           />
         </TouchableOpacity>
-        <ProfileInfo data={data} />
+        <ProfileInfo
+          data={data}
+          modify={modify}
+          setModify={setModify}
+          setImage={setImage}
+        />
       </View>
     </View>
   );

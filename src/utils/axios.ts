@@ -28,13 +28,12 @@ instance.interceptors.request.use(
   },
 );
 
-// const dispatch = useDispatch();
-
 instance.interceptors.response.use(
   response => response,
   async error => {
     if (error.response.status === 401) {
-      // dispatch(setAccessToken(null));
+      const dispatch = useDispatch();
+      dispatch(setAccessToken(null));
       AsyncStorage.removeItem('@user_token');
 
       const navigation = useNavigation();
