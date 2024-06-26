@@ -1,5 +1,12 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+  StatusBar,
+} from 'react-native';
+import React, { useEffect, useState } from 'react';
 import ProfileImage from '../molecules/ProfileImage';
 import ProfileInfo from '../molecules/ProfileInfo';
 import * as ImagePicker from 'expo-image-picker';
@@ -31,7 +38,7 @@ const ProfileBox = ({ width, height }: ProfileBoxProps) => {
   };
 
   const { data } = useQuery('GetUserInfo', () => GetUserInfo({}), {
-    retry: 0,
+    retry: 1,
     enabled: !!token,
     onSuccess: e => {
       console.log(e);
@@ -40,21 +47,24 @@ const ProfileBox = ({ width, height }: ProfileBoxProps) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="#000000" />
       <View style={[styles.box, { width }]}>
         <TouchableOpacity onPress={pickImage}>
           <ProfileImage
             height={height ? height - 10 : 0}
             width={height ? height - 10 : 0}
-            image={image}
+            image={data?.data.profileImg}
           />
         </TouchableOpacity>
-        <ProfileInfo />
+        <ProfileInfo data={data} />
       </View>
     </View>
   );
 };
 
 export default ProfileBox;
+
+const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
@@ -65,6 +75,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   box: {
+    marginTop: screenHeight / 20,
     display: 'flex',
     flexDirection: 'row',
   },

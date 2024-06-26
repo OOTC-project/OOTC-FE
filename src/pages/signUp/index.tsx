@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Platform,
+  Dimensions,
+} from 'react-native';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,12 +14,19 @@ import { moderateScale, scale } from '../../utils/styleGuide';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../../types';
 
+const { height: screenHeight } = Dimensions.get('window');
+
 const SignUpPage = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
     <View style={styles.container}>
-      <SafeAreaView />
-      <View style={styles.ButtonBox}>
+      {Platform.OS === 'android' && <SafeAreaView />}
+      <View
+        style={[
+          styles.ButtonBox,
+          Platform.OS === 'ios' && { marginTop: screenHeight / 40 },
+        ]}
+      >
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons
             name="arrow-back-outline"

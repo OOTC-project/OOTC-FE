@@ -20,12 +20,13 @@ import SelectSnackBar from '../../components/organism/SelectSnackBar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducer';
 import CategoryItems from '../../components/organism/CategoryItems';
+import BackgroundSafeAreaView from '../../components/molecules/BackgroundSafeAreaView';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Home = () => {
   const [selected, setSelected] = useState<null | number>(null);
   const [selectTitle, setSelectTitle] = useState<null | string>(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [select, setSelect] = useState(0);
   const [noticeOn, setNoticeOn] = useState(true);
 
@@ -51,7 +52,7 @@ const Home = () => {
     }
   }, [modalVisible, scaleValue]);
 
-  const { data } = useQuery('GetCategory', () => GetCategory({}), {
+  const { data, refetch } = useQuery('GetCategory', () => GetCategory({}), {
     retry: 0,
     onSuccess: e => {},
   });
@@ -74,57 +75,50 @@ const Home = () => {
 
   return (
     <TouchableWithoutFeedback>
-      <View style={styles.container}>
-        <ImageBackground
-          source={{ uri: 'https://ifh.cc/g/NqpJCd.jpg' }}
-          style={styles.background}
-          onLoad={handleImageLoad}
-        >
-          {loading ? (
-            <>
-              <SafeAreaView />
-              <View style={styles.menuContainer}>
-                <SelectImage />
-                <View style={styles.scrollView}>
-                  {DATA.map(item => (
-                    <View style={styles.boxBox} key={item.id}>
-                      <Item
-                        item={item}
-                        setSelected={setSelected}
-                        setSelectTitle={setSelectTitle}
-                        setModalVisible={setModalVisible}
-                      />
-                    </View>
-                  ))}
-                  <CategoryItems
-                    select={select}
-                    setSelect={setSelect}
-                    modalVisible={modalVisible}
-                    setModalVisible={setModalVisible}
-                    selectTitle={selectTitle}
-                    setSelectTitle={setSelectTitle}
-                  />
-                </View>
+      {loading ? (
+        <>
+          <SelectImage />
+          <BackgroundSafeAreaView backgroundImage="https://ifh.cc/g/NqpJCd.jpg">
+            <View style={styles.menuContainer}>
+              <View style={styles.scrollView}>
+                {DATA.map(item => (
+                  <View style={styles.boxBox} key={item.id}>
+                    <Item
+                      item={item}
+                      setSelected={setSelected}
+                      setSelectTitle={setSelectTitle}
+                      setModalVisible={setModalVisible}
+                    />
+                  </View>
+                ))}
+                <CategoryItems
+                  select={select}
+                  setSelect={setSelect}
+                  modalVisible={modalVisible}
+                  setModalVisible={setModalVisible}
+                  selectTitle={selectTitle}
+                  setSelectTitle={setSelectTitle}
+                />
               </View>
-
-              <NoticeSnackBar
-                snackbarVisible={noticeOn}
-                setNoticeOn={setNoticeOn}
-              />
-              <SelectSnackBar select={select} />
-            </>
-          ) : (
-            <View style={styles.loadingBackground}>
-              <Image
-                source={loadingImage}
-                style={styles.loading}
-                onLoad={handleImageLoad}
-                resizeMode="contain"
-              />
             </View>
-          )}
-        </ImageBackground>
-      </View>
+
+            <NoticeSnackBar
+              snackbarVisible={noticeOn}
+              setNoticeOn={setNoticeOn}
+            />
+            <SelectSnackBar select={select} />
+          </BackgroundSafeAreaView>
+        </>
+      ) : (
+        <View style={styles.loadingBackground}>
+          <Image
+            source={loadingImage}
+            style={styles.loading}
+            onLoad={handleImageLoad}
+            resizeMode="contain"
+          />
+        </View>
+      )}
     </TouchableWithoutFeedback>
   );
 };

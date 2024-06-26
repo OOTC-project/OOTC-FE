@@ -11,8 +11,13 @@ import {
 import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../redux/slice/userSlice';
 import { RootStackParamList } from '../../types';
+import { GetUserInfoType } from '../../api/types';
 
-const ProfileInfo = () => {
+interface ProfileInfoProps {
+  data?: GetUserInfoType;
+}
+
+const ProfileInfo = ({ data }: ProfileInfoProps) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const dispatch = useDispatch();
 
@@ -45,7 +50,7 @@ const ProfileInfo = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.name}>ProfileInfo</Text>
+      <Text style={styles.name}>{data && data.data ? data.data.id : '-'}</Text>
       <LevelBox />
       <TouchableOpacity onPress={handleLogout}>
         <Text style={styles.logout}>로그아웃</Text>

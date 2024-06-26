@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     marginBottom: 10,
-    marginLeft: 20,
+    marginRight: 10,
     zIndex: 9999,
   },
   modalContainer: {

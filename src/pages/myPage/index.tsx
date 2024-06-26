@@ -30,6 +30,7 @@ const MyPage = () => {
       console.error('Error fetching token', error);
     }
   };
+  console.log(token);
 
   useEffect(() => {
     fetchToken();
@@ -48,12 +49,6 @@ const MyPage = () => {
         style={styles.background}
         resizeMode="cover"
       />
-      <SafeAreaView
-        style={{
-          backgroundColor: '#ffffffbd',
-        }}
-      />
-
       {token ? (
         <>
           <ProfileBox height={120} />
