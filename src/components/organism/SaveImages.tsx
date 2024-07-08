@@ -1,11 +1,16 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
 import SaveImage from '../atoms/SaveImage';
+import { GetCodyType } from '../../api/types';
 
-const SaveImages = () => {
+interface SaveImagesProps {
+  data?: GetCodyType;
+}
+
+const SaveImages = ({ data }: SaveImagesProps) => {
   return (
     <View style={styles.container}>
-      <SaveImage index={0} />
+      <SaveImage index={0} data={data} />
     </View>
   );
 };

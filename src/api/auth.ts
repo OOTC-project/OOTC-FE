@@ -7,6 +7,7 @@ import {
   PatchResetPasswordType,
   PostSignInType,
   PostSignUpType,
+  PatchUserInfoType,
 } from './types';
 import instance from '../utils/axios';
 
@@ -101,6 +102,22 @@ export const GetUserInfo: MutationFunction<
 > = async variables => {
   const { data } = await instance.get<GetUserInfoType>(
     `${process.env.EXPO_PUBLIC_API_URL}/user`,
+  );
+  return data;
+};
+
+export const PatchUserInfo: MutationFunction<
+  PatchUserInfoType,
+  { name: string; email: string; uploadedFiles?: {} }
+> = async variables => {
+  const { name, email, uploadedFiles } = variables;
+  const { data } = await instance.patch<PatchUserInfoType>(
+    `${process.env.EXPO_PUBLIC_API_URL}/user`,
+    {
+      name,
+      email,
+      uploadedFiles,
+    },
   );
   return data;
 };

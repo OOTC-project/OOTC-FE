@@ -23,7 +23,7 @@ const ImageBox = ({ borderRadius, size, data }: ImageBoxProps) => {
     'https://i.ibb.co/YLgfC1R/ryan-hoffman-A7f7-XRKg-UWc-unsplash.jpg',
     'https://i.ibb.co/KXZY4ZY/mojtaba-mosayebzadeh-kc-Ztpg-Tm0og-unsplash.jpg',
     'https://i.ibb.co/VDWPYvw/alex-haigh-f-Et6-Wd4t4j0-unsplash.jpg',
-    'https://i.ibb.co/k4Jqjdh/andre-styles-fw-Dln-TM-DJo-unsplash.jpg',
+    // 'https://i.ibb.co/k4Jqjdh/andre-styles-fw-Dln-TM-DJo-unsplash.jpg',
   ];
 
   return (

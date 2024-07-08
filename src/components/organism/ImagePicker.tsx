@@ -9,6 +9,7 @@ import {
   Keyboard,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import MySafeAreaView from '../atoms/MySafeAreaView';
 
 interface ImagePickerExampleProps {
   photoData?: { url: string; position: string; tag?: string; des?: string };
@@ -108,6 +109,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     height: 60,
   },
+
   buttonText: {
     color: 'white',
     fontSize: 16,

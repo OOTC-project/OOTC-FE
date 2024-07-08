@@ -152,13 +152,9 @@ export const PostCody: MutationFunction<
   return data;
 };
 
-export const GetCody: MutationFunction<
-  GetCodyType,
-  { id: number }
-> = async variables => {
-  const { id } = variables;
+export const GetCody: MutationFunction<GetCodyType> = async variables => {
   const { data } = await instance.get<GetCodyType>(
-    `${process.env.EXPO_PUBLIC_API_URL}/cody/${id}`,
+    `${process.env.EXPO_PUBLIC_API_URL}/cody`,
   );
   return data;
 };

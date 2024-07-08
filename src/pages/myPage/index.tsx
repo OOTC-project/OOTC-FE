@@ -16,6 +16,8 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import { RootStackParamList } from '../../types';
+import { useQuery } from 'react-query';
+import { GetCody } from '../../api/service';
 
 const MyPage = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -42,6 +44,11 @@ const MyPage = () => {
     }
   });
 
+  const { data } = useQuery('GetCody', () => GetCody({}), {
+    retry: 0,
+    onSuccess: e => {},
+  });
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -53,7 +60,7 @@ const MyPage = () => {
         <>
           <ProfileBox height={120} />
           <EventBox height={120} />
-          <SaveImages />
+          <SaveImages data={data} />
         </>
       ) : (
         <View style={styles.nodata}>

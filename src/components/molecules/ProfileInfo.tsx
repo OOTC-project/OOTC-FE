@@ -20,6 +20,8 @@ import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../redux/slice/userSlice';
 import { RootStackParamList } from '../../types';
 import { GetUserInfoType } from '../../api/types';
+import { PatchUserInfo } from '../../api/auth';
+import { useMutation, useQueryClient } from 'react-query';
 
 interface ProfileInfoProps {
   data?: GetUserInfoType;
@@ -36,13 +38,28 @@ const ProfileInfo = ({
 }: ProfileInfoProps) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const dispatch = useDispatch();
-
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const handleModify = () => {
     // navigation.navigate('ModifyPage');
     setModify(true);
   };
+  const queryClient = useQueryClient();
 
-  const postModifyData = () => {};
+  const { mutate: updateUserInfo } = useMutation(PatchUserInfo, {
+    onSuccess: () => {
+      Alert.alert(`수정이 완료되었습니다.`);
+      setModify(false);
+      queryClient.invalidateQueries('GetUserInfo');
+    },
+    onError: () => {
+      Alert.alert(`애러가 발생했습니다. 다시 시도해주세요.`);
+    },
+  });
+
+  const postModifyData = () => {
+    updateUserInfo({ name, email, uploadedFiles: {} });
+  };
 
   const handleModifyCancel = () => {
     setModify(false);
@@ -106,25 +123,27 @@ const ProfileInfo = ({
               placeholder="아이디를 입력해주세요."
               placeholderTextColor="grey"
               keyboardType="default"
+              value={name}
+              onChangeText={setName}
               style={styles.textInput}
             />
             <TextInput
               placeholder="이름을 입력해주세요."
               placeholderTextColor="grey"
               keyboardType="default"
+              value={email}
+              onChangeText={setEmail}
               style={styles.textInput}
             />
           </View>
         ) : (
           <Text style={styles.name}>
-            {data && data.data
-              ? `${data.data.userId} (${data.data.name})`
-              : '-'}
+            {data && data.data ? data.data.userId : '-'}
           </Text>
         )}
 
         <Text style={styles.name}>
-          {data && data.data ? `(${data.data.name})` : null}
+          {data && data.data && !modify ? `(${data.data.name})` : null}
         </Text>
       </View>
       {modify ? null : <LevelBox />}

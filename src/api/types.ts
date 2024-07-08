@@ -262,3 +262,28 @@ export interface GetUserInfoType {
     email: string;
   };
 }
+
+export interface PatchUserInfoType {
+  name: string;
+  uploadedFiles?: {
+    profileImg?: {
+      fieldname: string;
+      originalname: string;
+      encoding: string;
+      mimetype: string;
+      size: number;
+      buffer: string;
+      url: string;
+    };
+    backgroundImg?: {
+      fieldname: string;
+      originalname: string;
+      encoding: string;
+      mimetype: string;
+      size: number;
+      buffer: string;
+      url: string;
+    };
+  };
+  email: string;
+}

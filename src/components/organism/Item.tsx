@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     flexWrap: 'nowrap',
   },
   boxTitle: {
-    fontSize: scale(12),
+    fontSize: scale(11),
     textAlign: 'center',
     fontWeight: 'bold',
 

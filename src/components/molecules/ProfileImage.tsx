@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
+import Icons from 'react-native-vector-icons/AntDesign';
 
 interface ProfileImageProps {
   width?: number;
@@ -17,7 +18,7 @@ const ProfileImage = ({ width, height, image }: ProfileImageProps) => {
           resizeMode="cover"
         />
       ) : (
-        <Text style={styles.Text}>+</Text>
+        <>{height && <Icons name="user" color="#fff" size={height / 2.5} />}</>
       )}
     </View>
   );

@@ -8,37 +8,20 @@ import {
   TouchableOpacity,
   Modal,
   Dimensions,
+  Image,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import ImagePickerExample from '../organism/ImagePicker';
 import OotdItemBox from '../organism/OotdItemBox';
 import { scale } from '../../utils/styleGuide';
+import { GetCodyData, GetCodyType } from '../../api/types';
 
 interface SaveImageProp {
   index: number;
+  data?: GetCodyType;
 }
 
-const SaveImage = ({ index }: SaveImageProp) => {
-  const data: string | { key: string; screen: string }[] = [
-    { key: '1', screen: 'Screen 1' },
-    { key: '2', screen: 'Screen 2' },
-    { key: '3', screen: 'Screen 3' },
-    { key: '4', screen: 'Screen 3' },
-    { key: '5', screen: 'Screen 3' },
-    { key: '6', screen: 'Screen 8' },
-  ];
-
-  const [list, setList] = useState(data);
-
-  useEffect(() => {
-    if (list.length === data.length) {
-      setList(prevList => [
-        ...prevList,
-        { key: new Date().toString(), screen: '+' },
-      ]);
-    }
-  }, [list]);
-
+const SaveImage = ({ index, data }: SaveImageProp) => {
   const [modalVisible, setModalVisible] = useState(false);
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
@@ -48,29 +31,42 @@ const SaveImage = ({ index }: SaveImageProp) => {
     setModalVisible(!modalVisible);
     setPhotoData(prevData => ({ ...prevData, name: name }));
   };
+  console.log(data);
 
   return (
     <View style={styles.container}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        onMomentumScrollEnd={() => {
-          console.log('Scrolling is End');
-        }}
-        contentContainerStyle={styles.scrollViewContent}
-        data={list}
-        renderItem={({ item, index }) => (
-          <TouchableOpacity
-            onPress={() => {
-              index === list.length - 1 ? setModalVisible(true) : null;
-            }}
-          >
-            <OotdItemBox width={screenWidth - 40} height={screenHeight / 2}>
-              <Text style={styles.title}>{item.screen}</Text>
-            </OotdItemBox>
-          </TouchableOpacity>
-        )}
-      />
+      {data && data.data && data.data.data ? (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          onMomentumScrollEnd={() => {
+            console.log('Scrolling is End');
+          }}
+          contentContainerStyle={styles.scrollViewContent}
+          data={data.data.data}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity>
+              <OotdItemBox width={screenWidth - 40} height={screenHeight / 2}>
+                {item.clothes.clothesImg ? (
+                  <Image source={{ uri: item.clothes.clothesImg }} />
+                ) : (
+                  <Text style={styles.title}>{item.clothes.name}</Text>
+                )}
+              </OotdItemBox>
+            </TouchableOpacity>
+          )}
+        />
+      ) : (
+        <TouchableOpacity
+          onPress={() => {
+            setModalVisible(true);
+          }}
+        >
+          <OotdItemBox width={screenWidth - 40} height={screenHeight / 2}>
+            <Text style={styles.title}>+</Text>
+          </OotdItemBox>
+        </TouchableOpacity>
+      )}
       <Modal
         animationType="slide"
         transparent={true}
@@ -138,6 +134,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modal: {
+    display: 'flex',
+    justifyContent: 'center',
     backgroundColor: '#181818',
     opacity: 0.95,
     width: '100%',
@@ -145,7 +143,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     padding: 10,
   },
-  modalBox: { flex: 8 },
+  modalBox: {},
   saveBtn: {
     paddingVertical: scale(10),
     justifyContent: 'center',
