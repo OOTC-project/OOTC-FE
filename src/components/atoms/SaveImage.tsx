@@ -31,7 +31,6 @@ const SaveImage = ({ index, data }: SaveImageProp) => {
     setModalVisible(!modalVisible);
     setPhotoData(prevData => ({ ...prevData, name: name }));
   };
-  console.log(data);
 
   return (
     <View style={styles.container}>

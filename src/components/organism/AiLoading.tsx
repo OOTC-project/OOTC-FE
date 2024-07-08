@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react';
 
 const { width: screenWidth } = Dimensions.get('window');
 
-const YourComponent = () => {
-  const [step, setStep] = useState(0);
+interface AiAnimationProps {
+  step: number;
+}
 
+const AiAnimation = ({ step }: AiAnimationProps) => {
   const getImagePath = () => {
     switch (step) {
       case 0:
@@ -19,14 +21,6 @@ const YourComponent = () => {
     }
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setStep(prevStep => (prevStep + 1) % 4);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <Image
       source={getImagePath()}
@@ -38,4 +32,4 @@ const YourComponent = () => {
   );
 };
 
-export default YourComponent;
+export default AiAnimation;
