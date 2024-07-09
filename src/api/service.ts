@@ -78,7 +78,7 @@ export const PostClothes: MutationFunction<
   {
     clothesImg: string;
     name: string;
-    description: string;
+    description?: string;
     position: string;
     fkCategoryId: number;
   }

@@ -12,9 +12,16 @@ import * as ImagePicker from 'expo-image-picker';
 import MySafeAreaView from '../atoms/MySafeAreaView';
 
 interface ImagePickerExampleProps {
-  photoData?: { url: string; position: string; tag?: string; des?: string };
+  photoData?: {
+    name: string;
+    url: string;
+    position: string;
+    tag?: string;
+    des?: string;
+  };
   setPhotoData: React.Dispatch<
     React.SetStateAction<{
+      name: string;
       url: string;
       position: string;
       tag?: string;

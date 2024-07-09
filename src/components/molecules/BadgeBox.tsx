@@ -1,9 +1,35 @@
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Badge from '../atoms/Badge';
 
-const BadgeBox = () => {
+interface BadgeBoxProps {
+  photoData: {
+    name: string;
+    url: string;
+    position: string;
+    tag?: string;
+    des?: string;
+  };
+  setPhotoData: React.Dispatch<
+    React.SetStateAction<{
+      name: string;
+      url: string;
+      position: string;
+      tag?: string;
+      des?: string;
+    }>
+  >;
+}
+
+const BadgeBox = ({ photoData, setPhotoData }: BadgeBoxProps) => {
   const [select, setSelect] = useState('');
+
+  useEffect(() => {
+    setPhotoData(prev => {
+      return { ...prev, tag: select };
+    });
+  }, [select]);
+
   return (
     <View style={styles.container}>
       <Badge

@@ -23,6 +23,12 @@ import { scale, verticalScale } from '../../utils/styleGuide';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BadgeBox from '../../components/molecules/BadgeBox';
 import BackgroundSafeAreaView from '../../components/molecules/BackgroundSafeAreaView';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/reducer';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../types';
+import { PostClothes } from '../../api/service';
+import { useMutation, useQueryClient } from 'react-query';
 
 interface ListType {
   key: string;
@@ -31,6 +37,7 @@ interface ListType {
 
 const OotdPage = () => {
   const image = { uri: 'https://ifh.cc/g/NqpJCd.jpg' };
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const data = [
     { key: '1', screen: 'Screen 1' },
@@ -72,22 +79,58 @@ const OotdPage = () => {
     }
   }, [list]);
   const [modalVisible, setModalVisible] = useState(false);
+  const token = useSelector((state: RootState) => state.token.accessToken);
+
+  const openSelectModal = () => {
+    if (token) {
+      setModalVisible(true);
+    } else {
+      Alert.alert(
+        '로그인이 필요합니다.',
+        '로그인이 페이지로 이동합니다.',
+        [
+          {
+            text: '취소',
+            onPress: () => {
+              setModalVisible(false);
+            },
+            style: 'cancel',
+          },
+          {
+            text: '확인',
+            onPress: () => {
+              navigation.navigate('LoginPage');
+            },
+            style: 'destructive',
+          },
+        ],
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
+    }
+  };
 
   const [photoData, setPhotoData] = useState<{
     url: string;
+    name: string;
     position: string;
     tag?: string;
     des?: string;
-  }>({
-    url: '',
-    position: '',
-    tag: '',
-    des: '',
-  });
+  }>({ name: '', url: '', position: '', tag: '', des: '' });
 
   const handleSave = () => {
     if (photoData.position && photoData.url) {
       setModalVisible(!modalVisible);
+      PostNewClothes({
+        clothesImg: photoData.url,
+        name: photoData.name,
+        description: photoData.des,
+        position: photoData.position,
+        fkCategoryId: 0,
+        // fkCategoryId: photoData.tag,
+      });
     } else {
       Alert.alert(
         '',
@@ -97,8 +140,19 @@ const OotdPage = () => {
       );
     }
   };
-  console.log(photoData);
+
   const screenHeight = Dimensions.get('window').height;
+  const queryClient = useQueryClient();
+
+  const { mutate: PostNewClothes } = useMutation(PostClothes, {
+    onSuccess: () => {
+      Alert.alert(`등록이 완료되었습니다.`);
+      queryClient.invalidateQueries('GetUserInfo');
+    },
+    onError: () => {
+      Alert.alert(`애러가 발생했습니다. 다시 시도해주세요.`);
+    },
+  });
 
   return (
     <>
@@ -114,7 +168,7 @@ const OotdPage = () => {
           renderItem={({ item, index }) => (
             <TouchableOpacity
               onPress={() => {
-                index === list.length - 1 ? setModalVisible(true) : null;
+                index === list.length - 1 ? openSelectModal() : null;
               }}
             >
               <OotdItemBox>
@@ -153,6 +207,19 @@ const OotdPage = () => {
                   }}
                 />
                 <TextInput
+                  placeholder="이름을 입력해주세요."
+                  placeholderTextColor="grey"
+                  keyboardType="default"
+                  style={styles.textInput}
+                  value={photoData.name}
+                  onChangeText={text => {
+                    setPhotoData(prevData => ({
+                      ...prevData,
+                      name: text,
+                    }));
+                  }}
+                />
+                <TextInput
                   placeholder="간단한 설명을 써주세요."
                   placeholderTextColor="grey"
                   style={[
@@ -170,7 +237,7 @@ const OotdPage = () => {
                     }));
                   }}
                 />
-                <BadgeBox />
+                <BadgeBox photoData={photoData} setPhotoData={setPhotoData} />
               </View>
               {!keyboardVisible && (
                 <>
