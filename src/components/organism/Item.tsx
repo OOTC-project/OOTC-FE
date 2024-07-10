@@ -2,12 +2,10 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import ImageBoxContainer from '../molecules/ImageBoxContainer';
 import { moderateScale, scale, verticalScale } from '../../utils/styleGuide';
+import { clothesArray, GetCategoryType } from '../../api/types';
 
 interface ItemProps {
-  item: {
-    id: number;
-    title: string;
-  };
+  item: clothesArray;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectTitle: React.Dispatch<React.SetStateAction<null | string>>;
   setSelected: React.Dispatch<React.SetStateAction<null | number>>;
@@ -24,14 +22,14 @@ const Item = ({
       <TouchableOpacity
         style={styles.box}
         onPress={() => {
-          setSelectTitle(item.title);
+          setSelectTitle(item.name);
           setModalVisible(true), setSelected(item.id);
         }}
       >
-        <ImageBoxContainer />
+        <ImageBoxContainer data={item} />
       </TouchableOpacity>
       <View style={styles.fontBox}>
-        <Text style={styles.boxTitle}>{item.title}</Text>
+        <Text style={styles.boxTitle}>{item.name}</Text>
       </View>
     </>
   );

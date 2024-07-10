@@ -75,12 +75,7 @@ export interface PatchResetPasswordType {
 export interface GetCategoryType {
   statusCode: number;
   message: string;
-  data: {
-    id: number;
-    createdAt: string;
-    name: string;
-    clothes: clothesData[];
-  };
+  data: clothesArray[];
   timestamp?: string;
   path?: string;
   error?: {
@@ -88,6 +83,13 @@ export interface GetCategoryType {
     statusCode: number;
     message: string;
   };
+}
+
+export interface clothesArray {
+  id: number;
+  createdAt: string;
+  name: string;
+  clothes: clothesData[];
 }
 
 export interface clothesData {

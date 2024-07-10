@@ -4,20 +4,23 @@ import { scale, verticalScale } from '../../utils/styleGuide';
 import EmptyImagesBox from '../atoms/EmptyImagesBox';
 import ImageBox from '../atoms/ImagesBox';
 
-const ImageBoxContainer = () => {
-  const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].slice(0, 9);
+interface ImageBoxContainerProps {
+  data: any;
+}
+
+const ImageBoxContainer = ({ data }: ImageBoxContainerProps) => {
   const imageSize = verticalScale(65);
 
   return (
     <View style={styles.container}>
-      {data.length > 0 ? (
+      {data && data.clothes.length > 0 ? (
         <FlatList
-          data={data}
+          data={data.clothes}
           numColumns={3}
           keyExtractor={(item, index) => index.toString()}
           contentContainerStyle={styles.flatListContent}
           renderItem={({ item }) => (
-            <ImageBox borderRadius={5} size={imageSize} data={item} />
+            <ImageBox borderRadius={5} size={imageSize} data={data.clothes} />
           )}
         />
       ) : (

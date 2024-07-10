@@ -22,6 +22,7 @@ import { RootState } from '../../redux/reducer';
 import CategoryItems from '../../components/organism/CategoryItems';
 import BackgroundSafeAreaView from '../../components/molecules/BackgroundSafeAreaView';
 import { useFocusEffect } from '@react-navigation/native';
+import LoadingSpinner from '../../components/atoms/Loading';
 
 const Home = () => {
   const [selected, setSelected] = useState<null | number>(null);
@@ -39,6 +40,7 @@ const Home = () => {
   };
 
   const scaleValue = useRef(new Animated.Value(0)).current;
+  const token = useSelector((state: RootState) => state.token.accessToken);
 
   useEffect(() => {
     if (modalVisible) {
@@ -52,10 +54,13 @@ const Home = () => {
     }
   }, [modalVisible, scaleValue]);
 
-  const { data, refetch } = useQuery('GetCategory', () => GetCategory({}), {
-    retry: 0,
-    onSuccess: e => {},
-  });
+  const { data, isLoading, refetch } = useQuery(
+    'GetCategory',
+    () => GetCategory({}),
+    {
+      onSuccess: e => {},
+    },
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -73,6 +78,10 @@ const Home = () => {
     }
   }, [modalVisible]);
 
+  useEffect(() => {
+    refetch();
+  }, [token]);
+
   return (
     <TouchableWithoutFeedback>
       {loading ? (
@@ -81,16 +90,22 @@ const Home = () => {
           <BackgroundSafeAreaView backgroundImage="https://ifh.cc/g/NqpJCd.jpg">
             <View style={styles.menuContainer}>
               <View style={styles.scrollView}>
-                {DATA.map(item => (
-                  <View style={styles.boxBox} key={item.id}>
-                    <Item
-                      item={item}
-                      setSelected={setSelected}
-                      setSelectTitle={setSelectTitle}
-                      setModalVisible={setModalVisible}
-                    />
+                {!isLoading && data ? (
+                  data.data.map(item => (
+                    <View style={styles.boxBox} key={item.id}>
+                      <Item
+                        item={item}
+                        setSelected={setSelected}
+                        setSelectTitle={setSelectTitle}
+                        setModalVisible={setModalVisible}
+                      />
+                    </View>
+                  ))
+                ) : (
+                  <View style={{ flex: 1 }}>
+                    <LoadingSpinner />
                   </View>
-                ))}
+                )}
                 <CategoryItems
                   select={select}
                   setSelect={setSelect}
