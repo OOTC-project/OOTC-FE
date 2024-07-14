@@ -19,7 +19,7 @@ import { GetCategory } from '../../api/service';
 import SelectSnackBar from '../../components/organism/SelectSnackBar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducer';
-import CategoryItems from '../../components/organism/CategoryItems';
+import CategoryItemsModal from '../../components/organism/CategoryItems';
 import BackgroundSafeAreaView from '../../components/molecules/BackgroundSafeAreaView';
 import { useFocusEffect } from '@react-navigation/native';
 import LoadingSpinner from '../../components/atoms/Loading';
@@ -78,9 +78,9 @@ const Home = () => {
     }
   }, [modalVisible]);
 
-  useEffect(() => {
-    refetch();
-  }, [token]);
+  // useEffect(() => {
+  //   refetch();
+  // }, [token]);
 
   return (
     <TouchableWithoutFeedback>
@@ -106,7 +106,8 @@ const Home = () => {
                     <LoadingSpinner />
                   </View>
                 )}
-                <CategoryItems
+                <CategoryItemsModal
+                  data={data}
                   select={select}
                   setSelect={setSelect}
                   modalVisible={modalVisible}

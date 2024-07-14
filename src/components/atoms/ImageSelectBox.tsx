@@ -22,7 +22,7 @@ interface ImageSelectBoxProps {
   borderRadius: number;
   select: number;
   setSelect: React.Dispatch<React.SetStateAction<number>>;
-  id: number;
+  item: any;
 }
 
 const ImageSelectBox = ({
@@ -31,13 +31,14 @@ const ImageSelectBox = ({
   borderRadius,
   select,
   setSelect,
-  id,
+  item,
 }: ImageSelectBoxProps) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [imgLoading, setImgLoading] = useState(true);
   const [loading, setLoading] = useState(true);
 
   const scaleValue = useRef(new Animated.Value(0)).current;
+  console.log(item);
 
   useEffect(() => {
     if (modalVisible) {
@@ -66,14 +67,14 @@ const ImageSelectBox = ({
     dispatch(addItem(newItem));
   };
 
-  const { data } = useQuery(
-    'GetClothesDetail',
-    () => GetClothesDetail({ id }),
-    {
-      retry: 0,
-      onSuccess: e => {},
-    },
-  );
+  // const { data } = useQuery(
+  //   'GetClothesDetail',
+  //   () => GetClothesDetail({ id }),
+  //   {
+  //     retry: 0,
+  //     onSuccess: e => {},
+  //   },
+  // );
 
   return (
     <View style={[styles.container, { height, margin, borderRadius }]}>
@@ -81,21 +82,13 @@ const ImageSelectBox = ({
         style={styles.image}
         onPress={() => setModalVisible(!modalVisible)}
       >
-        {/* {loading ? (
-            <ActivityIndicator
-              color="#000"
-              size="large"
-              style={styles.loadingIndicator}
-            />
-          ) : ( */}
         <Image
           source={{
-            uri: 'https://i.ibb.co/KXZY4ZY/mojtaba-mosayebzadeh-kc-Ztpg-Tm0og-unsplash.jpg',
+            uri: item.clothesImg,
           }}
           style={[styles.image, { borderRadius: 13 }]}
           onLoad={() => setLoading(false)}
         />
-        {/* )} */}
       </TouchableOpacity>
 
       <Modal
@@ -115,23 +108,18 @@ const ImageSelectBox = ({
           style={[styles.modal, { transform: [{ scale: scaleValue }] }]}
         >
           {/* {imgLoading ? (
-            <ActivityIndicator
-              color="#000"
-              size="large"
-              style={styles.loadingIndicator}
-            />
-          ) : ( */}
+        <ActivityIndicator
+          color="#000"
+          size="large"
+          style={styles.loadingIndicator}
+        />
+      ) : ( */}
           <TouchableOpacity
-            onPress={() =>
-              handleClick(
-                1,
-                'https://i.ibb.co/KXZY4ZY/mojtaba-mosayebzadeh-kc-Ztpg-Tm0og-unsplash.jpg',
-              )
-            }
+            onPress={() => handleClick(item.id, item.clothesImg)}
           >
             <Image
               source={{
-                uri: 'https://i.ibb.co/KXZY4ZY/mojtaba-mosayebzadeh-kc-Ztpg-Tm0og-unsplash.jpg',
+                uri: item.clothesImg,
               }}
               style={[
                 styles.image,

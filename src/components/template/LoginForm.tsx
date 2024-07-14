@@ -14,7 +14,7 @@ import LoginButton from '../molecules/LoginBox';
 import { verticalScale } from '../../utils/styleGuide';
 import useFormData from '../../utils/useFormData';
 import { PostSignIn } from '../../api/auth';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
@@ -66,6 +66,7 @@ const LoginForm = () => {
 
   const { mutate } = useMutation(PostSignIn);
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
 
   const handleLogin = () => {
     mutate(
@@ -78,6 +79,9 @@ const LoginForm = () => {
             try {
               dispatch(setAccessToken(accessToken));
               await AsyncStorage.setItem('@user_token', accessToken);
+
+              queryClient.invalidateQueries();
+
               navigation.navigate('OOTC');
             } catch (error) {
               console.error('Token error', error);

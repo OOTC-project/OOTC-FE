@@ -22,6 +22,7 @@ import { RootStackParamList } from '../../types';
 import { GetUserInfoType } from '../../api/types';
 import { PatchUserInfo } from '../../api/auth';
 import { useMutation, useQueryClient } from 'react-query';
+import { resetItem } from '../../redux/slice/itemSlice';
 
 interface ProfileInfoProps {
   data?: GetUserInfoType;
@@ -97,6 +98,7 @@ const ProfileInfo = ({
         }),
       );
       dispatch(setAccessToken(null));
+      dispatch(resetItem());
     } catch (error) {
       console.error('token애러', error);
     }

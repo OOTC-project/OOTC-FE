@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 interface ImageBoxProps {
   borderRadius: number;
   size: number;
-  data: Array<{
+  data: {
     id: number;
     name: string;
     clothesImg: string;
@@ -13,7 +13,7 @@ interface ImageBoxProps {
     fkCategoryId: number;
     fkMemberId: number;
     createdAt: string;
-  }>;
+  }[];
 }
 
 const ImageBox = ({ borderRadius, size, data }: ImageBoxProps) => {

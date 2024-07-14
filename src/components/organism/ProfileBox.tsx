@@ -7,23 +7,20 @@ import {
   StatusBar,
   Alert,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ProfileImage from '../molecules/ProfileImage';
 import ProfileInfo from '../molecules/ProfileInfo';
 import * as ImagePicker from 'expo-image-picker';
-import { useQuery } from 'react-query';
-import { GetUserInfo } from '../../api/auth';
-import { RootState } from '../../redux/reducer';
-import { useSelector } from 'react-redux';
+import { GetUserInfoType } from '../../api/types';
 
 interface ProfileBoxProps {
   width?: number;
   height?: number;
+  infoData?: GetUserInfoType;
 }
-const ProfileBox = ({ width, height }: ProfileBoxProps) => {
+const ProfileBox = ({ width, height, infoData }: ProfileBoxProps) => {
   const [image, setImage] = useState('');
   const [modify, setModify] = useState(false);
-  const { token } = useSelector((state: RootState) => state);
 
   const pickImage = async () => {
     setModify(true);
@@ -40,14 +37,6 @@ const ProfileBox = ({ width, height }: ProfileBoxProps) => {
     }
   };
 
-  const { data } = useQuery('GetUserInfo', () => GetUserInfo({}), {
-    retry: 1,
-    enabled: !!token,
-    onSuccess: e => {
-      console.log(e);
-    },
-  });
-
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#000000" />
@@ -56,11 +45,11 @@ const ProfileBox = ({ width, height }: ProfileBoxProps) => {
           <ProfileImage
             height={height ? height - 10 : 0}
             width={height ? height - 10 : 0}
-            image={data?.data.profileImg ?? image ?? ''}
+            image={infoData?.data.profileImg ?? image ?? ''}
           />
         </TouchableOpacity>
         <ProfileInfo
-          data={data}
+          data={infoData}
           modify={modify}
           setModify={setModify}
           setImage={setImage}

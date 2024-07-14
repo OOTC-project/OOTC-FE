@@ -26,8 +26,8 @@ const SelectImage = () => {
   const handleDelete = (id: number) => {
     dispatch(removeItem(id));
     setModalVisible(false);
-    console.log(id);
   };
+
   return (
     <>
       {itemCounter.length > 0 ? (
@@ -59,6 +59,7 @@ const SelectImage = () => {
                       ...styles.box,
                       width: screenWidth / 3,
                       height: screenWidth / 3,
+                      marginVertical: 20,
                     }}
                   >
                     <TouchableOpacity

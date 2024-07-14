@@ -18,6 +18,7 @@ import {
 import { RootStackParamList } from '../../types';
 import { useQuery } from 'react-query';
 import { GetCody } from '../../api/service';
+import { GetUserInfo } from '../../api/auth';
 
 const MyPage = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -32,7 +33,6 @@ const MyPage = () => {
       console.error('Error fetching token', error);
     }
   };
-  console.log(token);
 
   useEffect(() => {
     fetchToken();
@@ -49,6 +49,13 @@ const MyPage = () => {
     onSuccess: e => {},
   });
 
+  const { data: infoData } = useQuery('GetUserInfo', () => GetUserInfo({}), {
+    enabled: !!token,
+    onSuccess: e => {
+      console.log(e);
+    },
+  });
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -57,8 +64,9 @@ const MyPage = () => {
         resizeMode="cover"
       />
       {token ? (
+        // {token && infoData && infoData.data.id ? (
         <>
-          <ProfileBox height={120} />
+          <ProfileBox height={120} infoData={infoData} />
           <EventBox height={120} />
           <SaveImages data={data} />
         </>
