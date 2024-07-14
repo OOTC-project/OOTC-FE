@@ -16,7 +16,7 @@ const AiAnimation = ({ step }: AiAnimationProps) => {
         return require('../../../assets/aiLoading.gif');
       case 2:
         return require('../../../assets/aiSuccess.gif');
-      default:
+      case 3:
         return require('../../../assets/aiError.gif');
     }
   };

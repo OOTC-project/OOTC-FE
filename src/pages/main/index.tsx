@@ -133,17 +133,9 @@ const Main = () => {
         <View style={styles.clothesBox}>
           <AiLoading step={step} />
         </View>
-        {step > 1 ? (
+        {step > 1 && data?.data.message.content ? (
           <ScrollView style={styles.solutionBox}>
-            <Text style={styles.solution}>
-              Based on the current weather in Seoul, KR, I recommend wearing
-              light and breathable clothing such as shorts, t-shirts, dresses,
-              and sandals. It's a sunny day with clear skies and a temperature
-              of around 31°C, so you'll want to dress comfortably to stay
-              cool.\n\n제안하는 의상은 반바지, 티셔츠, 원피스 및 샌들과 같이
-              가볍고 통기성 있는 옷을 입는 것입니다. 오늘은 맑은 하늘에 온도가
-              약 31°C 정도인 맑은 날씨이므로 시원하게 입으셔야 합니다.
-            </Text>
+            <Text style={styles.solution}>{data?.data.message.content}</Text>
           </ScrollView>
         ) : null}
         {step === 1 ? (

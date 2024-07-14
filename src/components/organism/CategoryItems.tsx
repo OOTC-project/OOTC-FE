@@ -80,7 +80,7 @@ const CategoryItemsModal = ({
                 ))
               ) : (
                 <EmptyImagesBox
-                  height={'100%'}
+                  height={'30%'}
                   margin={scale(0.3)}
                   borderRadius={5}
                   size={50}
