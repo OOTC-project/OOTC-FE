@@ -28,7 +28,7 @@ const LoginPage = () => {
           Platform.OS === 'ios' && { marginTop: screenHeight / 40 },
         ]}
       >
-        <TouchableOpacity onPress={() => navigation.navigate('OOTC')}>
+        <TouchableOpacity onPress={() => navigation.navigate('MAIN')}>
           <Ionicons name="close" size={24} color="black" style={styles.right} />
         </TouchableOpacity>
       </View>

@@ -2,6 +2,8 @@ import { NavigationProp, ParamListBase } from '@react-navigation/native';
 
 export type RootStackParamList = {
   Home: undefined;
+  MAIN: undefined;
+  ITEMS: undefined;
   Profile: { userId: string };
   Settings: undefined;
   SignUpPage: undefined;

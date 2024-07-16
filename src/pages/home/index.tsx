@@ -8,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   ImageBackground,
   Animated,
+  Alert,
 } from 'react-native';
 import SelectImage from '../../components/organism/SelectImage';
 import Item from '../../components/organism/Item';
@@ -21,8 +22,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducer';
 import CategoryItemsModal from '../../components/organism/CategoryItems';
 import BackgroundSafeAreaView from '../../components/molecules/BackgroundSafeAreaView';
-import { useFocusEffect } from '@react-navigation/native';
+import {
+  NavigationProp,
+  useFocusEffect,
+  useNavigation,
+} from '@react-navigation/native';
 import LoadingSpinner from '../../components/atoms/Loading';
+import { RootStackParamList } from '../../types';
 
 const Home = () => {
   const [selected, setSelected] = useState<null | number>(null);
@@ -30,7 +36,7 @@ const Home = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [select, setSelect] = useState(0);
   const [noticeOn, setNoticeOn] = useState(true);
-
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const loadingImage = require('../../../assets/splashW.png');
   const [loading, setLoading] = useState(false);
   const handleImageLoad = () => {
@@ -41,6 +47,8 @@ const Home = () => {
 
   const scaleValue = useRef(new Animated.Value(0)).current;
   const token = useSelector((state: RootState) => state.token.accessToken);
+
+  const [refetchCount, setRefetchCount] = useState(0);
 
   useEffect(() => {
     if (modalVisible) {
@@ -58,8 +66,25 @@ const Home = () => {
     'GetCategory',
     () => GetCategory({}),
     {
-      onSuccess: e => {},
+      retry: 1,
+      onSuccess: () => {
+        setRefetchCount(0);
+      },
+      onError: () => {
+        Alert.alert(`로그인이 필요합니다.`);
+        navigation.navigate('LoginPage');
+        setRefetchCount(0);
+      },
     },
+  );
+
+  useFocusEffect(
+    React.useCallback(() => {
+      if (refetchCount < 1) {
+        refetch();
+        setRefetchCount(prev => prev + 1);
+      }
+    }, [refetchCount, refetch]),
   );
 
   useEffect(() => {
@@ -180,16 +205,3 @@ const styles = StyleSheet.create({
     height: screenWidth / 4 + 15,
   },
 });
-
-const DATA = [
-  { id: 0, title: 'Bookmark' },
-  { id: 1, title: 'Outer' },
-  { id: 2, title: 'Top' },
-  { id: 3, title: 'Bottom' },
-  { id: 4, title: 'Hat' },
-  { id: 5, title: 'shoes' },
-  { id: 6, title: 'Accessories' },
-  { id: 7, title: 'Bag' },
-  { id: 8, title: 'Socks' },
-  { id: 9, title: 'Glasses' },
-];

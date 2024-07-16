@@ -90,8 +90,8 @@ const LoginForm = () => {
             console.error('Access token is missing in the response data');
           }
         },
-        onError: () => {
-          Alert.alert('Please check your username or password.');
+        onError: (e: any) => {
+          Alert.alert(e.response.data.message);
         },
       },
     );
