@@ -1,19 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   Image,
   Dimensions,
   TouchableWithoutFeedback,
-  ImageBackground,
   Animated,
   Alert,
 } from 'react-native';
 import SelectImage from '../../components/organism/SelectImage';
 import Item from '../../components/organism/Item';
 import { scale } from '../../utils/styleGuide';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import NoticeSnackBar from '../../components/molecules/NoticeSnackBar';
 import { useQuery } from 'react-query';
 import { GetCategory } from '../../api/service';
@@ -31,7 +28,7 @@ import LoadingSpinner from '../../components/atoms/Loading';
 import { RootStackParamList } from '../../types';
 
 const Home = () => {
-  const [selected, setSelected] = useState<null | number>(null);
+  const [, setSelected] = useState<null | number>(null);
   const [selectTitle, setSelectTitle] = useState<null | string>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [select, setSelect] = useState(0);
@@ -46,7 +43,6 @@ const Home = () => {
   };
 
   const scaleValue = useRef(new Animated.Value(0)).current;
-  const token = useSelector((state: RootState) => state.token.accessToken);
 
   const [refetchCount, setRefetchCount] = useState(0);
 

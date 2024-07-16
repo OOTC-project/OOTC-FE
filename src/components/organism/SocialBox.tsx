@@ -1,6 +1,5 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
-import Button from '../atoms/Button';
 import { scale } from '../../utils/styleGuide';
 
 const SocialBox = () => {

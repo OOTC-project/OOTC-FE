@@ -1,11 +1,11 @@
-import { View, StyleSheet, FlatList, Text } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import React from 'react';
 import { scale, verticalScale } from '../../utils/styleGuide';
 import EmptyImagesBox from '../atoms/EmptyImagesBox';
 import ImageBox from '../atoms/ImagesBox';
 
 interface ImageBoxContainerProps {
-  data: any;
+  data?: any;
 }
 
 const ImageBoxContainer = ({ data }: ImageBoxContainerProps) => {

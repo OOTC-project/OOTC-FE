@@ -1,5 +1,5 @@
 import { Image, Dimensions } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const { width: screenWidth } = Dimensions.get('window');
 

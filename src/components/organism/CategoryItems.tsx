@@ -6,10 +6,8 @@ import {
   Animated,
   Dimensions,
   StyleSheet,
-  FlatList,
-  Image,
 } from 'react-native';
-import React, { useRef } from 'react';
+import React from 'react';
 import { BlurView } from 'expo-blur';
 import ImageSelectBox from '../atoms/ImageSelectBox';
 import { scale } from '../../utils/styleGuide';
@@ -34,8 +32,6 @@ const CategoryItemsModal = ({
   setSelectTitle,
   data,
 }: CategoryItemsProps) => {
-  const scaleValue = useRef(new Animated.Value(0)).current;
-
   // Filter the clothes to display only up to 9 items
   const filteredClothes =
     data &&

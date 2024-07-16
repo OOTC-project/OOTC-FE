@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet } from 'react-native';
-import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import React from 'react';
 import LoginOptionButton from '../molecules/LoginOptionButton';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { scale } from '../../utils/styleGuide';

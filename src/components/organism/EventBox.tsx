@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import React from 'react';
 import ProfileInfo from '../molecules/ProfileInfo';
 import EventTab from '../molecules/EventTab';

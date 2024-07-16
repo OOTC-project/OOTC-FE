@@ -7,10 +7,10 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { scale } from '../../utils/styleGuide';
-import { useFocusEffect } from '@react-navigation/native';
+
 interface NoticeSnackBarProps {
   snackbarVisible: boolean;
   setNoticeOn: React.Dispatch<React.SetStateAction<boolean>>;

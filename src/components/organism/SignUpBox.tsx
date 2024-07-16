@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, Alert } from 'react-native';
 import React from 'react';
 import LoginBox from './LoginBox';
-import InputBox from '../molecules/InputBox';
 import Button from '../atoms/Button';
 import useFormData from '../../utils/useFormData';
 import { NavigationProp, useNavigation } from '@react-navigation/native';

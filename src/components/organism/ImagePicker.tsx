@@ -5,11 +5,9 @@ import {
   TouchableOpacity,
   Text,
   Image,
-  Platform,
   Keyboard,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import MySafeAreaView from '../atoms/MySafeAreaView';
 
 interface ImagePickerExampleProps {
   photoData?: {

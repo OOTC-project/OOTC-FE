@@ -1,5 +1,5 @@
 import { View, Text, Modal, StyleSheet, Pressable } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface ModalBoxProps {
   modalVisible: boolean;

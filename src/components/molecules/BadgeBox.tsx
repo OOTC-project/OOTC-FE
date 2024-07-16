@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Badge from '../atoms/Badge';
 

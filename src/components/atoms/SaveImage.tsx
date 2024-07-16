@@ -10,11 +10,11 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ImagePickerExample from '../organism/ImagePicker';
 import OotdItemBox from '../organism/OotdItemBox';
 import { scale } from '../../utils/styleGuide';
-import { GetCodyData, GetCodyType } from '../../api/types';
+import { GetCodyType } from '../../api/types';
 
 interface SaveImageProp {
   index: number;
@@ -25,7 +25,11 @@ const SaveImage = ({ index, data }: SaveImageProp) => {
   const [modalVisible, setModalVisible] = useState(false);
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
-  const [photoData, setPhotoData] = useState({ url: '', position: '' });
+  const [photoData, setPhotoData] = useState({
+    name: '',
+    url: '',
+    position: '',
+  });
   const [name, setName] = useState('');
   const handleSave = () => {
     setModalVisible(!modalVisible);

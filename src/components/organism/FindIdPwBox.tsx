@@ -1,9 +1,6 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import React from 'react';
 import InputBox from '../molecules/InputBox';
-import LoginButton from '../molecules/LoginBox';
-import LoginOption from './LoginOption';
-import useFormData from '../../utils/useFormData';
 import { FindIdPwBoxDataType } from './FindBox';
 
 interface FindIdPwBoxProp {

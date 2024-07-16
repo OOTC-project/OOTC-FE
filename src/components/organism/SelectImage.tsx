@@ -1,6 +1,5 @@
 import {
   View,
-  Text,
   StyleSheet,
   TouchableOpacity,
   Modal,
@@ -8,7 +7,7 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Count from '../molecules/Count';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducer';

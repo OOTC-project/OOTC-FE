@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import React from 'react';
 
 interface EventTabProps {

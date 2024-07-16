@@ -2,8 +2,6 @@ import {
   Alert,
   Dimensions,
   FlatList,
-  Image,
-  ImageBackground,
   Keyboard,
   Modal,
   Pressable,
@@ -14,13 +12,9 @@ import {
   View,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import TitleBox from '../../components/molecules/TitleBox';
-import OotdItemContainer from '../../components/organism/OotdItemContainer';
 import OotdItemBox from '../../components/organism/OotdItemBox';
-import ItemBox from '../../components/organism/ItemBox';
 import ImagePickerExample from '../../components/organism/ImagePicker';
-import { scale, verticalScale } from '../../utils/styleGuide';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { scale } from '../../utils/styleGuide';
 import BadgeBox from '../../components/molecules/BadgeBox';
 import BackgroundSafeAreaView from '../../components/molecules/BackgroundSafeAreaView';
 import { useSelector } from 'react-redux';
@@ -30,13 +24,7 @@ import { RootStackParamList } from '../../types';
 import { PostClothes } from '../../api/service';
 import { useMutation, useQueryClient } from 'react-query';
 
-interface ListType {
-  key: string;
-  screen: string;
-}
-
 const OotdPage = () => {
-  const image = { uri: 'https://ifh.cc/g/NqpJCd.jpg' };
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const data = [
@@ -78,6 +66,7 @@ const OotdPage = () => {
       ]);
     }
   }, [list]);
+
   const [modalVisible, setModalVisible] = useState(false);
   const token = useSelector((state: RootState) => state.token.accessToken);
 

@@ -1,11 +1,9 @@
 import {
   View,
-  Text,
   StyleSheet,
   Dimensions,
   ScrollView,
   Keyboard,
-  Alert,
 } from 'react-native';
 import React, { useState } from 'react';
 import InputBox from '../molecules/InputBox';

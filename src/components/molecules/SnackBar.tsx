@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Animated } from 'react-native';
-import React, { useEffect, useRef, useState } from 'react';
+import { StyleSheet, Animated } from 'react-native';
+import React, { useEffect, useRef } from 'react';
 
 interface SnackBarProps {
   children?: React.ReactNode;

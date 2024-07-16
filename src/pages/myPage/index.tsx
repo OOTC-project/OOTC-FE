@@ -5,7 +5,6 @@ import ProfileBox from '../../components/organism/ProfileBox';
 import EventBox from '../../components/organism/EventBox';
 import SaveImages from '../../components/organism/SaveImages';
 import { scale } from '../../utils/styleGuide';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAccessToken } from '../../redux/slice/userSlice';

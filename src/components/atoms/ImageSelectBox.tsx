@@ -1,6 +1,5 @@
 import {
   View,
-  Text,
   StyleSheet,
   Dimensions,
   Image,
@@ -8,13 +7,10 @@ import {
   Pressable,
   TouchableOpacity,
   Animated,
-  ActivityIndicator,
 } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../redux/slice/itemSlice';
-import { useQuery } from 'react-query';
-import { GetClothesDetail } from '../../api/service';
 
 interface ImageSelectBoxProps {
   height: number;
