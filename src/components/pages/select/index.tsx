@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useMutation, useQueryClient } from 'react-query';
 import { COLOR } from '../../../layout/default';
-import { scale } from '../../../utils/styleGuide';
+import Theme, { scale } from '../../../utils/styleGuide';
 import { RootStackParamList } from '../../../types';
 import { RootState } from '../../../redux/reducer';
 import { PostClothes } from '../../../api/service';
@@ -182,58 +182,57 @@ const OotcPage = () => {
         >
           <View style={styles.centeredView}>
             <View style={styles.modal}>
-              <View style={styles.modalBox}>
-                <ImagePickerExample
-                  setPhotoData={setPhotoData}
-                  height={screenHeight / 4}
-                  width
-                />
-                <TextInput
-                  placeholder="위치를 입력해주세요."
-                  placeholderTextColor="grey"
-                  keyboardType="default"
-                  style={styles.textInput}
-                  value={photoData.position}
-                  onChangeText={text => {
-                    setPhotoData(prevData => ({
-                      ...prevData,
-                      position: text,
-                    }));
-                  }}
-                />
-                <TextInput
-                  placeholder="이름을 입력해주세요."
-                  placeholderTextColor="grey"
-                  keyboardType="default"
-                  style={styles.textInput}
-                  value={photoData.name}
-                  onChangeText={text => {
-                    setPhotoData(prevData => ({
-                      ...prevData,
-                      name: text,
-                    }));
-                  }}
-                />
-                <TextInput
-                  placeholder="간단한 설명을 써주세요."
-                  placeholderTextColor="grey"
-                  style={[
-                    styles.textInput,
-                    {
-                      height: 120,
-                      textAlignVertical: 'top',
-                    },
-                  ]}
-                  value={photoData.des}
-                  onChangeText={text => {
-                    setPhotoData(prevData => ({
-                      ...prevData,
-                      des: text,
-                    }));
-                  }}
-                />
-                <BadgeBox photoData={photoData} setPhotoData={setPhotoData} />
-              </View>
+              <ImagePickerExample
+                setPhotoData={setPhotoData}
+                height={screenHeight / 4}
+                width
+              />
+              <TextInput
+                placeholder="위치를 입력해주세요."
+                placeholderTextColor="grey"
+                keyboardType="default"
+                style={styles.textInput}
+                value={photoData.position}
+                onChangeText={text => {
+                  setPhotoData(prevData => ({
+                    ...prevData,
+                    position: text,
+                  }));
+                }}
+              />
+              <TextInput
+                placeholder="이름을 입력해주세요."
+                placeholderTextColor="grey"
+                keyboardType="default"
+                style={styles.textInput}
+                value={photoData.name}
+                onChangeText={text => {
+                  setPhotoData(prevData => ({
+                    ...prevData,
+                    name: text,
+                  }));
+                }}
+              />
+              <TextInput
+                placeholder="간단한 설명을 써주세요."
+                placeholderTextColor="grey"
+                style={[
+                  styles.textInput,
+                  {
+                    height: 120,
+                    textAlignVertical: 'top',
+                  },
+                ]}
+                value={photoData.des}
+                onChangeText={text => {
+                  setPhotoData(prevData => ({
+                    ...prevData,
+                    des: text,
+                  }));
+                }}
+              />
+              <BadgeBox photoData={photoData} setPhotoData={setPhotoData} />
+
               {!keyboardVisible && (
                 <>
                   <Pressable style={styles.saveBtn} onPress={handleSave}>
@@ -290,39 +289,39 @@ const styles = StyleSheet.create({
     opacity: 0.95,
     width: '100%',
     height: '100%',
-    borderRadius: 18,
     padding: 10,
   },
-  modalBox: { flex: 8 },
   saveBtn: {
-    paddingVertical: scale(10),
+    // paddingVertical: scale(10),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
     backgroundColor: COLOR.black,
     marginTop: 10,
+    height: Theme.height * 40,
   },
   saveBtnText: {
     color: COLOR.white,
-    fontSize: scale(15),
+    fontSize: Theme.fontSizes.fontSizes12,
   },
   closeBtn: {
-    paddingVertical: scale(10),
+    // paddingVertical: scale(10),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
     backgroundColor: COLOR.black,
     marginTop: 10,
+    height: Theme.height * 40,
   },
   closeBtnText: {
     color: COLOR.white,
-    fontSize: scale(15),
+    fontSize: Theme.fontSizes.fontSizes12,
   },
   textInput: {
     padding: 10,
     borderRadius: 13,
-    backgroundColor: COLOR.black,
-    color: COLOR.white,
+    backgroundColor: COLOR.lightgrey,
+    color: COLOR.black,
 
     marginVertical: 5,
   },

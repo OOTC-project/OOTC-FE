@@ -131,8 +131,9 @@ const styles = StyleSheet.create({
     width: '100%',
     // aspectRatio: 4 / 3,
     borderWidth: 1,
-    borderColor: COLOR.black,
+    borderColor: COLOR.darkgray,
     borderRadius: 13,
+    marginBottom: 5,
   },
   image: {
     width: '100%',

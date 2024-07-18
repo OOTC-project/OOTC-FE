@@ -13,7 +13,7 @@ import {
 import React, { useState } from 'react';
 import ImagePickerExample from '../organism/ImagePicker';
 import OotdItemBox from '../organism/OotdItemBox';
-import { scale } from '../../utils/styleGuide';
+import Theme, { scale } from '../../utils/styleGuide';
 import { GetCodyType } from '../../api/types';
 import { COLOR } from '../../layout/default';
 
@@ -144,38 +144,37 @@ const styles = StyleSheet.create({
     opacity: 0.95,
     width: '100%',
     height: '100%',
-    borderRadius: 18,
     padding: 10,
   },
   modalBox: {},
   saveBtn: {
-    paddingVertical: scale(10),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
     backgroundColor: COLOR.black,
     marginTop: 10,
+    height: Theme.height * 40,
   },
   saveBtnText: {
-    color: '#fff',
-    fontSize: scale(15),
+    color: COLOR.white,
+    fontSize: Theme.fontSizes.fontSizes12,
   },
   closeBtn: {
-    paddingVertical: scale(10),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
     backgroundColor: COLOR.black,
     marginTop: 10,
+    height: Theme.height * 40,
   },
   closeBtnText: {
-    color: '#fff',
-    fontSize: scale(15),
+    color: COLOR.white,
+    fontSize: Theme.fontSizes.fontSizes12,
   },
   textInput: {
     padding: 10,
     borderRadius: 13,
-    backgroundColor: COLOR.black,
+    backgroundColor: COLOR.lightgrey,
     color: COLOR.black,
 
     marginVertical: 5,

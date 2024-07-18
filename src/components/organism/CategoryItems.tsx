@@ -10,9 +10,11 @@ import {
 import React from 'react';
 import { BlurView } from 'expo-blur';
 import ImageSelectBox from '../atoms/ImageSelectBox';
-import { scale } from '../../utils/styleGuide';
+import Theme, { scale } from '../../utils/styleGuide';
 import EmptyImagesBox from '../atoms/EmptyImagesBox';
 import { COLOR } from '../../layout/default';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../types';
 
 interface CategoryItemsProps {
   modalVisible: boolean;
@@ -39,6 +41,12 @@ const CategoryItemsModal = ({
     data.data
       .find((item: { name: string }) => item.name === selectTitle)
       ?.clothes.slice(0, 9);
+
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const handlePress = () => {
+    navigation.navigate('ITEMS', { screen: 'ITEMS' });
+  };
 
   return (
     <Modal
@@ -80,7 +88,7 @@ const CategoryItemsModal = ({
                   margin={scale(0.3)}
                   borderRadius={5}
                   size={50}
-                  onPress={() => {}}
+                  onPress={handlePress}
                 />
               )}
             </View>
@@ -91,7 +99,10 @@ const CategoryItemsModal = ({
           style={[
             styles.modalTitle,
             {
-              fontSize: scale(selectTitle && selectTitle.length > 6 ? 45 : 55),
+              fontSize:
+                selectTitle && selectTitle.length > 6
+                  ? Theme.fontSizes.fontSizes32
+                  : Theme.fontSizes.fontSizes48,
               color: select !== 0 ? COLOR.blue : COLOR.black,
             },
           ]}
