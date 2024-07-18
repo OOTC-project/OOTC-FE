@@ -1,6 +1,6 @@
 import { View, StyleSheet, FlatList } from 'react-native';
 import React from 'react';
-import { scale, verticalScale } from '../../utils/styleGuide';
+import Theme, { scale, verticalScale } from '../../utils/styleGuide';
 import EmptyImagesBox from '../atoms/EmptyImagesBox';
 import ImageBox from '../atoms/ImagesBox';
 import { COLOR } from '../../layout/default';
@@ -10,7 +10,7 @@ interface ImageBoxContainerProps {
 }
 
 const ImageBoxContainer = ({ data }: ImageBoxContainerProps) => {
-  const imageSize = verticalScale(65);
+  const imageSize = Theme.width * 70;
 
   return (
     <View style={styles.container}>

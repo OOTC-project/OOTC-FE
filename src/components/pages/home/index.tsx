@@ -7,6 +7,8 @@ import {
   TouchableWithoutFeedback,
   Animated,
   Alert,
+  Text,
+  ImageBackground,
 } from 'react-native';
 import SelectImage from '../../organism/SelectImage';
 import Item from '../../organism/Item';
@@ -75,22 +77,22 @@ const Home = () => {
     },
   );
 
-  useFocusEffect(
-    React.useCallback(() => {
-      if (refetchCount < 1) {
-        refetch();
-        setRefetchCount(prev => prev + 1);
-      }
-    }, [refetchCount, refetch]),
-  );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     if (refetchCount < 1) {
+  //       refetch();
+  //       setRefetchCount(prev => prev + 1);
+  //     }
+  //   }, [refetchCount, refetch]),
+  // );
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSelect(0);
-    }, 3000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setSelect(0);
+  //   }, 3000);
 
-    return () => clearInterval(interval);
-  }, [select]);
+  //   return () => clearInterval(interval);
+  // }, [select]);
 
   const { counter: itemCounter } = useSelector((state: RootState) => state);
 
@@ -109,7 +111,11 @@ const Home = () => {
       {loading ? (
         <>
           <SelectImage />
-          <BackgroundSafeAreaView backgroundImage="https://ifh.cc/g/NqpJCd.jpg">
+          <ImageBackground
+            source={{ uri: 'https://ifh.cc/g/NqpJCd.jpg' }}
+            style={styles.background}
+            resizeMode="cover"
+          >
             <View style={styles.menuContainer}>
               <View style={styles.scrollView}>
                 {!isLoading && data ? (
@@ -139,13 +145,12 @@ const Home = () => {
                 />
               </View>
             </View>
-
-            <NoticeSnackBar
-              snackbarVisible={noticeOn}
-              setNoticeOn={setNoticeOn}
-            />
-            <SelectSnackBar select={select} />
-          </BackgroundSafeAreaView>
+          </ImageBackground>
+          <NoticeSnackBar
+            snackbarVisible={noticeOn}
+            setNoticeOn={setNoticeOn}
+          />
+          <SelectSnackBar select={select} />
         </>
       ) : (
         <View style={styles.loadingBackground}>
@@ -171,7 +176,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  marginTop: { marginBottom: scale(10) },
   background: {
     flex: 1,
     width: '100%',
@@ -190,15 +194,11 @@ const styles = StyleSheet.create({
     width: '100%',
     zIndex: 999,
   },
-  menuContainer: {
-    flex: 1,
-  },
+  menuContainer: {},
   scrollView: { width: screenWidth, flexDirection: 'row', flexWrap: 'wrap' },
   boxBox: {
     display: 'flex',
     alignItems: 'center',
-    width: screenWidth / 4,
     flexDirection: 'column',
-    height: screenWidth / 4 + 15,
   },
 });

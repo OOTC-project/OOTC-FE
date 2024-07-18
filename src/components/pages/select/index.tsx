@@ -2,6 +2,7 @@ import {
   Alert,
   Dimensions,
   FlatList,
+  ImageBackground,
   Keyboard,
   Modal,
   Pressable,
@@ -146,7 +147,11 @@ const OotcPage = () => {
 
   return (
     <>
-      <BackgroundSafeAreaView backgroundImage="https://ifh.cc/g/NqpJCd.jpg">
+      <ImageBackground
+        source={{ uri: 'https://ifh.cc/g/NqpJCd.jpg' }}
+        style={styles.background}
+        resizeMode="cover"
+      >
         <FlatList
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
@@ -245,7 +250,7 @@ const OotcPage = () => {
             </View>
           </View>
         </Modal>
-      </BackgroundSafeAreaView>
+      </ImageBackground>
     </>
   );
 };

@@ -1,31 +1,51 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icons from 'react-native-vector-icons/FontAwesome5';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Home from './src/components/pages/home';
+import OotcPage from './src/components/pages/select';
 import MyPage from './src/components/pages/myPage';
 import Main from './src/components/pages/main';
-import Home from './src/components/pages/home';
 import LoginPage from './src/components/pages/login';
 import SignUpPage from './src/components/pages/signUp';
 import FindPage from './src/components/template/FindPage';
 import ModifyPage from './src/components/template/ModifyPage';
-import OotcPage from './src/components/pages/select';
 
 const Stack = createNativeStackNavigator();
+const BottomTab = createBottomTabNavigator();
+const TopTab = createMaterialTopTabNavigator();
 
-function OotcStackRouter() {
+function OotcItemsTabNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Ootc"
-        component={OotcPage}
+    <TopTab.Navigator
+      initialRouteName="OOTC"
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarIndicatorStyle: { backgroundColor: '#000' },
+        tabBarStyle: { backgroundColor: '#fff' },
+        tabBarLabelStyle: { display: 'none' },
+      }}
+    >
+      <TopTab.Screen
+        name="OOTC"
+        component={Home}
         options={{
-          headerShown: false,
+          tabBarLabel: 'OOTC',
+          tabBarLabel: () => null,
         }}
       />
-    </Stack.Navigator>
+      <TopTab.Screen
+        name="ITEMS"
+        component={OotcPage}
+        options={{
+          tabBarLabel: 'ITEMS',
+          tabBarLabel: () => null,
+        }}
+      />
+    </TopTab.Navigator>
   );
 }
 
@@ -43,23 +63,17 @@ function MyPageStackRouter() {
   );
 }
 
-const Tab = createBottomTabNavigator();
-
 function RootNavigator() {
   return (
-    <Tab.Navigator
+    <BottomTab.Navigator
       initialRouteName="MAIN"
-      tabBarOptions={{
-        activeTintColor: '#fff',
-        inactiveTintColor: 'gray',
-        tabBarShowLabel: false,
-      }}
       screenOptions={{
+        tabBarActiveTintColor: '#fff',
+        tabBarInactiveTintColor: 'gray',
         tabBarStyle: { backgroundColor: '#000' },
-        unmountOnBlur: true,
       }}
     >
-      <Tab.Screen
+      <BottomTab.Screen
         name="MAIN"
         component={Main}
         options={{
@@ -70,29 +84,18 @@ function RootNavigator() {
           ),
         }}
       />
-      <Tab.Screen
-        name="OOTC"
-        component={Home}
+      <BottomTab.Screen
+        name="OOTC_ITEMS"
+        component={OotcItemsTabNavigator}
         options={{
           headerShown: false,
           tabBarLabel: 'OOTC',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="playlist-add-check" color={color} size={27} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="ITEMS"
-        component={OotcStackRouter}
-        options={{
-          headerShown: false,
-          tabBarLabel: 'ITEMS',
           tabBarIcon: ({ color, size }) => (
             <Icons name="tshirt" color={color} size={18} />
           ),
         }}
       />
-      <Tab.Screen
+      <BottomTab.Screen
         name="MyPage"
         component={MyPageStackRouter}
         options={{
@@ -103,7 +106,7 @@ function RootNavigator() {
           ),
         }}
       />
-    </Tab.Navigator>
+    </BottomTab.Navigator>
   );
 }
 

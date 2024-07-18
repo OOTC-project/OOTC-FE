@@ -1,7 +1,11 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import ImageBoxContainer from '../molecules/ImageBoxContainer';
-import { moderateScale, scale, verticalScale } from '../../utils/styleGuide';
+import Theme, {
+  moderateScale,
+  scale,
+  verticalScale,
+} from '../../utils/styleGuide';
 import { clothesArray, GetCategoryType } from '../../api/types';
 import { COLOR } from '../../layout/default';
 
@@ -40,10 +44,10 @@ export default Item;
 const styles = StyleSheet.create({
   box: {
     opacity: 0.7,
-    marginTop: 15,
-    marginHorizontal: 10,
-    height: verticalScale(70),
-    width: verticalScale(70),
+    marginTop: Theme.width * 5,
+    marginHorizontal: Theme.width * 5,
+    height: Theme.width * 80,
+    width: Theme.width * 80,
     borderRadius: 12,
     padding: 4,
     display: 'flex',
@@ -54,10 +58,8 @@ const styles = StyleSheet.create({
     flexWrap: 'nowrap',
   },
   boxTitle: {
-    fontSize: scale(11),
+    fontSize: Theme.fontSizes.fontSizes12,
     textAlign: 'center',
-    fontWeight: 'bold',
-
     // color: '#e8e2e2',
     color: COLOR.black,
   },
