@@ -12,6 +12,7 @@ import ProfileInfo from '../molecules/ProfileInfo';
 import * as ImagePicker from 'expo-image-picker';
 import { GetUserInfoType } from '../../api/types';
 import { COLOR } from '../../layout/default';
+import Theme from '../../utils/styleGuide';
 
 interface ProfileBoxProps {
   width?: number;
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   box: {
-    marginTop: screenHeight / 20,
+    marginTop: Theme.height * 15,
     display: 'flex',
     flexDirection: 'row',
   },

@@ -37,7 +37,9 @@ const LoginBox = ({ signUp, formData, handleChange }: LoginBoxProp) => {
   return (
     <View style={styles.container}>
       <ScrollView
-        style={{ height: signUp ? (KeyboardOpen ? 300 : null) : null }}
+        style={{
+          height: signUp ? (KeyboardOpen ? 300 : null) : null,
+        }}
       >
         {signUp && (
           <InputBox
@@ -93,5 +95,7 @@ const screenWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     width: screenWidth,
+    paddingRight: 15,
+    paddingLeft: 15,
   },
 });

@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
   },
   logoDetail: {
     fontSize: Theme.fontSizes.fontSizes18,
+    marginBottom: Theme.width * 30,
   },
   background: {
     flex: 1,

@@ -51,13 +51,11 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   textInput: {
-    paddingBottom: 5,
     color: COLOR.black,
     marginVertical: 5,
-    paddingHorizontal: 10,
     borderBottomWidth: 1,
     borderBottomColor: COLOR.black,
-    fontSize: Theme.fontSizes.fontSizes14,
-    width: Theme.width * 310,
+    fontSize: Theme.fontSizes.fontSizes16,
+    height: Theme.height * 30,
   },
 });

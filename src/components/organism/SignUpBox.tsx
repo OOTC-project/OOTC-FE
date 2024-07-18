@@ -43,21 +43,23 @@ const SignUpBox = () => {
     <View style={styles.container}>
       <Text style={styles.title}>회원가입</Text>
       <LoginBox signUp formData={formData} handleChange={handleChange} />
-      <Button
-        text="가입하기"
-        color={COLOR.white}
-        backgroundColor={COLOR.blue}
-        fontSize={18}
-        onPress={() => {
-          postMutate({
-            name: formData.name,
-            userId: formData.id,
-            email: formData.email,
-            password: formData.pw,
-            passwordConfirm: formData.pwCheck,
-          });
-        }}
-      />
+      <View style={{ padding: 15 }}>
+        <Button
+          text="가입하기"
+          color={COLOR.white}
+          backgroundColor={COLOR.blue}
+          fontSize={18}
+          onPress={() => {
+            postMutate({
+              name: formData.name,
+              userId: formData.id,
+              email: formData.email,
+              password: formData.pw,
+              passwordConfirm: formData.pwCheck,
+            });
+          }}
+        />
+      </View>
     </View>
   );
 };
@@ -65,10 +67,12 @@ const SignUpBox = () => {
 export default SignUpBox;
 
 const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 20,
+  container: {},
+  title: {
+    fontSize: Theme.fontSizes.fontSizes32,
+    marginBottom: 30,
+    padding: 15,
   },
-  title: { fontSize: Theme.fontSizes.fontSizes32, marginBottom: 30 },
 });
 
 const SignUpBoxData: SignUpBoxType = {

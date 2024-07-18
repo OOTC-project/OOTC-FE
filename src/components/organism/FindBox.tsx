@@ -95,18 +95,20 @@ const FindBox = ({ what }: FindBoxProps) => {
         formData={formData}
         handleChange={handleChange}
       />
-      <Button
-        text={what === 'id' ? '아이디 찾기' : '비밀번호 찾기'}
-        color={COLOR.white}
-        backgroundColor={disabled ? COLOR.lightgrey : COLOR.blue}
-        fontSize={Theme.fontSizes.fontSizes16}
-        disabled={disabled}
-        onPress={
-          what === 'id'
-            ? () => findId({ name: formData.name, email: formData.email })
-            : handleResetPassword
-        }
-      />
+      <View style={{ padding: 15 }}>
+        <Button
+          text={what === 'id' ? '아이디 찾기' : '비밀번호 찾기'}
+          color={COLOR.white}
+          backgroundColor={disabled ? COLOR.lightgrey : COLOR.blue}
+          fontSize={Theme.fontSizes.fontSizes16}
+          disabled={disabled}
+          onPress={
+            what === 'id'
+              ? () => findId({ name: formData.name, email: formData.email })
+              : handleResetPassword
+          }
+        />
+      </View>
     </View>
   );
 };
@@ -117,7 +119,10 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
   },
-  title: { fontSize: Theme.fontSizes.fontSizes32, marginBottom: 30 },
+  title: {
+    fontSize: Theme.fontSizes.fontSizes32,
+    marginBottom: 30,
+  },
 });
 
 const FindIdPwBoxData: FindIdPwBoxDataType = {

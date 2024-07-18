@@ -127,6 +127,8 @@ const styles = StyleSheet.create({
 
   formContainer: {
     width: screenWidth,
+    paddingLeft: 25,
+    paddingRight: 25,
   },
 
   socialLoginBox: {

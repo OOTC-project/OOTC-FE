@@ -25,7 +25,7 @@ function OotcItemsTabNavigator() {
       screenOptions={{
         tabBarShowLabel: false,
         tabBarIndicatorStyle: { backgroundColor: '#000' },
-        tabBarStyle: { backgroundColor: '#fff' },
+        tabBarStyle: { display: 'none' },
         tabBarLabelStyle: { display: 'none' },
       }}
     >

@@ -45,6 +45,7 @@ const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
-    width: screenWidth,
+    paddingRight: 10,
+    paddingLeft: 10,
   },
 });

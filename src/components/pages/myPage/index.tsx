@@ -1,4 +1,4 @@
-import { Image, ImageBackground, View } from 'react-native';
+import { ImageBackground, View } from 'react-native';
 import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -19,6 +19,7 @@ import { RootStackParamList } from '../../../types';
 import ProfileBox from '../../organism/ProfileBox';
 import EventBox from '../../organism/EventBox';
 import SaveImages from '../../organism/SaveImages';
+import LoadingSpinner from '../../atoms/Loading';
 
 const MyPage = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -72,10 +73,7 @@ const MyPage = () => {
         </>
       ) : (
         <View style={styles.nodata}>
-          <Image
-            source={require('../../../../assets/noData.gif')}
-            style={{ width: 100, height: 100 }}
-          />
+          <LoadingSpinner />
         </View>
       )}
     </View>
