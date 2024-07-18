@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { COLOR } from '../../layout/default';
 
 interface EmptyImagesBoxProps {
   height: DimensionValue;
@@ -32,7 +33,7 @@ const EmptyImagesBox = ({
   return (
     <View style={[styles.container, containerStyle]}>
       <TouchableOpacity onPress={onPress}>
-        <AntDesign name="pluscircle" size={size} color="#fff" />
+        <AntDesign name="pluscircle" size={size} color={COLOR.white} />
       </TouchableOpacity>
     </View>
   );

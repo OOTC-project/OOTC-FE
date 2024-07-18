@@ -15,6 +15,7 @@ import ImagePickerExample from '../organism/ImagePicker';
 import OotdItemBox from '../organism/OotdItemBox';
 import { scale } from '../../utils/styleGuide';
 import { GetCodyType } from '../../api/types';
+import { COLOR } from '../../layout/default';
 
 interface SaveImageProp {
   index: number;
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
   modal: {
     display: 'flex',
     justifyContent: 'center',
-    backgroundColor: '#181818',
+    backgroundColor: COLOR.black,
     opacity: 0.95,
     width: '100%',
     height: '100%',
@@ -152,7 +153,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
-    backgroundColor: '#2b2929',
+    backgroundColor: COLOR.black,
     marginTop: 10,
   },
   saveBtnText: {
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
-    backgroundColor: '#2b2929',
+    backgroundColor: COLOR.black,
     marginTop: 10,
   },
   closeBtnText: {
@@ -174,8 +175,8 @@ const styles = StyleSheet.create({
   textInput: {
     padding: 10,
     borderRadius: 13,
-    backgroundColor: '#2b2929',
-    color: '#2b2929',
+    backgroundColor: COLOR.black,
+    color: COLOR.black,
 
     marginVertical: 5,
   },

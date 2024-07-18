@@ -1,5 +1,7 @@
 import { Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import React from 'react';
+import { COLOR } from '../../layout/default';
+import Theme from '../../utils/styleGuide';
 
 interface EventTabProps {
   children?: React.ReactNode;
@@ -30,5 +32,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: { color: '#2b2929', fontWeight: '700' },
+  text: {
+    color: COLOR.black,
+    fontWeight: '700',
+    fontSize: Theme.fontSizes.fontSizes14,
+  },
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { COLOR } from '../../layout/default';
 
 interface OotdItemContainerProps {
   children?: React.ReactNode;
@@ -13,7 +14,7 @@ export default OotdItemContainer;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
+    backgroundColor: COLOR.black,
     height: '100%',
     width: '100%',
     borderRadius: 10,

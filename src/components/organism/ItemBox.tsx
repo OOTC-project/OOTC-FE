@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { COLOR } from '../../layout/default';
 
 interface ItemBoxProps {
   children?: React.ReactNode;
@@ -25,13 +26,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#2e2e2e',
+    borderColor: COLOR.black,
     borderWidth: 1,
     opacity: 0.7,
-    backgroundColor: '#000',
+    backgroundColor: COLOR.black,
   },
   selected: {
-    borderColor: 'red',
+    borderColor: COLOR.red,
     borderWidth: 1,
   },
 });

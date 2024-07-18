@@ -1,17 +1,17 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import OotcPage from './src/pages/select';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MyPage from './src/pages/myPage';
-import Home from './src/pages/home';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icons from 'react-native-vector-icons/FontAwesome5';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import LoginPage from './src/pages/login';
-import SignUpPage from './src/pages/signUp';
-import FindPage from './src/pages/signUp/findPage';
-import Main from './src/pages/main';
-import ModifyPage from './src/pages/login/Modify';
+import MyPage from './src/components/pages/myPage';
+import Main from './src/components/pages/main';
+import Home from './src/components/pages/home';
+import LoginPage from './src/components/pages/login';
+import SignUpPage from './src/components/pages/signUp';
+import FindPage from './src/components/template/FindPage';
+import ModifyPage from './src/components/template/ModifyPage';
+import OotcPage from './src/components/pages/select';
 
 const Stack = createNativeStackNavigator();
 
@@ -56,6 +56,7 @@ function RootNavigator() {
       }}
       screenOptions={{
         tabBarStyle: { backgroundColor: '#000' },
+        unmountOnBlur: true,
       }}
     >
       <Tab.Screen

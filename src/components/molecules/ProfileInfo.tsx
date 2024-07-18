@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import LevelBox from './LevelBox';
-import { scale } from '../../utils/styleGuide';
+import Theme, { scale } from '../../utils/styleGuide';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   CommonActions,
@@ -23,6 +23,7 @@ import { GetUserInfoType } from '../../api/types';
 import { PatchUserInfo } from '../../api/auth';
 import { useMutation, useQueryClient } from 'react-query';
 import { resetItem } from '../../redux/slice/itemSlice';
+import { COLOR } from '../../layout/default';
 
 interface ProfileInfoProps {
   data?: GetUserInfoType;
@@ -152,7 +153,7 @@ const ProfileInfo = ({
 
       <View style={[styles.flexBox, { justifyContent: 'space-between' }]}>
         <TouchableOpacity onPress={handleLogout}>
-          <Text style={styles.logout}>로그아웃</Text>
+          <Text style={styles.logOut}>로그아웃</Text>
         </TouchableOpacity>
 
         <View style={styles.flexBox}>
@@ -187,28 +188,38 @@ const styles = StyleSheet.create({
   },
   flexBox: { display: 'flex', flexDirection: 'row' },
   name: {
-    color: '#2b2929',
+    color: COLOR.black,
     fontWeight: '600',
-    fontSize: scale(18),
+    fontSize: Theme.fontSizes.fontSizes22,
   },
-  logout: {
-    color: '#a02e2e',
+  logOut: {
+    color: COLOR.red,
     fontWeight: '600',
-    fontSize: 12,
+    fontSize: Theme.fontSizes.fontSizes12,
     margin: 5,
   },
   modifyBox: {
-    backgroundColor: '#1a63f6',
+    backgroundColor: COLOR.blue,
     borderRadius: 5,
     marginHorizontal: 3,
   },
-  modify: { color: '#fff', fontWeight: '600', fontSize: 12, margin: 5 },
+  modify: {
+    color: COLOR.white,
+    fontWeight: '600',
+    fontSize: Theme.fontSizes.fontSizes12,
+    margin: 5,
+  },
   deleteBox: {
-    backgroundColor: '#a02e2e',
+    backgroundColor: COLOR.red,
     borderRadius: 5,
     marginHorizontal: 3,
   },
-  delete: { color: '#fff', fontWeight: '600', fontSize: 12, margin: 5 },
+  delete: {
+    color: COLOR.white,
+    fontWeight: '600',
+    fontSize: Theme.fontSizes.fontSizes12,
+    margin: 5,
+  },
   textInputBox: {
     display: 'flex',
     justifyContent: 'center',
@@ -216,12 +227,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   textInput: {
-    fontSize: 10,
-    padding: 5,
+    fontSize: Theme.fontSizes.fontSizes12,
+    padding: 8,
     paddingVertical: 10,
-    borderRadius: 13,
-    backgroundColor: '#3b3b3b',
-    color: '#fff',
+    borderRadius: 10,
+    backgroundColor: COLOR.black,
+    color: COLOR.white,
     width: screenWidth / 2.7,
     margin: 3,
   },

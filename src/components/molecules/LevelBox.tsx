@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
+import { COLOR } from '../../layout/default';
+import Theme from '../../utils/styleGuide';
 
 const LevelBox = () => {
   return (
@@ -17,12 +19,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2b2929',
+    backgroundColor: COLOR.black,
     borderRadius: 10,
     width: 70,
     height: 25,
   },
   text: {
-    color: '#fff',
+    color: COLOR.white,
+    fontSize: Theme.fontSizes.fontSizes12,
   },
 });

@@ -1,6 +1,7 @@
 import { View, StyleSheet, Image } from 'react-native';
 import React from 'react';
 import Icons from 'react-native-vector-icons/AntDesign';
+import { COLOR } from '../../layout/default';
 
 interface ProfileImageProps {
   width?: number;
@@ -30,14 +31,14 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#000',
+    backgroundColor: COLOR.black,
     opacity: 0.7,
     borderRadius: 100,
     margin: 5,
     marginHorizontal: 10,
   },
   Text: {
-    color: '#fff',
+    color: COLOR.white,
   },
   image: {
     width: '100%',

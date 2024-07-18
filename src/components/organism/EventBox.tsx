@@ -2,6 +2,7 @@ import { View, StyleSheet } from 'react-native';
 import React from 'react';
 import ProfileInfo from '../molecules/ProfileInfo';
 import EventTab from '../molecules/EventTab';
+import { COLOR } from '../../layout/default';
 
 interface EventBoxProps {
   width?: number;
@@ -25,8 +26,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: '#2b2929',
-    backgroundColor: '#ffffffbd',
+    borderColor: COLOR.black,
+    backgroundColor: COLOR.blur,
     padding: 5,
     paddingVertical: 20,
   },

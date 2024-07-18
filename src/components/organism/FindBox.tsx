@@ -2,13 +2,14 @@ import { View, Text, StyleSheet, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Button from '../atoms/Button';
 import FindIdPwBox from './FindIdPwBox';
-import { scale } from '../../utils/styleGuide';
+import Theme, { scale } from '../../utils/styleGuide';
 import useFormData from '../../utils/useFormData';
 import { useMutation } from 'react-query';
 import { PostFindId, PatchResetPassword } from '../../api/auth';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../types';
 import axios from 'axios';
+import { COLOR } from '../../layout/default';
 
 interface FindBoxProps {
   what: string;
@@ -96,9 +97,9 @@ const FindBox = ({ what }: FindBoxProps) => {
       />
       <Button
         text={what === 'id' ? '아이디 찾기' : '비밀번호 찾기'}
-        color="#fff"
-        backgroundColor={disabled ? 'gray' : '#1a63f6'}
-        fontSize={scale(12)}
+        color={COLOR.white}
+        backgroundColor={disabled ? COLOR.lightgrey : COLOR.blue}
+        fontSize={Theme.fontSizes.fontSizes16}
         disabled={disabled}
         onPress={
           what === 'id'
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
   },
-  title: { fontSize: 32, marginBottom: 30 },
+  title: { fontSize: Theme.fontSizes.fontSizes32, marginBottom: 30 },
 });
 
 const FindIdPwBoxData: FindIdPwBoxDataType = {

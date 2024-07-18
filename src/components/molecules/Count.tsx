@@ -2,6 +2,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducer';
+import { COLOR } from '../../layout/default';
 
 const Count = () => {
   const { counter: itemCounter } = useSelector((state: RootState) => state);
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
   container: {
     width: 20,
     height: 20,
-    backgroundColor: '#a71c1c',
+    backgroundColor: COLOR.red,
     position: 'absolute',
     borderRadius: 50,
     display: 'flex',
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     transform: [{ translateY: -7 }],
   },
   text: {
-    color: '#2b2929',
+    color: COLOR.black,
     fontWeight: '800',
   },
 });

@@ -1,6 +1,6 @@
 import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { scale } from '../../utils/styleGuide';
+import Theme, { scale } from '../../utils/styleGuide';
 
 interface LoginOptionButtonProp {
   title?: string;
@@ -22,14 +22,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 110,
-    padding: scale(5),
-    margin: scale(5),
+    width: Theme.width * 80,
+    margin: Theme.height * 20,
   },
   text: {
     flexWrap: 'nowrap',
     textDecorationLine: 'underline',
-    fontSize: scale(12),
+    fontSize: Theme.fontSizes.fontSizes12,
     fontWeight: 'bold',
   },
 });

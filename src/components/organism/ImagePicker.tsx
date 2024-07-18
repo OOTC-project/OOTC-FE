@@ -8,6 +8,7 @@ import {
   Keyboard,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { COLOR } from '../../layout/default';
 
 interface ImagePickerExampleProps {
   photoData?: {
@@ -125,12 +126,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '100%',
   },
-  addText: { fontSize: 20, color: '#fff' },
+  addText: { fontSize: 20, color: COLOR.white },
   imageContainer: {
     width: '100%',
     // aspectRatio: 4 / 3,
     borderWidth: 1,
-    borderColor: '#070707',
+    borderColor: COLOR.black,
     borderRadius: 13,
   },
   image: {

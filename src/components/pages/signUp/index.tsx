@@ -8,25 +8,16 @@ import {
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import { moderateScale, scale } from '../../../utils/styleGuide';
-import FindBox from '../../../components/organism/FindBox';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { COLOR } from '../../../layout/default';
+import { moderateScale, scale } from '../../../utils/styleGuide';
 import { RootStackParamList } from '../../../types';
+import SignUpBox from '../../organism/SignUpBox';
 
 const { height: screenHeight } = Dimensions.get('window');
 
-interface FindPageProps {
-  route: {
-    params: {
-      what: string;
-    };
-  };
-}
-
-const FindPage = ({ route }: FindPageProps) => {
+const SignUpPage = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const { what } = route.params;
-
   return (
     <View style={styles.container}>
       {Platform.OS === 'android' && <SafeAreaView />}
@@ -40,17 +31,17 @@ const FindPage = ({ route }: FindPageProps) => {
           <Ionicons
             name="arrow-back-outline"
             size={scale(25)}
-            color="black"
+            color={COLOR.black}
             style={styles.left}
           />
         </TouchableOpacity>
       </View>
-      <FindBox what={what} />
+      <SignUpBox />
     </View>
   );
 };
 
-export default FindPage;
+export default SignUpPage;
 
 const styles = StyleSheet.create({
   container: {},

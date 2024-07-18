@@ -11,6 +11,7 @@ import ProfileImage from '../molecules/ProfileImage';
 import ProfileInfo from '../molecules/ProfileInfo';
 import * as ImagePicker from 'expo-image-picker';
 import { GetUserInfoType } from '../../api/types';
+import { COLOR } from '../../layout/default';
 
 interface ProfileBoxProps {
   width?: number;
@@ -64,7 +65,7 @@ const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffffffbd',
+    backgroundColor: COLOR.blur,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

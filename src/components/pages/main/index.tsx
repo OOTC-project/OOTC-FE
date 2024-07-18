@@ -9,11 +9,12 @@ import {
   ScrollView,
 } from 'react-native';
 import { useQuery } from 'react-query';
-import { GetOpenAi } from '../../api/service';
-import AiLoading from '../../components/organism/AiLoading';
 import * as Location from 'expo-location';
-import LoadingSpinner from '../../components/atoms/Loading';
-import { scale } from '../../utils/styleGuide';
+import { COLOR } from '../../../layout/default';
+import { GetOpenAi } from '../../../api/service';
+import AiAnimation from '../../organism/AiLoading';
+import LoadingSpinner from '../../atoms/Loading';
+import Theme, { scale } from '../../../utils/styleGuide';
 
 const Main = () => {
   const [step, setStep] = useState(0);
@@ -127,11 +128,11 @@ const Main = () => {
     <View style={styles.container}>
       <View style={styles.aiBox}>
         <Text style={styles.aiTag}>AI OOTC</Text>
-        <Text style={styles.aiDes}>
+        <Text style={styles.aiDescription}>
           AI 추천 서비스로서 날씨, 컨셉 등의 영향을 미칩니다.
         </Text>
         <View style={styles.clothesBox}>
-          <AiLoading step={step} />
+          <AiAnimation step={step} />
         </View>
         {step > 1 && data?.data.message.content ? (
           <ScrollView style={styles.solutionBox}>
@@ -141,8 +142,11 @@ const Main = () => {
         {step === 1 ? (
           <LoadingSpinner />
         ) : (
-          <TouchableOpacity onPress={handleAiRecommendation}>
-            <Text style={styles.button}>
+          <TouchableOpacity
+            onPress={handleAiRecommendation}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>
               {step === 3 ? '다시 추천 받기' : 'AI 추천 받기'}
             </Text>
           </TouchableOpacity>
@@ -162,7 +166,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: COLOR.white,
   },
   aiBox: {
     flex: 1,
@@ -172,18 +176,18 @@ const styles = StyleSheet.create({
     height: screenHeight / 2,
   },
   aiTag: {
-    fontSize: 50,
+    fontSize: Theme.fontSizes.fontSizes60,
     fontWeight: 'bold',
-    color: '#35ebf1',
-    textShadowColor: '#2b2929',
+    color: COLOR.blue,
+    textShadowColor: COLOR.black,
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
   },
-  aiDes: {
-    fontSize: 10,
+  aiDescription: {
+    fontSize: Theme.fontSizes.fontSizes12,
     fontWeight: 'bold',
     margin: 10,
-    color: '#2b2929',
+    color: COLOR.black,
   },
   clothesBox: {
     justifyContent: 'center',
@@ -194,16 +198,24 @@ const styles = StyleSheet.create({
     height: screenWidth / 1.5,
   },
   button: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     margin: 10,
-    backgroundColor: '#35ebf1',
+    width: Theme.width * 120,
+    height: Theme.height * 40,
+    backgroundColor: COLOR.blue,
     borderRadius: 12,
     padding: 5,
     paddingHorizontal: 18,
     borderWidth: 1,
     borderColor: '#2b2929',
   },
+  buttonText: {
+    color: COLOR.white,
+  },
   solutionBox: {
-    borderColor: 'gray',
+    borderColor: COLOR.darkgray,
     borderWidth: 1,
     padding: 3,
     borderRadius: 8,

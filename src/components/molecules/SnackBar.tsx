@@ -1,5 +1,6 @@
 import { StyleSheet, Animated } from 'react-native';
 import React, { useEffect, useRef } from 'react';
+import { COLOR } from '../../layout/default';
 
 interface SnackBarProps {
   children?: React.ReactNode;
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     alignItems: 'center',
-    backgroundColor: '#212121',
+    backgroundColor: COLOR.black,
     borderRadius: 20,
   },
 });

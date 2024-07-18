@@ -12,19 +12,20 @@ import {
   View,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import OotdItemBox from '../../components/organism/OotdItemBox';
-import ImagePickerExample from '../../components/organism/ImagePicker';
-import { scale } from '../../utils/styleGuide';
-import BadgeBox from '../../components/molecules/BadgeBox';
-import BackgroundSafeAreaView from '../../components/molecules/BackgroundSafeAreaView';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/reducer';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { RootStackParamList } from '../../types';
-import { PostClothes } from '../../api/service';
 import { useMutation, useQueryClient } from 'react-query';
+import { COLOR } from '../../../layout/default';
+import { scale } from '../../../utils/styleGuide';
+import { RootStackParamList } from '../../../types';
+import { RootState } from '../../../redux/reducer';
+import { PostClothes } from '../../../api/service';
+import BackgroundSafeAreaView from '../../molecules/BackgroundSafeAreaView';
+import OotdItemBox from '../../organism/OotdItemBox';
+import ImagePickerExample from '../../organism/ImagePicker';
+import BadgeBox from '../../molecules/BadgeBox';
 
-const OotdPage = () => {
+const OotcPage = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const data = [
@@ -249,7 +250,7 @@ const OotdPage = () => {
   );
 };
 
-export default OotdPage;
+export default OotcPage;
 
 const styles = StyleSheet.create({
   container: {
@@ -280,7 +281,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modal: {
-    backgroundColor: '#181818',
+    backgroundColor: COLOR.black,
     opacity: 0.95,
     width: '100%',
     height: '100%',
@@ -293,11 +294,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
-    backgroundColor: '#2b2929',
+    backgroundColor: COLOR.black,
     marginTop: 10,
   },
   saveBtnText: {
-    color: '#fff',
+    color: COLOR.white,
     fontSize: scale(15),
   },
   closeBtn: {
@@ -305,18 +306,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
-    backgroundColor: '#2b2929',
+    backgroundColor: COLOR.black,
     marginTop: 10,
   },
   closeBtnText: {
-    color: '#fff',
+    color: COLOR.white,
     fontSize: scale(15),
   },
   textInput: {
     padding: 10,
     borderRadius: 13,
-    backgroundColor: '#2b2929',
-    color: '#fff',
+    backgroundColor: COLOR.black,
+    color: COLOR.white,
 
     marginVertical: 5,
   },

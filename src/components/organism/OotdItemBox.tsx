@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
+import { COLOR } from '../../layout/default';
 
 interface OotdItemBoxProps {
   width?: number;
@@ -32,7 +33,7 @@ const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: '#000',
+    borderColor: COLOR.black,
     borderWidth: 4.5,
     marginTop: 5,
     marginVertical: 5,
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
   },
   box: {
     opacity: 0.7,
-    backgroundColor: '#000',
+    backgroundColor: COLOR.black,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

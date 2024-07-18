@@ -35,6 +35,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    marginVertical: scale(10),
   },
 });

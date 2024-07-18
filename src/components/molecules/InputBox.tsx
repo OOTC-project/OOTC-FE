@@ -1,5 +1,7 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import React from 'react';
+import { COLOR } from '../../layout/default';
+import Theme from '../../utils/styleGuide';
 
 interface InputBoxProp {
   placeHolder?: string;
@@ -43,14 +45,19 @@ export default InputBox;
 
 const styles = StyleSheet.create({
   container: { paddingHorizontal: 10, marginBottom: 10 },
-  titleText: { fontSize: 12, fontWeight: 'bold' },
+  titleText: {
+    fontSize: Theme.fontSizes.fontSizes16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
   textInput: {
     paddingBottom: 5,
-    color: '#2b2929',
+    color: COLOR.black,
     marginVertical: 5,
     paddingHorizontal: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#90909090',
-    fontSize: 12,
+    borderBottomColor: COLOR.black,
+    fontSize: Theme.fontSizes.fontSizes14,
+    width: Theme.width * 310,
   },
 });

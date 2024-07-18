@@ -1,7 +1,7 @@
-import { View, Text } from 'react-native';
 import React from 'react';
 import Button from '../atoms/Button';
-import { scale } from '../../utils/styleGuide';
+import Theme from '../../utils/styleGuide';
+import { COLOR } from '../../layout/default';
 
 interface LoginButtonProp {
   disabled: boolean;
@@ -13,8 +13,8 @@ const LoginButton = ({ disabled, onPress }: LoginButtonProp) => {
     <Button
       text="로그인"
       color="#fff"
-      backgroundColor="#1a63f6"
-      fontSize={scale(16)}
+      backgroundColor={COLOR.blue}
+      fontSize={Theme.fontSizes.fontSizes18}
       disabled={disabled}
       onPress={onPress}
     />

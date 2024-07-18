@@ -12,6 +12,7 @@ import { BlurView } from 'expo-blur';
 import ImageSelectBox from '../atoms/ImageSelectBox';
 import { scale } from '../../utils/styleGuide';
 import EmptyImagesBox from '../atoms/EmptyImagesBox';
+import { COLOR } from '../../layout/default';
 
 interface CategoryItemsProps {
   modalVisible: boolean;
@@ -32,7 +33,6 @@ const CategoryItemsModal = ({
   setSelectTitle,
   data,
 }: CategoryItemsProps) => {
-  // Filter the clothes to display only up to 9 items
   const filteredClothes =
     data &&
     data.data &&
@@ -92,7 +92,7 @@ const CategoryItemsModal = ({
             styles.modalTitle,
             {
               fontSize: scale(selectTitle && selectTitle.length > 6 ? 45 : 55),
-              color: select !== 0 ? '#332ed1' : '#212121',
+              color: select !== 0 ? COLOR.blue : COLOR.black,
             },
           ]}
         >
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     padding: 5,
     minHeight: 290,
-    backgroundColor: '#3c3c3c',
+    backgroundColor: COLOR.black,
   },
   gridContainer: {
     flexDirection: 'row',
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#3c3c3c',
+    color: COLOR.black,
     marginTop: 5,
     fontStyle: 'italic',
   },

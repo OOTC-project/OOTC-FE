@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Animated, Easing } from 'react-native';
+import { COLOR } from '../../layout/default';
 
 const LoadingSpinner = () => {
   const spinValue = new Animated.Value(0);
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     borderWidth: 10,
-    borderColor: '#35ebf1',
+    borderColor: COLOR.blue,
     borderTopColor: 'transparent',
     borderRightColor: 'transparent',
     borderBottomColor: 'transparent',

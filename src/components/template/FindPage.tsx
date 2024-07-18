@@ -1,6 +1,5 @@
 import {
   View,
-  Text,
   StyleSheet,
   TouchableOpacity,
   Platform,
@@ -9,17 +8,24 @@ import {
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import { moderateScale, scale } from '../../../utils/styleGuide';
-import FindBox from '../../../components/organism/FindBox';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { RootStackParamList } from '../../../types';
+import { RootStackParamList } from '../../types';
+import { moderateScale, scale } from '../../utils/styleGuide';
+import FindBox from '../organism/FindBox';
 
 const { height: screenHeight } = Dimensions.get('window');
 
-interface ModifyPageProps {}
+interface FindPageProps {
+  route: {
+    params: {
+      what: string;
+    };
+  };
+}
 
-const ModifyPage = () => {
+const FindPage = ({ route }: FindPageProps) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const { what } = route.params;
 
   return (
     <View style={styles.container}>
@@ -39,12 +45,12 @@ const ModifyPage = () => {
           />
         </TouchableOpacity>
       </View>
-      <Text>수정</Text>
+      <FindBox what={what} />
     </View>
   );
 };
 
-export default ModifyPage;
+export default FindPage;
 
 const styles = StyleSheet.create({
   container: {},

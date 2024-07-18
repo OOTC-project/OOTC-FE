@@ -1,5 +1,6 @@
 import {
   View,
+  Text,
   StyleSheet,
   TouchableOpacity,
   Platform,
@@ -8,15 +9,17 @@ import {
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import SignUpBox from '../../components/organism/SignUpBox';
-import { moderateScale, scale } from '../../utils/styleGuide';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { moderateScale, scale } from '../../utils/styleGuide';
 import { RootStackParamList } from '../../types';
 
 const { height: screenHeight } = Dimensions.get('window');
 
-const SignUpPage = () => {
+interface ModifyPageProps {}
+
+const ModifyPage = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
   return (
     <View style={styles.container}>
       {Platform.OS === 'android' && <SafeAreaView />}
@@ -35,12 +38,12 @@ const SignUpPage = () => {
           />
         </TouchableOpacity>
       </View>
-      <SignUpBox />
+      <Text>수정</Text>
     </View>
   );
 };
 
-export default SignUpPage;
+export default ModifyPage;
 
 const styles = StyleSheet.create({
   container: {},

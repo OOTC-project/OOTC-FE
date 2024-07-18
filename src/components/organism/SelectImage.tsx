@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducer';
 import { AntDesign } from '@expo/vector-icons';
 import { removeItem } from '../../redux/slice/itemSlice';
+import { COLOR } from '../../layout/default';
 
 const SelectImage = () => {
   const dispatch = useDispatch();
@@ -101,8 +102,8 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 50,
     borderWidth: 2,
-    borderColor: '#a71c1c',
-    backgroundColor: '#2b2929',
+    borderColor: COLOR.red,
+    backgroundColor: COLOR.black,
     position: 'absolute',
     bottom: 0,
     right: 0,
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
     zIndex: 9999,
   },
   modalContainer: {
-    backgroundColor: '#2b2929',
+    backgroundColor: COLOR.black,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   box: {
-    backgroundColor: 'red',
+    backgroundColor: COLOR.red,
     justifyContent: 'center',
     alignItems: 'center',
     margin: 5,

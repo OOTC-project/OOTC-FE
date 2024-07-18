@@ -10,6 +10,7 @@ import {
 import React, { useEffect, useRef } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { scale } from '../../utils/styleGuide';
+import { COLOR } from '../../layout/default';
 
 interface NoticeSnackBarProps {
   snackbarVisible: boolean;
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     right: 0,
     padding: 10,
     alignItems: 'center',
-    backgroundColor: '#212121',
+    backgroundColor: COLOR.black,
     borderRadius: 20,
   },
 
@@ -77,13 +78,13 @@ const styles = StyleSheet.create({
 
   right: { textAlign: 'right', marginRight: 10 },
 
-  title: { fontSize: scale(18), color: '#fff', marginBottom: 10 },
-  pointText: { fontSize: scale(15), color: '#adb0c9' },
+  title: { fontSize: scale(18), color: COLOR.white, marginBottom: 10 },
+  pointText: { fontSize: scale(15), color: COLOR.lightgrey },
   textBox: {
     marginTop: 30,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: { fontSize: scale(13), color: '#fff' },
+  text: { fontSize: scale(13), color: COLOR.white },
 });

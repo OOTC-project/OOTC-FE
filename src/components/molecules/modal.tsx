@@ -1,5 +1,6 @@
 import { View, Text, Modal, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
+import { COLOR } from '../../layout/default';
 
 interface ModalBoxProps {
   modalVisible: boolean;
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modal: {
-    backgroundColor: '#121212',
+    backgroundColor: COLOR.black,
     opacity: 0.95,
     width: '100%',
     height: '100%',

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { scale } from '../../utils/styleGuide';
+import Theme, { scale } from '../../utils/styleGuide';
+import { COLOR } from '../../layout/default';
 
 interface ButtonProps {
   children?: React.ReactNode;
@@ -11,6 +12,7 @@ interface ButtonProps {
   borderRadius?: number;
   disabled?: boolean;
   onPress?: () => void;
+  width?: number;
 }
 
 const Button = ({
@@ -22,12 +24,13 @@ const Button = ({
   borderRadius,
   disabled,
   onPress,
+  width,
 }: ButtonProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      disabled={disabled}
-      style={[styles.container, { backgroundColor, borderRadius }]}
+      // disabled={disabled}s
+      style={[styles.container, { backgroundColor, borderRadius, width }]}
     >
       <View style={styles.button}>
         {children}
@@ -50,7 +53,11 @@ const styles = StyleSheet.create({
     marginTop: scale(10),
     paddingVertical: scale(10),
     borderRadius: 8,
+    height: Theme.height * 50,
   },
   button: {},
-  buttonText: { color: '#fff', fontWeight: 'bold' },
+  buttonText: {
+    color: COLOR.white,
+    fontWeight: 'bold',
+  },
 });

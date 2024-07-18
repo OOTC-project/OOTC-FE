@@ -1,6 +1,7 @@
 import { View, Text, Dimensions, StyleSheet } from 'react-native';
 import React from 'react';
 import SnackBar from '../molecules/SnackBar';
+import { COLOR } from '../../layout/default';
 
 interface SelectSnackBarProps {
   select: number;
@@ -42,9 +43,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: { textAlign: 'center', fontSize: 18, color: '#fff' },
+  text: { textAlign: 'center', fontSize: 18, color: COLOR.white },
   itemBox: {
-    backgroundColor: 'blue',
+    backgroundColor: COLOR.blue,
     width: screenWidth / 6.5,
     height: screenWidth / 6.5,
     margin: 5,

@@ -3,6 +3,7 @@ import React from 'react';
 import { scale, verticalScale } from '../../utils/styleGuide';
 import EmptyImagesBox from '../atoms/EmptyImagesBox';
 import ImageBox from '../atoms/ImagesBox';
+import { COLOR } from '../../layout/default';
 
 interface ImageBoxContainerProps {
   data?: any;
@@ -49,13 +50,13 @@ export default ImageBoxContainer;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#111111',
+    backgroundColor: COLOR.black,
     borderRadius: 12,
     width: '100%',
     height: '100%',
     overflow: 'hidden',
     borderWidth: 1.5,
-    borderColor: '#3c3c3c',
+    borderColor: COLOR.black,
   },
   flatListContent: {
     justifyContent: 'center',

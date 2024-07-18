@@ -3,6 +3,7 @@ import React from 'react';
 import ImageBoxContainer from '../molecules/ImageBoxContainer';
 import { moderateScale, scale, verticalScale } from '../../utils/styleGuide';
 import { clothesArray, GetCategoryType } from '../../api/types';
+import { COLOR } from '../../layout/default';
 
 interface ItemProps {
   item: clothesArray;
@@ -58,6 +59,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
 
     // color: '#e8e2e2',
-    color: '#3c3c3c',
+    color: COLOR.black,
   },
 });

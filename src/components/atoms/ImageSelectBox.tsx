@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../redux/slice/itemSlice';
+import { COLOR } from '../../layout/default';
 
 interface ImageSelectBoxProps {
   height: number;
@@ -122,7 +123,7 @@ const ImageSelectBox = ({
                 {
                   borderRadius: 32,
                   borderWidth: 4,
-                  borderColor: select !== 0 ? '#332ed1' : '#212121',
+                  borderColor: select !== 0 ? COLOR.blue : COLOR.black,
                 },
               ]}
               onLoad={() => setImgLoading(false)}

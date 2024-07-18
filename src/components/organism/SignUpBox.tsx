@@ -8,6 +8,8 @@ import { useMutation } from 'react-query';
 import { PostSignUp } from '../../api/auth';
 import { AxiosError } from 'axios';
 import { RootStackParamList } from '../../types';
+import { COLOR } from '../../layout/default';
+import Theme from '../../utils/styleGuide';
 
 export interface SignUpBoxType {
   name: string;
@@ -43,8 +45,8 @@ const SignUpBox = () => {
       <LoginBox signUp formData={formData} handleChange={handleChange} />
       <Button
         text="가입하기"
-        color="#fff"
-        backgroundColor="#1a63f6"
+        color={COLOR.white}
+        backgroundColor={COLOR.blue}
         fontSize={18}
         onPress={() => {
           postMutate({
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
   },
-  title: { fontSize: 32, marginBottom: 30 },
+  title: { fontSize: Theme.fontSizes.fontSizes32, marginBottom: 30 },
 });
 
 const SignUpBoxData: SignUpBoxType = {

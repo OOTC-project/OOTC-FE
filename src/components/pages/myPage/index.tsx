@@ -1,23 +1,24 @@
 import { Image, ImageBackground, View } from 'react-native';
 import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import ProfileBox from '../../components/organism/ProfileBox';
-import EventBox from '../../components/organism/EventBox';
-import SaveImages from '../../components/organism/SaveImages';
-import { scale } from '../../utils/styleGuide';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAccessToken } from '../../redux/slice/userSlice';
-import { RootState } from '../../redux/reducer';
 import {
   NavigationProp,
   useFocusEffect,
   useNavigation,
 } from '@react-navigation/native';
-import { RootStackParamList } from '../../types';
 import { useQuery } from 'react-query';
-import { GetCody } from '../../api/service';
-import { GetUserInfo } from '../../api/auth';
+import { COLOR } from '../../../layout/default';
+import { scale } from '../../../utils/styleGuide';
+import { GetUserInfo } from '../../../api/auth';
+import { GetCody } from '../../../api/service';
+import { setAccessToken } from '../../../redux/slice/userSlice';
+import { RootState } from '../../../redux/reducer';
+import { RootStackParamList } from '../../../types';
+import ProfileBox from '../../organism/ProfileBox';
+import EventBox from '../../organism/EventBox';
+import SaveImages from '../../organism/SaveImages';
 
 const MyPage = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -72,7 +73,7 @@ const MyPage = () => {
       ) : (
         <View style={styles.nodata}>
           <Image
-            source={require('../../../assets/noData.gif')}
+            source={require('../../../../assets/noData.gif')}
             style={{ width: 100, height: 100 }}
           />
         </View>
@@ -84,7 +85,7 @@ const MyPage = () => {
 export default MyPage;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#2b2929' },
+  container: { flex: 1, backgroundColor: COLOR.black },
   marginTop: { marginBottom: scale(10) },
   background: {
     flex: 1,

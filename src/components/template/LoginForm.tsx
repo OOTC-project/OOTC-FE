@@ -21,6 +21,7 @@ import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../redux/slice/userSlice';
 import { PostSignInType } from '../../api/types';
 import { RootStackParamList } from '../../types';
+import { COLOR } from '../../layout/default';
 
 export interface LoginFormDataType {
   id: string;
@@ -121,6 +122,7 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(30),
     padding: 5,
     width: 'auto',
+    marginHorizontal: 20,
   },
 
   formContainer: {
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
 
-  socialText: { color: 'gray' },
+  socialText: { color: COLOR.darkgray },
 });
 
 const LoginFormData: LoginFormDataType = {

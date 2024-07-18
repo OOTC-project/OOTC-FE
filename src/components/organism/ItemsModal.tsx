@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import ImageBoxContainer from '../molecules/ImageBoxContainer';
+import { COLOR } from '../../layout/default';
 
 interface ItemModalProps {
   modalVisible: boolean;
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   modalBox: {
-    backgroundColor: '#bf1414',
+    backgroundColor: COLOR.red,
     opacity: 0.7,
     height: '100%',
     width: '100%',
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#f1eeee',
+    color: COLOR.white,
     marginBottom: 10,
   },
 });

@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import { scale } from '../../utils/styleGuide';
+import { COLOR } from '../../layout/default';
 
 interface BadgeProps {
   children?: React.ReactNode;
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   button: {
-    backgroundColor: '#e8e2e2',
+    backgroundColor: COLOR.white,
     margin: 5,
     padding: 10,
     borderRadius: 8,

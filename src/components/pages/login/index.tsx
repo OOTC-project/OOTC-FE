@@ -9,10 +9,11 @@ import {
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import LoginForm from '../../components/template/LoginForm';
-import { scale, verticalScale } from '../../utils/styleGuide';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { RootStackParamList } from '../../types';
+import { COLOR } from '../../../layout/default';
+import { RootStackParamList } from '../../../types';
+import Theme, { scale, verticalScale } from '../../../utils/styleGuide';
+import LoginForm from '../../template/LoginForm';
 
 const { height: screenHeight } = Dimensions.get('window');
 
@@ -34,6 +35,7 @@ const LoginPage = () => {
       </View>
       <Text style={styles.logoFont}>OOTC</Text>
       <Text style={styles.logoDetail}>Your closet in my hand!</Text>
+
       <LoginForm />
     </View>
   );
@@ -44,7 +46,7 @@ export default LoginPage;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: COLOR.white,
     alignItems: 'center',
   },
   ButtonBox: {
@@ -58,13 +60,13 @@ const styles = StyleSheet.create({
     marginBottom: scale(10),
   },
   logoFont: {
-    fontSize: scale(70),
+    fontSize: Theme.fontSizes.fontSizes60,
     fontWeight: '900',
     fontStyle: 'italic',
     marginTop: verticalScale(10),
   },
   logoDetail: {
-    fontSize: 20,
+    fontSize: Theme.fontSizes.fontSizes18,
   },
   background: {
     flex: 1,

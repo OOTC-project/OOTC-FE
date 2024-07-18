@@ -8,24 +8,25 @@ import {
   Animated,
   Alert,
 } from 'react-native';
-import SelectImage from '../../components/organism/SelectImage';
-import Item from '../../components/organism/Item';
-import { scale } from '../../utils/styleGuide';
-import NoticeSnackBar from '../../components/molecules/NoticeSnackBar';
+import SelectImage from '../../organism/SelectImage';
+import Item from '../../organism/Item';
+import { scale } from '../../../utils/styleGuide';
+import NoticeSnackBar from '../../molecules/NoticeSnackBar';
 import { useQuery } from 'react-query';
-import { GetCategory } from '../../api/service';
-import SelectSnackBar from '../../components/organism/SelectSnackBar';
+import { GetCategory } from '../../../api/service';
+import SelectSnackBar from '../../organism/SelectSnackBar';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/reducer';
-import CategoryItemsModal from '../../components/organism/CategoryItems';
-import BackgroundSafeAreaView from '../../components/molecules/BackgroundSafeAreaView';
+import { RootState } from '../../../redux/reducer';
+import CategoryItemsModal from '../../organism/CategoryItems';
+import BackgroundSafeAreaView from '../../molecules/BackgroundSafeAreaView';
 import {
   NavigationProp,
   useFocusEffect,
   useNavigation,
 } from '@react-navigation/native';
-import LoadingSpinner from '../../components/atoms/Loading';
-import { RootStackParamList } from '../../types';
+import LoadingSpinner from '../../atoms/Loading';
+import { RootStackParamList } from '../../../types';
+import { COLOR } from '../../../layout/default';
 
 const Home = () => {
   const [, setSelected] = useState<null | number>(null);
@@ -34,7 +35,7 @@ const Home = () => {
   const [select, setSelect] = useState(0);
   const [noticeOn, setNoticeOn] = useState(true);
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const loadingImage = require('../../../assets/splashW.png');
+  const loadingImage = require('../../../../assets/splashW.png');
   const [loading, setLoading] = useState(false);
   const handleImageLoad = () => {
     setTimeout(() => {
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     position: 'absolute',
-    backgroundColor: '#fff',
+    backgroundColor: COLOR.white,
   },
   loading: {
     flex: 1,

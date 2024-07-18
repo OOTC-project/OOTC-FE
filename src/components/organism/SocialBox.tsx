@@ -1,6 +1,6 @@
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { scale } from '../../utils/styleGuide';
+import Theme, { scale } from '../../utils/styleGuide';
 
 const SocialBox = () => {
   return (
@@ -48,5 +48,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  image: { width: scale(36), height: scale(36), margin: 18 },
+  image: { width: Theme.width * 45, height: Theme.height * 45, margin: 18 },
 });
