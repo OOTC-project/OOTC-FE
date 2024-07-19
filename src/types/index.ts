@@ -8,9 +8,10 @@ export type RootStackParamList = {
   Settings: undefined;
   SignUpPage: undefined;
   FindPage: { what: string };
-  OOTC: undefined;
   LoginPage: undefined;
   ModifyPage: undefined;
+  AI: undefined;
+  OOTC_ITEMS: undefined;
 };
 
 export interface AppNavigationProp extends NavigationProp<RootStackParamList> {}

@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   box: {
-    marginTop: Theme.height * 15,
+    marginTop: Theme.height * 30,
     display: 'flex',
     flexDirection: 'row',
   },

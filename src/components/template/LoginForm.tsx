@@ -83,7 +83,7 @@ const LoginForm = () => {
 
               queryClient.invalidateQueries();
 
-              navigation.navigate('OOTC');
+              navigation.navigate('OOTC_ITEMS');
             } catch (error) {
               console.error('Token error', error);
             }

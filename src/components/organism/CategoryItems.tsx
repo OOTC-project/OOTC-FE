@@ -45,7 +45,8 @@ const CategoryItemsModal = ({
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const handlePress = () => {
-    navigation.navigate('ITEMS', { screen: 'ITEMS' });
+    selectTitle && navigation.navigate('ITEMS', { screen: selectTitle });
+    setModalVisible(false);
   };
 
   return (

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { COLOR } from '../../layout/default';
+import Theme from '../../utils/styleGuide';
 
 interface ImagePickerExampleProps {
   photoData?: {
@@ -118,7 +119,9 @@ const styles = StyleSheet.create({
 
   buttonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: Theme.fontSizes.fontSizes18,
+    marginTop: Theme.height * 10,
+    fontWeight: 'bold',
   },
   addImage: {
     display: 'flex',

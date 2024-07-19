@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React, { useEffect, useRef } from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { scale } from '../../utils/styleGuide';
+import Theme, { scale } from '../../utils/styleGuide';
 import { COLOR } from '../../layout/default';
 
 interface NoticeSnackBarProps {
@@ -45,8 +45,8 @@ const NoticeSnackBar = ({
         </TouchableOpacity>
       </View>
       <Text style={styles.title}>환영합니다. </Text>
-      <Text style={styles.pointText}>아래 메뉴의 ITEMS를 클릭하여</Text>
-      <Text style={styles.pointText}>아이템을 추가하세요!</Text>
+      <Text style={styles.pointText}>옆으로 스와이핑하여</Text>
+      <Text style={styles.text}>아이템을 추가하세요!</Text>
       <Image
         source={require('../../../assets/welcome.gif')}
         style={{ width: 200 }}
@@ -78,13 +78,17 @@ const styles = StyleSheet.create({
 
   right: { textAlign: 'right', marginRight: 10 },
 
-  title: { fontSize: scale(18), color: COLOR.white, marginBottom: 10 },
-  pointText: { fontSize: scale(15), color: COLOR.lightgrey },
+  title: {
+    fontSize: Theme.fontSizes.fontSizes32,
+    color: COLOR.white,
+    marginBottom: 10,
+  },
+  pointText: { fontSize: Theme.fontSizes.fontSizes16, color: COLOR.blue },
   textBox: {
     marginTop: 30,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: { fontSize: scale(13), color: COLOR.white },
+  text: { fontSize: Theme.fontSizes.fontSizes16, color: COLOR.white },
 });

@@ -37,6 +37,16 @@ const SaveImage = ({ index, data }: SaveImageProp) => {
     setPhotoData(prevData => ({ ...prevData, name: name }));
   };
 
+  const handleCancel = () => {
+    setPhotoData({
+      name: '',
+      url: '',
+      position: '',
+    });
+
+    setModalVisible(!modalVisible);
+  };
+
   return (
     <View style={styles.container}>
       {data && data.data && data.data.data ? (
@@ -82,6 +92,11 @@ const SaveImage = ({ index, data }: SaveImageProp) => {
         <View style={styles.centeredView}>
           <View style={styles.modal}>
             <View style={styles.modalBox}>
+              <ImagePickerExample
+                photoData={photoData}
+                setPhotoData={setPhotoData}
+                height={screenHeight / 2}
+              />
               <TextInput
                 placeholder="사진 이름을 입력해주세요."
                 placeholderTextColor="grey"
@@ -92,19 +107,11 @@ const SaveImage = ({ index, data }: SaveImageProp) => {
                   setName(text);
                 }}
               />
-              <ImagePickerExample
-                photoData={photoData}
-                setPhotoData={setPhotoData}
-                height={screenHeight / 2}
-              />
             </View>
             <Pressable style={styles.saveBtn} onPress={handleSave}>
               <Text style={styles.saveBtnText}>저장</Text>
             </Pressable>
-            <Pressable
-              style={styles.closeBtn}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
+            <Pressable style={styles.closeBtn} onPress={handleCancel}>
               <Text style={styles.closeBtnText}>취소</Text>
             </Pressable>
           </View>
@@ -154,6 +161,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.black,
     marginTop: 10,
     height: Theme.height * 40,
+    borderWidth: 1,
+    borderColor: COLOR.darkgray,
   },
   saveBtnText: {
     color: COLOR.white,
@@ -166,6 +175,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.black,
     marginTop: 10,
     height: Theme.height * 40,
+    borderWidth: 1,
+    borderColor: COLOR.darkgray,
   },
   closeBtnText: {
     color: COLOR.white,

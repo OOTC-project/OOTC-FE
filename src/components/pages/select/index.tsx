@@ -132,6 +132,17 @@ const OotcPage = () => {
     }
   };
 
+  const handleCancel = () => {
+    setPhotoData({
+      name: '',
+      url: '',
+      position: '',
+      tag: '',
+      des: '',
+    });
+    setModalVisible(!modalVisible);
+  };
+
   const screenHeight = Dimensions.get('window').height;
   const queryClient = useQueryClient();
 
@@ -139,6 +150,7 @@ const OotcPage = () => {
     onSuccess: () => {
       Alert.alert(`등록이 완료되었습니다.`);
       queryClient.invalidateQueries('GetUserInfo');
+      setPhotoData({ name: '', url: '', position: '', tag: '', des: '' });
     },
     onError: () => {
       Alert.alert(`애러가 발생했습니다. 다시 시도해주세요.`);
@@ -238,10 +250,7 @@ const OotcPage = () => {
                   <Pressable style={styles.saveBtn} onPress={handleSave}>
                     <Text style={styles.saveBtnText}>저장</Text>
                   </Pressable>
-                  <Pressable
-                    style={styles.closeBtn}
-                    onPress={() => setModalVisible(!modalVisible)}
-                  >
+                  <Pressable style={styles.closeBtn} onPress={handleCancel}>
                     <Text style={styles.closeBtnText}>취소</Text>
                   </Pressable>
                 </>
@@ -299,6 +308,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.black,
     marginTop: 10,
     height: Theme.height * 40,
+    borderWidth: 1,
+    borderColor: COLOR.darkgray,
   },
   saveBtnText: {
     color: COLOR.white,
@@ -312,6 +323,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.black,
     marginTop: 10,
     height: Theme.height * 40,
+    borderWidth: 1,
+    borderColor: COLOR.darkgray,
   },
   closeBtnText: {
     color: COLOR.white,

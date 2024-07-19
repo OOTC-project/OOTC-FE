@@ -25,7 +25,6 @@ function OotcItemsTabNavigator() {
       screenOptions={{
         tabBarShowLabel: false,
         tabBarIndicatorStyle: { backgroundColor: '#000' },
-        tabBarStyle: { display: 'none' },
         tabBarLabelStyle: { display: 'none' },
       }}
     >
@@ -66,7 +65,7 @@ function MyPageStackRouter() {
 function RootNavigator() {
   return (
     <BottomTab.Navigator
-      initialRouteName="MAIN"
+      initialRouteName="AI"
       screenOptions={{
         tabBarActiveTintColor: '#fff',
         tabBarInactiveTintColor: 'gray',
@@ -74,11 +73,11 @@ function RootNavigator() {
       }}
     >
       <BottomTab.Screen
-        name="MAIN"
+        name="AI"
         component={Main}
         options={{
           headerShown: false,
-          tabBarLabel: 'MAIN',
+          tabBarLabel: 'AI',
           tabBarIcon: ({ color, size }) => (
             <Icons name="robot" color={color} size={18} />
           ),
