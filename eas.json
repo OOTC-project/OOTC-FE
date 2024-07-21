@@ -5,15 +5,28 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://api.ootc.store",
+        "EXPO_PUBLIC_EAS_PROJECT_ID": "9d0829c2-1db7-4fb9-9801-7589490f29af"
+      }
     },
     "preview": {
       "distribution": "internal",
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://api.ootc.store",
+        "EXPO_PUBLIC_EAS_PROJECT_ID": "9d0829c2-1db7-4fb9-9801-7589490f29af"
       }
     },
-    "production": {}
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://api.ootc.store",
+        "EXPO_PUBLIC_EAS_PROJECT_ID": "9d0829c2-1db7-4fb9-9801-7589490f29af"
+      }
+    }
   },
   "submit": {
     "production": {}

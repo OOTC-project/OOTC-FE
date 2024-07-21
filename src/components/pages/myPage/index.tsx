@@ -52,9 +52,9 @@ const MyPage = () => {
 
   const { data: infoData } = useQuery('GetUserInfo', () => GetUserInfo({}), {
     enabled: !!token,
-    onSuccess: e => {
-      console.log(e);
-    },
+    // onSuccess: e => {
+    //   console.log(e);
+    // },
   });
 
   return (

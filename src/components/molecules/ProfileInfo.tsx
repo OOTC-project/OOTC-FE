@@ -76,9 +76,9 @@ const ProfileInfo = ({
         { text: '취소', onPress: () => {}, style: 'cancel' },
         {
           text: '삭제',
-          onPress: () => {
-            console.log('삭제');
-          },
+          // onPress: () => {
+          //   console.log('삭제');
+          // },
           style: 'destructive',
         },
       ],

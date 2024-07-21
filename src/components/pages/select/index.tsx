@@ -2,6 +2,7 @@ import {
   Alert,
   Dimensions,
   FlatList,
+  Image,
   ImageBackground,
   Keyboard,
   Modal,
@@ -15,29 +16,47 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { COLOR } from '../../../layout/default';
 import Theme, { scale } from '../../../utils/styleGuide';
 import { RootStackParamList } from '../../../types';
 import { RootState } from '../../../redux/reducer';
-import { PostClothes } from '../../../api/service';
+import { GetCategory, PostClothes } from '../../../api/service';
 import BackgroundSafeAreaView from '../../molecules/BackgroundSafeAreaView';
 import OotdItemBox from '../../organism/OotdItemBox';
 import ImagePickerExample from '../../organism/ImagePicker';
 import BadgeBox from '../../molecules/BadgeBox';
+import { clothesArray, clothesData } from '../../../api/types';
 
 const OotcPage = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
-  const data = [
-    { key: '1', screen: 'Screen 1' },
-    { key: '2', screen: 'Screen 2' },
-    { key: '3', screen: 'Screen 3' },
-    { key: '4', screen: 'Screen 3' },
-    { key: '5', screen: 'Screen 3' },
-    { key: '6', screen: 'Screen 3' },
-  ];
-  const [list, setList] = useState(data);
+  const { data, isLoading, refetch } = useQuery(
+    'GetCategory',
+    () => GetCategory({}),
+    {
+      retry: 1,
+      onError: () => {
+        Alert.alert('로그인이 필요합니다.');
+        navigation.navigate('LoginPage');
+      },
+    },
+  );
+
+  function gatherAllClothes(categories: clothesArray[]): clothesData[] {
+    const allClothes: clothesData[] = [];
+    for (const category of categories) {
+      allClothes.push(...category.clothes);
+    }
+    return allClothes;
+  }
+
+  // Add a placeholder object for the "+" button
+  const allClothes = data
+    ? [...gatherAllClothes(data.data), { placeholder: true }]
+    : [];
+
+  const [list, setList] = useState(allClothes);
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
   useEffect(() => {
@@ -59,15 +78,6 @@ const OotcPage = () => {
       keyboardDidHideListener.remove();
     };
   }, []);
-
-  useEffect(() => {
-    if (list.length === data.length) {
-      setList(prevList => [
-        ...prevList,
-        { key: new Date().toString(), screen: '+' },
-      ]);
-    }
-  }, [list]);
 
   const [modalVisible, setModalVisible] = useState(false);
   const token = useSelector((state: RootState) => state.token.accessToken);
@@ -148,14 +158,31 @@ const OotcPage = () => {
 
   const { mutate: PostNewClothes } = useMutation(PostClothes, {
     onSuccess: () => {
-      Alert.alert(`등록이 완료되었습니다.`);
+      Alert.alert('등록이 완료되었습니다.');
       queryClient.invalidateQueries('GetUserInfo');
       setPhotoData({ name: '', url: '', position: '', tag: '', des: '' });
     },
     onError: () => {
-      Alert.alert(`애러가 발생했습니다. 다시 시도해주세요.`);
+      Alert.alert('애러가 발생했습니다. 다시 시도해주세요.');
     },
   });
+
+  const renderItem = ({ item, index }: { item: any; index: number }) => (
+    <TouchableOpacity onPress={() => item.placeholder && openSelectModal()}>
+      <OotdItemBox width={Theme.width * 300} height={Theme.height * 300}>
+        {item.placeholder ? (
+          <Text style={styles.title}>+</Text>
+        ) : item.clothes.clothesImg ? (
+          <Image
+            source={{ uri: item.clothes.clothesImg }}
+            // style={styles.image}
+          />
+        ) : (
+          <Text style={styles.title}>{item.clothes.name}</Text>
+        )}
+      </OotdItemBox>
+    </TouchableOpacity>
+  );
 
   return (
     <>
@@ -167,22 +194,9 @@ const OotcPage = () => {
         <FlatList
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
-          onMomentumScrollEnd={() => {
-            console.log('Scrolling is End');
-          }}
           contentContainerStyle={styles.scrollViewContent}
           data={list}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity
-              onPress={() => {
-                index === list.length - 1 ? openSelectModal() : null;
-              }}
-            >
-              <OotdItemBox>
-                <Text style={styles.title}>{item.screen}</Text>
-              </OotdItemBox>
-            </TouchableOpacity>
-          )}
+          renderItem={renderItem}
         />
         <Modal
           animationType="slide"
@@ -301,7 +315,6 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   saveBtn: {
-    // paddingVertical: scale(10),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
@@ -316,7 +329,6 @@ const styles = StyleSheet.create({
     fontSize: Theme.fontSizes.fontSizes12,
   },
   closeBtn: {
-    // paddingVertical: scale(10),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 13,
@@ -335,7 +347,6 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     backgroundColor: COLOR.lightgrey,
     color: COLOR.black,
-
     marginVertical: 5,
   },
 });

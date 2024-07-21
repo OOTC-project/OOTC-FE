@@ -35,7 +35,6 @@ const ImageSelectBox = ({
   const [loading, setLoading] = useState(true);
 
   const scaleValue = useRef(new Animated.Value(0)).current;
-  console.log(item);
 
   useEffect(() => {
     if (modalVisible) {

@@ -170,9 +170,7 @@ export interface PostCodyType {
 export interface GetCodyType {
   statusCode: number;
   message: string;
-  data: {
-    data: GetCodyData[];
-  };
+  data: GetCodyData[];
 }
 
 export interface GetCodyData {

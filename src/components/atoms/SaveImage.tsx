@@ -47,47 +47,50 @@ const SaveImage = ({ index, data }: SaveImageProp) => {
     setModalVisible(!modalVisible);
   };
 
+  const renderItem = ({ item }: any) => (
+    <TouchableOpacity onPress={() => item.placeholder && setModalVisible(true)}>
+      <OotdItemBox width={Theme.width * 300} height={Theme.height * 300}>
+        {item.placeholder ? (
+          <Text style={styles.title}>+</Text>
+        ) : item.clothes.clothesImg ? (
+          <Image
+            source={{ uri: item.clothes.clothesImg }}
+            style={styles.image}
+          />
+        ) : (
+          <Text style={styles.title}>{item.clothes.name}</Text>
+        )}
+      </OotdItemBox>
+    </TouchableOpacity>
+  );
+
+  // Add a placeholder object for the "+" button
+  const modifiedData = data?.data ? [...data.data, { placeholder: true }] : [];
+
   return (
     <View style={styles.container}>
-      {data && data.data && data.data.data ? (
+      {modifiedData.length > 0 ? (
         <FlatList
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
-          onMomentumScrollEnd={() => {
-            console.log('Scrolling is End');
-          }}
           contentContainerStyle={styles.scrollViewContent}
-          data={data.data.data}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity>
-              <OotdItemBox width={screenWidth - 40} height={screenHeight / 2}>
-                {item.clothes.clothesImg ? (
-                  <Image source={{ uri: item.clothes.clothesImg }} />
-                ) : (
-                  <Text style={styles.title}>{item.clothes.name}</Text>
-                )}
-              </OotdItemBox>
-            </TouchableOpacity>
-          )}
+          data={modifiedData}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index.toString()}
         />
       ) : (
-        <TouchableOpacity
-          onPress={() => {
-            setModalVisible(true);
-          }}
-        >
-          <OotdItemBox width={screenWidth - 40} height={screenHeight / 2}>
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <OotdItemBox width={Theme.width * 300} height={Theme.height * 300}>
             <Text style={styles.title}>+</Text>
           </OotdItemBox>
         </TouchableOpacity>
       )}
+
       <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
+        onRequestClose={() => setModalVisible(!modalVisible)}
       >
         <View style={styles.centeredView}>
           <View style={styles.modal}>
@@ -103,9 +106,7 @@ const SaveImage = ({ index, data }: SaveImageProp) => {
                 keyboardType="default"
                 style={styles.textInput}
                 value={name}
-                onChangeText={text => {
-                  setName(text);
-                }}
+                onChangeText={text => setName(text)}
               />
             </View>
             <Pressable style={styles.saveBtn} onPress={handleSave}>
@@ -138,7 +139,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 10,
   },
-
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 13,
+    resizeMode: 'cover',
+  },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
@@ -187,7 +193,6 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     backgroundColor: COLOR.lightgrey,
     color: COLOR.black,
-
     marginVertical: 5,
   },
 });
