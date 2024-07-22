@@ -56,7 +56,6 @@ const OotcPage = () => {
     ? [...gatherAllClothes(data.data), { placeholder: true }]
     : [];
 
-  const [list, setList] = useState(allClothes);
   const [keyboardVisible, setKeyboardVisible] = useState(false);
 
   useEffect(() => {
@@ -167,22 +166,28 @@ const OotcPage = () => {
     },
   });
 
-  const renderItem = ({ item, index }: { item: any; index: number }) => (
-    <TouchableOpacity onPress={() => item.placeholder && openSelectModal()}>
-      <OotdItemBox width={Theme.width * 300} height={Theme.height * 300}>
-        {item.placeholder ? (
-          <Text style={styles.title}>+</Text>
-        ) : item.clothes.clothesImg ? (
-          <Image
-            source={{ uri: item.clothes.clothesImg }}
-            // style={styles.image}
-          />
-        ) : (
-          <Text style={styles.title}>{item.clothes.name}</Text>
-        )}
-      </OotdItemBox>
-    </TouchableOpacity>
-  );
+  const renderItem = ({ item, index }: { item: any; index: number }) => {
+    return (
+      <TouchableOpacity onPress={() => item.placeholder && openSelectModal()}>
+        <OotdItemBox width={Theme.width * 300} height={Theme.height * 300}>
+          {item.placeholder ? (
+            <Text style={styles.title}>+</Text>
+          ) : item && item.clothesImg ? (
+            <Image
+              source={{ uri: item.clothesImg }}
+              style={{
+                width: Theme.width * 300,
+                height: Theme.height * 300,
+                borderRadius: 18,
+              }}
+            />
+          ) : (
+            <Text style={styles.title}>{item ? item.name : ''}</Text>
+          )}
+        </OotdItemBox>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <>
@@ -195,7 +200,7 @@ const OotcPage = () => {
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.scrollViewContent}
-          data={list}
+          data={allClothes}
           renderItem={renderItem}
         />
         <Modal

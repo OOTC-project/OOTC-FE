@@ -23,25 +23,24 @@ function OotcItemsTabNavigator() {
     <TopTab.Navigator
       initialRouteName="OOTC"
       screenOptions={{
-        tabBarShowLabel: false,
-        tabBarIndicatorStyle: { backgroundColor: '#000' },
-        tabBarLabelStyle: { display: 'none' },
+        tabBarShowLabel: true, // 라벨을 표시하도록 설정
+        tabBarIndicatorStyle: { backgroundColor: '#fff' }, // 인디케이터 스타일
+        tabBarStyle: { backgroundColor: '#000' }, // 탭 배경을 검정색으로 설정
+        tabBarLabelStyle: { color: '#fff' }, // 라벨을 흰색으로 설정
       }}
     >
       <TopTab.Screen
         name="OOTC"
         component={Home}
         options={{
-          tabBarLabel: 'OOTC',
-          tabBarLabel: () => null,
+          tabBarLabel: 'ITEMS',
         }}
       />
       <TopTab.Screen
         name="ITEMS"
         component={OotcPage}
         options={{
-          tabBarLabel: 'ITEMS',
-          tabBarLabel: () => null,
+          tabBarLabel: 'ALL',
         }}
       />
     </TopTab.Navigator>
