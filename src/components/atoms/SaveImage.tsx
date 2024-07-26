@@ -49,7 +49,7 @@ const SaveImage = ({ index, data }: SaveImageProp) => {
 
   const renderItem = ({ item }: any) => (
     <TouchableOpacity onPress={() => item.placeholder && setModalVisible(true)}>
-      <OotdItemBox width={Theme.width * 300} height={Theme.height * 300}>
+      <OotdItemBox width={screenWidth} height={Theme.height * 300}>
         {item.placeholder ? (
           <Text style={styles.title}>+</Text>
         ) : item.clothes.clothesImg ? (
@@ -129,8 +129,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 2,
-    marginTop: 10,
   },
   scrollViewContent: { alignItems: 'center' },
   title: {
@@ -142,7 +140,6 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
-    borderRadius: 13,
     resizeMode: 'cover',
   },
   centeredView: {

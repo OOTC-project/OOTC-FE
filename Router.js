@@ -13,6 +13,7 @@ import LoginPage from './src/components/pages/login';
 import SignUpPage from './src/components/pages/signUp';
 import FindPage from './src/components/template/FindPage';
 import ModifyPage from './src/components/template/ModifyPage';
+import Theme from './src/utils/styleGuide';
 
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -23,10 +24,10 @@ function OotcItemsTabNavigator() {
     <TopTab.Navigator
       initialRouteName="OOTC"
       screenOptions={{
-        tabBarShowLabel: true, // 라벨을 표시하도록 설정
-        tabBarIndicatorStyle: { backgroundColor: '#fff' }, // 인디케이터 스타일
-        tabBarStyle: { backgroundColor: '#000' }, // 탭 배경을 검정색으로 설정
-        tabBarLabelStyle: { color: '#fff' }, // 라벨을 흰색으로 설정
+        tabBarShowLabel: true,
+        tabBarIndicatorStyle: { backgroundColor: '#fff' },
+        tabBarStyle: { backgroundColor: '#000' },
+        tabBarLabelStyle: { color: '#fff', lineHeight: Theme.height * 25 },
       }}
     >
       <TopTab.Screen

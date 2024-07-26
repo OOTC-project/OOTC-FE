@@ -152,6 +152,7 @@ const OotcPage = () => {
     setModalVisible(!modalVisible);
   };
 
+  const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
   const queryClient = useQueryClient();
 
@@ -161,7 +162,9 @@ const OotcPage = () => {
       queryClient.invalidateQueries('GetUserInfo');
       setPhotoData({ name: '', url: '', position: '', tag: '', des: '' });
     },
-    onError: () => {
+    onError: e => {
+      console.log(e);
+
       Alert.alert('애러가 발생했습니다. 다시 시도해주세요.');
     },
   });
@@ -169,16 +172,15 @@ const OotcPage = () => {
   const renderItem = ({ item, index }: { item: any; index: number }) => {
     return (
       <TouchableOpacity onPress={() => item.placeholder && openSelectModal()}>
-        <OotdItemBox width={Theme.width * 300} height={Theme.height * 300}>
+        <OotdItemBox width={screenWidth} height={Theme.height * 300}>
           {item.placeholder ? (
             <Text style={styles.title}>+</Text>
           ) : item && item.clothesImg ? (
             <Image
               source={{ uri: item.clothesImg }}
               style={{
-                width: Theme.width * 300,
+                width: screenWidth,
                 height: Theme.height * 300,
-                borderRadius: 18,
               }}
             />
           ) : (

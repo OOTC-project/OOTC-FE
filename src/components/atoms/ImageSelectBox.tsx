@@ -139,7 +139,6 @@ const ImageSelectBox = ({
 export default ImageSelectBox;
 
 const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {

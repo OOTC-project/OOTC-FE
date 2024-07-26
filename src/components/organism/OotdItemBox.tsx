@@ -33,11 +33,7 @@ const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: COLOR.black,
-    borderWidth: 4.5,
-    marginTop: 5,
-    marginVertical: 5,
-    borderRadius: 18,
+    marginBottom: 5,
   },
   box: {
     opacity: 0.7,

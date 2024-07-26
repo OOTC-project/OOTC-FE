@@ -14,6 +14,7 @@ import { RootState } from '../../redux/reducer';
 import { AntDesign } from '@expo/vector-icons';
 import { removeItem } from '../../redux/slice/itemSlice';
 import { COLOR } from '../../layout/default';
+import Theme from '../../utils/styleGuide';
 
 const SelectImage = () => {
   const dispatch = useDispatch();
@@ -57,9 +58,9 @@ const SelectImage = () => {
                     key={e.id}
                     style={{
                       ...styles.box,
-                      width: screenWidth / 3,
-                      height: screenWidth / 3,
-                      marginVertical: 20,
+                      width: Theme.width * 120,
+                      height: Theme.height * 120,
+                      marginVertical: Theme.height * 10,
                     }}
                   >
                     <TouchableOpacity
@@ -72,7 +73,11 @@ const SelectImage = () => {
                       source={{
                         uri: e.img,
                       }}
-                      style={{ width: '100%', height: '100%' }}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: 16,
+                      }}
                     />
                   </View>
                 ))}
@@ -102,7 +107,6 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 50,
     borderWidth: 2,
-    borderColor: COLOR.red,
     backgroundColor: COLOR.black,
     position: 'absolute',
     bottom: 0,
@@ -125,7 +129,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   box: {
-    backgroundColor: COLOR.red,
+    borderRadius: 16,
     justifyContent: 'center',
     alignItems: 'center',
     margin: 5,
@@ -137,5 +141,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 130,
     padding: 5,
+    margin: 20,
   },
 });
