@@ -121,6 +121,8 @@ const OotcPage = () => {
   }>({ name: '', url: '', position: '', tag: '', des: '' });
 
   const handleSave = () => {
+    console.log('handleSave called');
+    console.log('photoData:', photoData);
     if (photoData.position && photoData.url) {
       setModalVisible(!modalVisible);
       PostNewClothes({
@@ -158,13 +160,13 @@ const OotcPage = () => {
 
   const { mutate: PostNewClothes } = useMutation(PostClothes, {
     onSuccess: () => {
+      console.log('PostNewClothes success');
       Alert.alert('등록이 완료되었습니다.');
       queryClient.invalidateQueries('GetUserInfo');
       setPhotoData({ name: '', url: '', position: '', tag: '', des: '' });
     },
     onError: e => {
-      console.log(e);
-
+      console.error('PostNewClothes error:', e);
       Alert.alert('애러가 발생했습니다. 다시 시도해주세요.');
     },
   });

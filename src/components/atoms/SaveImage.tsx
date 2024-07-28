@@ -80,7 +80,7 @@ const SaveImage = ({ index, data }: SaveImageProp) => {
         />
       ) : (
         <TouchableOpacity onPress={() => setModalVisible(true)}>
-          <OotdItemBox width={Theme.width * 300} height={Theme.height * 300}>
+          <OotdItemBox width={screenWidth} height={Theme.height * 300}>
             <Text style={styles.title}>+</Text>
           </OotdItemBox>
         </TouchableOpacity>

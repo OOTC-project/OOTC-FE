@@ -68,6 +68,7 @@ const ImagePickerExample = ({
       aspect: width ? [4, 3] : [3, 4],
       quality: 1,
     });
+    console.log(result);
 
     if (result.assets && !result.canceled) {
       setImage(result.assets[0].uri);
