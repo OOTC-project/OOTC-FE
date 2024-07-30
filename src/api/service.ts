@@ -228,7 +228,7 @@ export const GetOpenAi: MutationFunction<
 > = async variables => {
   const { city, country } = variables;
   const { data } = await instance.get<GetOpenAiType>(
-    `${process.env.EXPO_PUBLIC_API_URL}/open-ai?${city}&${country}`,
+    `${process.env.EXPO_PUBLIC_API_URL}/open-ai?city=${city}&country=${country}`,
   );
   return data;
 };

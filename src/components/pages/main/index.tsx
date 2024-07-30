@@ -68,7 +68,7 @@ const Main = () => {
 
   const { data, refetch } = useQuery(
     'GetOpenAi',
-    () => GetOpenAi({ city, country }),
+    () => GetOpenAi({ city, country: 'KR' }),
     {
       retry: 1,
       enabled: false,
@@ -124,6 +124,32 @@ const Main = () => {
     }
   };
 
+  const { englishPart, koreanPart } = (() => {
+    const content = data?.data?.message?.content || '';
+
+    const koreanStartIndex = content.search(/[\uac00-\ud7af]/);
+
+    let englishText = '';
+    let koreanText = '';
+
+    if (koreanStartIndex !== -1) {
+      englishText = content.substring(0, koreanStartIndex).trim();
+      koreanText = content.substring(koreanStartIndex).trim();
+    } else {
+      englishText = content.trim();
+      koreanText = '';
+    }
+
+    const cleanedKoreanText = koreanText
+      .replace(/^(Korean:|한국어:)\s*/, '')
+      .trim();
+
+    return {
+      englishPart: englishText,
+      koreanPart: cleanedKoreanText,
+    };
+  })();
+
   return (
     <View style={styles.container}>
       <View style={styles.aiBox}>
@@ -136,7 +162,7 @@ const Main = () => {
         </View>
         {step > 1 && data?.data.message.content ? (
           <ScrollView style={styles.solutionBox}>
-            <Text style={styles.solution}>{data?.data.message.content}</Text>
+            <Text style={styles.solution}>{koreanPart}</Text>
           </ScrollView>
         ) : null}
         {step === 1 ? (
@@ -223,7 +249,8 @@ const styles = StyleSheet.create({
     maxHeight: screenWidth / 3,
   },
   solution: {
-    fontSize: scale(15),
+    fontSize: Theme.fontSizes.fontSizes12,
+    color: COLOR.black,
     padding: 10,
   },
 });

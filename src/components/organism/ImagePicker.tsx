@@ -6,10 +6,9 @@ import {
   Text,
   Image,
   Keyboard,
+  Alert,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { COLOR } from '../../layout/default';
-import Theme from '../../utils/styleGuide';
 
 interface ImagePickerExampleProps {
   photoData?: {
@@ -38,8 +37,8 @@ const ImagePickerExample = ({
   height,
   width,
 }: ImagePickerExampleProps) => {
-  const [image, setImage] = useState('');
-  const [keyboardVisible, setKeyboardVisible] = useState(false);
+  const [imageUri, setImageUri] = useState<string>('');
+  const [keyboardVisible, setKeyboardVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
@@ -63,19 +62,20 @@ const ImagePickerExample = ({
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: width ? [4, 3] : [3, 4],
       quality: 1,
     });
-    console.log(result);
 
-    if (result.assets && !result.canceled) {
-      setImage(result.assets[0].uri);
+    if (!result.canceled) {
+      setImageUri(result.assets[0].uri);
       setPhotoData(prevData => ({
         ...prevData,
-        url: result.assets ? result.assets[0].uri : '',
+        url: result.assets[0].uri, // Set local URI to photoData
       }));
+    } else {
+      Alert.alert('No image selected', 'You did not select any image.');
     }
   };
 
@@ -88,9 +88,9 @@ const ImagePickerExample = ({
       )}
       <TouchableOpacity onPress={pickImage}>
         <View style={[styles.imageContainer, { height: height }]}>
-          {image !== '' ? (
+          {imageUri ? (
             <Image
-              source={{ uri: image }}
+              source={{ uri: imageUri }}
               style={styles.image}
               resizeMode="contain"
             />
@@ -116,12 +116,11 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     marginBottom: 20,
     height: 60,
+    backgroundColor: '#007BFF', // Added background color for visibility
   },
-
   buttonText: {
     color: 'white',
-    fontSize: Theme.fontSizes.fontSizes18,
-    marginTop: Theme.height * 10,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   addImage: {
@@ -130,12 +129,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '100%',
   },
-  addText: { fontSize: 20, color: COLOR.white },
+  addText: {
+    fontSize: 20,
+    color: 'white',
+  },
   imageContainer: {
     width: '100%',
-    // aspectRatio: 4 / 3,
     borderWidth: 1,
-    borderColor: COLOR.darkgray,
+    borderColor: '#CCCCCC',
     borderRadius: 13,
     marginBottom: 5,
   },
