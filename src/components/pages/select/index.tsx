@@ -13,9 +13,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import {
+  NavigationProp,
+  RouteProp,
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { COLOR } from '../../../layout/default';
 import Theme, { scale } from '../../../utils/styleGuide';
@@ -171,6 +177,18 @@ const OotcPage = () => {
     },
   });
 
+  const flatListRef = useRef<FlatList>(null);
+
+  const route = useRoute<RouteProp<RootStackParamList, 'ITEMS'>>();
+
+  const { screen } = route.params || {};
+
+  useFocusEffect(() => {
+    if (flatListRef.current && screen) {
+      flatListRef.current.scrollToEnd({ animated: true });
+    }
+  });
+
   const renderItem = ({ item, index }: { item: any; index: number }) => {
     return (
       <TouchableOpacity onPress={() => item.placeholder && openSelectModal()}>
@@ -201,6 +219,7 @@ const OotcPage = () => {
         resizeMode="cover"
       >
         <FlatList
+          ref={flatListRef}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.scrollViewContent}

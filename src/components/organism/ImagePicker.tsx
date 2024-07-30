@@ -116,7 +116,8 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     marginBottom: 20,
     height: 60,
-    backgroundColor: '#007BFF', // Added background color for visibility
+    backgroundColor: '#007BFF',
+    marginTop: 30,
   },
   buttonText: {
     color: 'white',

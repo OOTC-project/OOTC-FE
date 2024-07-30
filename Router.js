@@ -27,7 +27,12 @@ function OotcItemsTabNavigator() {
         tabBarShowLabel: true,
         tabBarIndicatorStyle: { backgroundColor: '#fff' },
         tabBarStyle: { backgroundColor: '#000' },
-        tabBarLabelStyle: { color: '#fff', lineHeight: Theme.height * 25 },
+        tabBarLabelStyle: {
+          color: '#fff',
+          lineHeight: Theme.height * 25,
+          marginTop: 30,
+          fontSize: 14,
+        },
       }}
     >
       <TopTab.Screen
