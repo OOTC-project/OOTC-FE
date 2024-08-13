@@ -28,14 +28,22 @@ const SignUpBox = () => {
       Alert.alert(`등록이 완료되었습니다.`);
       navigation.goBack();
     },
-    onError: (e: AxiosError) => {
-      if (e.response?.status === 400) {
-        Alert.alert(`비밀번호와 비밀번호 확인이 일치하지 않습니다.`);
-      } else if (e.response?.status === 409) {
-        Alert.alert(`아이디 형식을 확인해주세요.`);
-      } else {
-        Alert.alert(`알 수 없는 오류가 발생했습니다. 다시 시도해주세요.`);
-      }
+    onError: (e: any) => {
+      console.log(
+        e.response.data.message
+          .split(',')
+          .map((line: string) => line.trim())
+          .filter((line: string) => /[가-힣]/.test(line))
+          .join('\n'),
+      );
+
+      Alert.alert(
+        e.response.data.message
+          .split(',')
+          .map((line: string) => line.trim())
+          .filter((line: string) => /[가-힣]/.test(line))
+          .join('\n'),
+      );
     },
   });
 
