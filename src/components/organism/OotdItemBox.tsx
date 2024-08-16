@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   box: {
-    opacity: 0.7,
     backgroundColor: COLOR.black,
     display: 'flex',
     justifyContent: 'center',

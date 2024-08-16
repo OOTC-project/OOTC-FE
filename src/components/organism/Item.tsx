@@ -43,7 +43,7 @@ const Item = ({
 export default Item;
 const styles = StyleSheet.create({
   box: {
-    opacity: 0.7,
+    opacity: 0.9,
     marginTop: Theme.width * 5,
     marginHorizontal: Theme.width * 5,
     height: Theme.width * 80,
