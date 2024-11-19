@@ -6,7 +6,7 @@ import {
   StatusBar,
   Alert,
 } from 'react-native';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ProfileImage from '../molecules/ProfileImage';
 import ProfileInfo from '../molecules/ProfileInfo';
 import * as ImagePicker from 'expo-image-picker';
@@ -19,6 +19,7 @@ interface ProfileBoxProps {
   height?: number;
   infoData?: GetUserInfoType;
 }
+
 const ProfileBox = ({ width, height, infoData }: ProfileBoxProps) => {
   const [image, setImage] = useState('');
   const [modify, setModify] = useState(false);

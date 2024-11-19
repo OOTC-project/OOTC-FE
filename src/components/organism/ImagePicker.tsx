@@ -43,15 +43,11 @@ const ImagePickerExample = ({
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
-      () => {
-        setKeyboardVisible(true);
-      },
+      () => setKeyboardVisible(true),
     );
     const keyboardDidHideListener = Keyboard.addListener(
       'keyboardDidHide',
-      () => {
-        setKeyboardVisible(false);
-      },
+      () => setKeyboardVisible(false),
     );
 
     return () => {
@@ -61,7 +57,7 @@ const ImagePickerExample = ({
   }, []);
 
   const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
+    const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: width ? [4, 3] : [3, 4],
@@ -72,7 +68,7 @@ const ImagePickerExample = ({
       setImageUri(result.assets[0].uri);
       setPhotoData(prevData => ({
         ...prevData,
-        url: result.assets[0].uri, // Set local URI to photoData
+        url: result.assets[0].uri,
       }));
     } else {
       Alert.alert('No image selected', 'You did not select any image.');

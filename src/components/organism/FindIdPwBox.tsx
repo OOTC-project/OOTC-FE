@@ -41,7 +41,6 @@ const FindIdPwBox = ({ what, formData, handleChange }: FindIdPwBoxProp) => {
 };
 
 export default FindIdPwBox;
-const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {

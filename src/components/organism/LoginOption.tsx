@@ -1,8 +1,7 @@
 import { View, StyleSheet } from 'react-native';
-import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import LoginOptionButton from '../molecules/LoginOptionButton';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { scale } from '../../utils/styleGuide';
+import { NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../types';
 
 const LoginOption = () => {

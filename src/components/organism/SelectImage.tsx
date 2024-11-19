@@ -7,7 +7,7 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Count from '../molecules/Count';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducer';
@@ -19,11 +19,10 @@ import Theme from '../../utils/styleGuide';
 const SelectImage = () => {
   const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
-  const handleModal = () => {
-    setModalVisible(true);
-  };
-
   const { counter: itemCounter } = useSelector((state: RootState) => state);
+
+  const handleModal = () => setModalVisible(true);
+
   const handleDelete = (id: number) => {
     dispatch(removeItem(id));
     setModalVisible(false);
@@ -31,14 +30,12 @@ const SelectImage = () => {
 
   return (
     <>
-      {itemCounter.length > 0 ? (
+      {itemCounter.length > 0 && (
         <>
           <TouchableOpacity style={styles.container} onPress={handleModal}>
             <Image
-              source={{
-                uri: itemCounter.length > 0 ? itemCounter[0].img : '',
-              }}
-              style={{ width: '100%', height: '100%', borderRadius: 100 }}
+              source={{ uri: itemCounter[0]?.img }}
+              style={styles.image}
               resizeMode="cover"
             />
             <Count />
@@ -47,21 +44,17 @@ const SelectImage = () => {
           <Modal
             animationType="slide"
             visible={modalVisible}
-            onRequestClose={() => {
-              setModalVisible(!modalVisible);
-            }}
+            onRequestClose={() => setModalVisible(!modalVisible)}
           >
             <View style={styles.modalContainer}>
               <View style={styles.boxContainer}>
                 {itemCounter.map(e => (
                   <View
                     key={e.id}
-                    style={{
-                      ...styles.box,
-                      width: Theme.width * 120,
-                      height: Theme.height * 120,
-                      marginVertical: Theme.height * 10,
-                    }}
+                    style={[
+                      styles.box,
+                      { width: Theme.width * 120, height: Theme.height * 120 },
+                    ]}
                   >
                     <TouchableOpacity
                       style={styles.deleteButton}
@@ -69,21 +62,12 @@ const SelectImage = () => {
                     >
                       <AntDesign name="minuscircleo" size={17} color="#fff" />
                     </TouchableOpacity>
-                    <Image
-                      source={{
-                        uri: e.img,
-                      }}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        borderRadius: 16,
-                      }}
-                    />
+                    <Image source={{ uri: e.img }} style={styles.boxImage} />
                   </View>
                 ))}
               </View>
               <Pressable
-                onPress={() => setModalVisible(!modalVisible)}
+                onPress={() => setModalVisible(false)}
                 style={styles.closeBtn}
               >
                 <AntDesign name="closecircleo" size={50} color="#bcbcbc" />
@@ -91,15 +75,12 @@ const SelectImage = () => {
             </View>
           </Modal>
         </>
-      ) : null}
+      )}
     </>
   );
 };
 
 export default SelectImage;
-
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
@@ -115,13 +96,17 @@ const styles = StyleSheet.create({
     marginRight: 10,
     zIndex: 9999,
   },
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 100,
+  },
   modalContainer: {
     backgroundColor: COLOR.black,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   boxContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -134,6 +119,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 5,
     position: 'relative',
+  },
+  boxImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 16,
   },
   closeBtn: { marginTop: 50 },
   deleteButton: {

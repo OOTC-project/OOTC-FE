@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Button from '../atoms/Button';
 import FindIdPwBox from './FindIdPwBox';
-import Theme, { scale } from '../../utils/styleGuide';
+import Theme from '../../utils/styleGuide';
 import useFormData from '../../utils/useFormData';
 import { useMutation } from 'react-query';
 import { PostFindId, PatchResetPassword } from '../../api/auth';
@@ -21,7 +21,6 @@ export interface FindIdPwBoxDataType {
   email: string;
 }
 
-// Custom error type
 interface ApiError {
   response: {
     status: number;
@@ -67,12 +66,12 @@ const FindBox = ({ what }: FindBoxProps) => {
 
   const { mutate: resetPassword } = useMutation(PatchResetPassword, {
     onSuccess: () => {
-      Alert.alert(`이메일로 비밀번호가 전송되었습니다.`);
+      Alert.alert('이메일로 비밀번호가 전송되었습니다.');
       navigation.goBack();
     },
     onError: (e: ApiError) => {
       if (e.response.status === 404) {
-        Alert.alert(`해당 계정의 정보가 없습니다.`);
+        Alert.alert('해당 계정의 정보가 없습니다.');
       }
     },
   });

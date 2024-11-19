@@ -10,11 +10,11 @@ import {
 import React from 'react';
 import { BlurView } from 'expo-blur';
 import ImageSelectBox from '../atoms/ImageSelectBox';
-import Theme, { scale } from '../../utils/styleGuide';
 import EmptyImagesBox from '../atoms/EmptyImagesBox';
 import { COLOR } from '../../layout/default';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../types';
+import Theme, { scale } from '../../utils/styleGuide';
 
 interface CategoryItemsProps {
   modalVisible: boolean;
@@ -35,36 +35,28 @@ const CategoryItemsModal = ({
   setSelectTitle,
   data,
 }: CategoryItemsProps) => {
-  const filteredClothes =
-    data &&
-    data.data &&
-    data.data
-      .find((item: { name: string }) => item.name === selectTitle)
-      ?.clothes.slice(0, 9);
+  const filteredClothes = data?.data
+    .find((item: { name: string }) => item.name === selectTitle)
+    ?.clothes.slice(0, 9);
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const handlePress = () => {
-    selectTitle && navigation.navigate('ITEMS', { screen: selectTitle });
+    if (selectTitle) {
+      navigation.navigate('ITEMS', { screen: selectTitle });
+    }
     setModalVisible(false);
   };
 
   return (
     <Modal
-      transparent={true}
+      transparent
       visible={modalVisible}
-      onRequestClose={() => {
-        setModalVisible(!modalVisible);
-      }}
+      onRequestClose={() => setModalVisible(!modalVisible)}
     >
-      <Pressable
-        style={{
-          flex: 1,
-        }}
-        onPress={() => setModalVisible(false)}
-      ></Pressable>
+      <Pressable style={{ flex: 1 }} onPress={() => setModalVisible(false)} />
       <Animated.View style={[styles.modal, { transform: [{ scale: 1 }] }]}>
-        <View style={{ borderRadius: 30, overflow: 'hidden' }}>
+        <View style={styles.modalContent}>
           <BlurView
             intensity={100}
             tint="systemThickMaterialDark"
@@ -85,7 +77,7 @@ const CategoryItemsModal = ({
                 ))
               ) : (
                 <EmptyImagesBox
-                  height={'30%'}
+                  height="30%"
                   margin={scale(0.3)}
                   borderRadius={5}
                   size={50}
@@ -95,7 +87,6 @@ const CategoryItemsModal = ({
             </View>
           </BlurView>
         </View>
-
         <Text
           style={[
             styles.modalTitle,
@@ -127,16 +118,19 @@ const styles = StyleSheet.create({
     top: (screenWidth / 1.3 + 10) / 2,
     position: 'absolute',
   },
+  modalContent: {
+    borderRadius: 30,
+    overflow: 'hidden',
+  },
   modalBox: {
     alignItems: 'center',
     justifyContent: 'center',
-    display: 'flex',
-    width: '100%',
     flexWrap: 'wrap',
     borderRadius: 32,
     padding: 5,
     minHeight: 290,
     backgroundColor: COLOR.black,
+    width: '100%',
   },
   gridContainer: {
     flexDirection: 'row',

@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction, useState } from 'react';
 import {
   View,
   Text,
@@ -6,34 +7,27 @@ import {
   Pressable,
   Modal,
 } from 'react-native';
-import React from 'react';
 import ImageBoxContainer from '../molecules/ImageBoxContainer';
 import { COLOR } from '../../layout/default';
 
 interface ItemModalProps {
   modalVisible: boolean;
-  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalVisible: Dispatch<SetStateAction<boolean>>;
 }
+
 const ItemModal = ({ modalVisible, setModalVisible }: ItemModalProps) => {
+  const handleClose = () => {
+    setModalVisible(false);
+  };
+
   return (
-    <Modal
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={() => {
-        setModalVisible(!modalVisible);
-      }}
-    >
-      <Pressable
-        style={{
-          flex: 1,
-        }}
-        onPress={() => setModalVisible(false)}
-      ></Pressable>
+    <Modal transparent visible={modalVisible} onRequestClose={handleClose}>
+      <Pressable style={styles.overlay} onPress={handleClose} />
       <View style={styles.modal}>
-        <Text style={styles.modalTitle}>item</Text>
-        <View style={styles.modalBox}>
-          <Pressable onPress={() => setModalVisible(!modalVisible)}>
-            <Text>취소</Text>
+        <Text style={styles.modalTitle}>Item</Text>
+        <View style={styles.modalContent}>
+          <Pressable onPress={handleClose}>
+            <Text style={styles.cancelButtonText}>취소</Text>
           </Pressable>
         </View>
         <ImageBoxContainer />
@@ -43,29 +37,41 @@ const ItemModal = ({ modalVisible, setModalVisible }: ItemModalProps) => {
 };
 
 export default ItemModal;
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
+
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  modal: {
-    width: screenWidth / 1.3,
-    height: screenWidth / 1.3 + 30,
-    left: (screenWidth - screenWidth / 1.3) / 2,
-    top: (screenWidth / 1.3 + 30) / 2,
-    position: 'absolute',
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  modalBox: {
+  modal: {
+    position: 'absolute',
+    width: screenWidth * 0.75,
+    height: screenWidth * 0.75 + 30,
+    left: (screenWidth - screenWidth * 0.75) / 2,
+    top: (screenHeight - (screenWidth * 0.75 + 30)) / 2,
     backgroundColor: COLOR.red,
-    opacity: 0.7,
-    height: '100%',
+    borderRadius: 16,
+    padding: 16,
+    alignItems: 'center',
+  },
+  modalContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
-    borderRadius: 32,
   },
   modalTitle: {
-    fontSize: 36,
+    fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
     color: COLOR.white,
-    marginBottom: 10,
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  cancelButtonText: {
+    fontSize: 16,
+    color: COLOR.white,
+    textAlign: 'center',
   },
 });

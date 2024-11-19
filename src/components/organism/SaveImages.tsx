@@ -1,5 +1,4 @@
 import { View, StyleSheet } from 'react-native';
-import React from 'react';
 import SaveImage from '../atoms/SaveImage';
 import { GetCodyType } from '../../api/types';
 

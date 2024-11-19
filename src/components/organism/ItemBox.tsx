@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { COLOR } from '../../layout/default';
 
 interface ItemBoxProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
   selected?: boolean;
-  key: string;
 }
 
-const ItemBox = ({ children, selected }: ItemBoxProps) => {
+const ItemBox = ({ children, selected = false }: ItemBoxProps) => {
   return (
     <View style={[styles.container, selected && styles.selected]}>
       {children}
     </View>
   );
 };
+
 export default ItemBox;
 
 const styles = StyleSheet.create({
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: 10,
     marginHorizontal: 10,
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: COLOR.black,
@@ -33,6 +32,6 @@ const styles = StyleSheet.create({
   },
   selected: {
     borderColor: COLOR.red,
-    borderWidth: 1,
+    borderWidth: 2,
   },
 });

@@ -10,18 +10,13 @@ interface AiAnimationProps {
 
 const AiAnimation = ({ step }: AiAnimationProps) => {
   const getImageUri = () => {
-    switch (step) {
-      case 0:
-        return 'https://github.com/user-attachments/assets/85b378fa-5c71-4ee7-b1a1-d04323df24da';
-      case 1:
-        return 'https://github.com/user-attachments/assets/af4c95ee-e76d-4cdb-9164-6857e8a60aa0';
-      case 2:
-        return 'https://github.com/user-attachments/assets/bfa5f2ee-45dd-46ba-947f-c70605558331';
-      case 3:
-        return 'https://github.com/user-attachments/assets/82e59f03-290f-48a2-bd23-4c35c50dec3a';
-      default:
-        return '';
-    }
+    const imageUris: { [key: number]: string } = {
+      0: 'https://github.com/user-attachments/assets/85b378fa-5c71-4ee7-b1a1-d04323df24da',
+      1: 'https://github.com/user-attachments/assets/af4c95ee-e76d-4cdb-9164-6857e8a60aa0',
+      2: 'https://github.com/user-attachments/assets/bfa5f2ee-45dd-46ba-947f-c70605558331',
+      3: 'https://github.com/user-attachments/assets/82e59f03-290f-48a2-bd23-4c35c50dec3a',
+    };
+    return imageUris[step] || '';
   };
 
   return (

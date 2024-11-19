@@ -1,13 +1,13 @@
-import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { COLOR } from '../../layout/default';
+import { ReactNode } from 'react';
 
 interface OotdItemContainerProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 const OotdItemContainer = ({ children }: OotdItemContainerProps) => {
-  return <View style={[styles.container]}>{children}</View>;
+  return <View style={styles.container}>{children}</View>;
 };
 
 export default OotdItemContainer;

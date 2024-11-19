@@ -5,7 +5,7 @@ import {
   ScrollView,
   Keyboard,
 } from 'react-native';
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import InputBox from '../molecules/InputBox';
 
 interface LoginBoxProp {
@@ -19,33 +19,37 @@ interface LoginBoxProp {
   };
   handleChange: (value: string, name: string) => void;
 }
-const LoginBox = ({ signUp, formData, handleChange }: LoginBoxProp) => {
-  const [KeyboardOpen, setKeyboardOpen] = useState(false);
-  const keyboardDidShowListener = Keyboard.addListener(
-    'keyboardDidShow',
-    () => {
+
+const LoginBox = ({ signUp = false, formData, handleChange }: LoginBoxProp) => {
+  const [isKeyboardOpen, setKeyboardOpen] = useState(false);
+
+  useEffect(() => {
+    const keyboardShowListener = Keyboard.addListener('keyboardDidShow', () => {
       setKeyboardOpen(true);
-    },
-  );
-  const keyboardDidHideListener = Keyboard.addListener(
-    'keyboardDidHide',
-    () => {
+    });
+    const keyboardHideListener = Keyboard.addListener('keyboardDidHide', () => {
       setKeyboardOpen(false);
-    },
-  );
+    });
+
+    return () => {
+      keyboardShowListener.remove();
+      keyboardHideListener.remove();
+    };
+  }, []);
 
   return (
     <View style={styles.container}>
       <ScrollView
-        style={{
-          height: signUp ? (KeyboardOpen ? 300 : null) : null,
-        }}
+        style={[
+          styles.scrollView,
+          signUp && isKeyboardOpen ? { height: 300 } : null,
+        ]}
       >
         {signUp && (
           <InputBox
             title="이름"
             placeHolder="예) ootc"
-            autoFocus={true}
+            autoFocus
             handleChange={handleChange}
             name="name"
             formData={formData.name}
@@ -69,16 +73,15 @@ const LoginBox = ({ signUp, formData, handleChange }: LoginBoxProp) => {
         )}
         <InputBox
           title="비밀번호"
-          secureTextEntry={true}
+          secureTextEntry
           formData={formData.pw}
           handleChange={handleChange}
           name="pw"
         />
-
         {signUp && (
           <InputBox
             title="비밀번호 확인"
-            secureTextEntry={true}
+            secureTextEntry
             handleChange={handleChange}
             name="pwCheck"
             formData={formData.pwCheck}
@@ -90,6 +93,7 @@ const LoginBox = ({ signUp, formData, handleChange }: LoginBoxProp) => {
 };
 
 export default LoginBox;
+
 const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
@@ -97,5 +101,8 @@ const styles = StyleSheet.create({
     width: screenWidth,
     paddingRight: 15,
     paddingLeft: 15,
+  },
+  scrollView: {
+    flex: 1,
   },
 });
