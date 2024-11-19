@@ -32,6 +32,7 @@ const SaveImage = ({ index, data }: SaveImageProp) => {
     position: '',
   });
   const [name, setName] = useState('');
+
   const handleSave = () => {
     setModalVisible(!modalVisible);
     setPhotoData(prevData => ({ ...prevData, name: name }));
@@ -43,7 +44,6 @@ const SaveImage = ({ index, data }: SaveImageProp) => {
       url: '',
       position: '',
     });
-
     setModalVisible(!modalVisible);
   };
 
@@ -106,7 +106,7 @@ const SaveImage = ({ index, data }: SaveImageProp) => {
                 keyboardType="default"
                 style={styles.textInput}
                 value={name}
-                onChangeText={text => setName(text)}
+                onChangeText={setName}
               />
             </View>
             <Pressable style={styles.saveBtn} onPress={handleSave}>

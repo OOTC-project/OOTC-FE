@@ -13,13 +13,17 @@ import { useDispatch } from 'react-redux';
 import { addItem } from '../../redux/slice/itemSlice';
 import { COLOR } from '../../layout/default';
 
+// Define the interface for the component props
 interface ImageSelectBoxProps {
   height: number;
   margin: number;
   borderRadius: number;
   select: number;
   setSelect: React.Dispatch<React.SetStateAction<number>>;
-  item: any;
+  item: {
+    id: number;
+    clothesImg: string;
+  };
 }
 
 const ImageSelectBox = ({
@@ -30,9 +34,9 @@ const ImageSelectBox = ({
   setSelect,
   item,
 }: ImageSelectBoxProps) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [imgLoading, setImgLoading] = useState(true);
-  const [loading, setLoading] = useState(true);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [imgLoading, setImgLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const scaleValue = useRef(new Animated.Value(0)).current;
 
@@ -59,18 +63,9 @@ const ImageSelectBox = ({
   const handleClick = (id: number, img: string) => {
     setSelect(1);
 
-    const newItem = { id: id, img: img };
+    const newItem = { id, img };
     dispatch(addItem(newItem));
   };
-
-  // const { data } = useQuery(
-  //   'GetClothesDetail',
-  //   () => GetClothesDetail({ id }),
-  //   {
-  //     retry: 0,
-  //     onSuccess: e => {},
-  //   },
-  // );
 
   return (
     <View style={[styles.container, { height, margin, borderRadius }]}>
@@ -103,13 +98,6 @@ const ImageSelectBox = ({
         <Animated.View
           style={[styles.modal, { transform: [{ scale: scaleValue }] }]}
         >
-          {/* {imgLoading ? (
-        <ActivityIndicator
-          color="#000"
-          size="large"
-          style={styles.loadingIndicator}
-        />
-      ) : ( */}
           <TouchableOpacity
             onPress={() => handleClick(item.id, item.clothesImg)}
           >
@@ -128,8 +116,6 @@ const ImageSelectBox = ({
               onLoad={() => setImgLoading(false)}
             />
           </TouchableOpacity>
-
-          {/* )} */}
         </Animated.View>
       </Modal>
     </View>

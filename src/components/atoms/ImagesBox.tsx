@@ -17,7 +17,7 @@ interface ImageBoxProps {
 }
 
 const ImageBox = ({ borderRadius, size, data }: ImageBoxProps) => {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState<number>(0);
 
   useEffect(() => {
     const randomSpeed = Math.floor(Math.random() * 3000) + 1000;

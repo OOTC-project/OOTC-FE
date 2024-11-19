@@ -1,6 +1,6 @@
 import { View, StyleSheet, FlatList } from 'react-native';
 import React from 'react';
-import Theme, { scale, verticalScale } from '../../utils/styleGuide';
+import Theme, { scale } from '../../utils/styleGuide';
 import EmptyImagesBox from '../atoms/EmptyImagesBox';
 import ImageBox from '../atoms/ImagesBox';
 import { COLOR } from '../../layout/default';
@@ -20,19 +20,11 @@ const ImageBoxContainer = ({ data }: ImageBoxContainerProps) => {
           numColumns={3}
           keyExtractor={(item, index) => index.toString()}
           contentContainerStyle={styles.flatListContent}
-          renderItem={({ item }) => {
-            return (
-              <>
-                {item ? (
-                  <ImageBox
-                    borderRadius={5}
-                    size={imageSize}
-                    data={data.clothes}
-                  />
-                ) : null}
-              </>
-            );
-          }}
+          renderItem={({ item }) =>
+            item ? (
+              <ImageBox borderRadius={5} size={imageSize} data={data.clothes} />
+            ) : null
+          }
         />
       ) : (
         <EmptyImagesBox

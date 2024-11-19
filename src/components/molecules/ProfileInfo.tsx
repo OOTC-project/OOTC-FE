@@ -43,7 +43,6 @@ const ProfileInfo = ({
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const handleModify = () => {
-    // navigation.navigate('ModifyPage');
     setModify(true);
   };
   const queryClient = useQueryClient();
@@ -76,9 +75,6 @@ const ProfileInfo = ({
         { text: '취소', onPress: () => {}, style: 'cancel' },
         {
           text: '삭제',
-          // onPress: () => {
-          //   console.log('삭제');
-          // },
           style: 'destructive',
         },
       ],

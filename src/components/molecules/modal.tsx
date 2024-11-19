@@ -24,9 +24,9 @@ const ModalBox = ({
     >
       <View style={styles.centeredView}>
         <Pressable onPress={() => setModalVisible(!modalVisible)}>
-          <Text>Hide sdsModal</Text>
+          <Text>Hide Modal</Text>
         </Pressable>
-        {/* {children}s */}
+        {children}
       </View>
     </Modal>
   );

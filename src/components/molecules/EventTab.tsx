@@ -16,6 +16,7 @@ const EventTab = ({ children }: EventTabProps) => {
       { cancelable: false },
     );
   };
+
   return (
     <TouchableOpacity style={styles.container} onPress={handlePress}>
       <Text style={styles.text}>{children}</Text>

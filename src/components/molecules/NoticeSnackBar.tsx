@@ -56,6 +56,7 @@ const NoticeSnackBar = ({
 };
 
 export default NoticeSnackBar;
+
 const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
@@ -83,12 +84,15 @@ const styles = StyleSheet.create({
     color: COLOR.white,
     marginBottom: 10,
   },
+
   pointText: { fontSize: Theme.fontSizes.fontSizes16, color: COLOR.blue },
+
   textBox: {
     marginTop: 30,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   text: { fontSize: Theme.fontSizes.fontSizes16, color: COLOR.white },
 });

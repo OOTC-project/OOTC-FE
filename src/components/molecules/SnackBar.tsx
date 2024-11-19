@@ -13,21 +13,25 @@ const SnackBar = ({
   children,
   snackbarVisible,
   position = 0,
-  size,
+  size = 0.8,
 }: SnackBarProps) => {
   const scaleValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     if (snackbarVisible) {
       Animated.timing(scaleValue, {
-        toValue: size ? size : 0.8,
+        toValue: size,
         duration: 120,
         useNativeDriver: true,
       }).start();
     } else {
-      scaleValue.setValue(0);
+      Animated.timing(scaleValue, {
+        toValue: 0,
+        duration: 120,
+        useNativeDriver: true,
+      }).start();
     }
-  }, [snackbarVisible, scaleValue]);
+  }, [snackbarVisible, scaleValue, size]);
 
   return (
     <Animated.View
